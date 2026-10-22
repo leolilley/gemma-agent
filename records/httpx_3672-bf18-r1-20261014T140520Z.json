@@ -1,0 +1,74 @@
+{
+  "schema": "gemma-agent.attempt/v1",
+  "attempt_id": "httpx_3672-bf18-r1-20261014T140520Z",
+  "task_id": "httpx_3672",
+  "bundle": "bf18",
+  "config_digest": "87a5f0f4973c6f2975765bf8b142f4beff0ab7546bd89a026910804ad53d82ab",
+  "model_alias": "gemma-4-31b-it-qat-w4a16-ct",
+  "model_served": "gemini-api:gemma-4-31b-it via scripts/gemini-adapter.py (vLLM thinking fields dropped; provider-default thinking)",
+  "harness": {
+    "swegemma": "0.2.11",
+    "adk-submission": "0.2.13",
+    "adk-eval-core": "0.1.0",
+    "google-adk": "1.36.1",
+    "litellm": "1.105.0"
+  },
+  "sandbox": "docker:swebench-sandbox:latest",
+  "snapshot_digest": "d1afdad9b9d433ebc345968ed90c4c401ed82f5fdfd27ab82eeaf92a49d9e2ed",
+  "budget": {
+    "max_time_minutes": 120.0,
+    "max_tool_calls": 28,
+    "max_turns": 80,
+    "timeout_seconds": 240
+  },
+  "site": "local-docker-api",
+  "repeat_index": 1,
+  "started_at": "2026-10-14T14:05:20.640188+00:00",
+  "wall_seconds": 7220.2,
+  "outcome": {
+    "resolved": false,
+    "test_exit_code": -1,
+    "agent_patch_size": 0,
+    "duration_seconds": 7213.7,
+    "error": "Agent exceeded session timeout (120.0 min)",
+    "tool_calls": 10,
+    "total_llm_calls": 10
+  },
+  "tool_sequence": [
+    "run_command",
+    "run_command",
+    "read_file",
+    "read_file",
+    "read_file",
+    "read_file",
+    "read_file",
+    "read_file",
+    "read_file",
+    "read_file"
+  ],
+  "first_edit_call_index": null,
+  "repetition_runs": 8,
+  "tokens": {
+    "prompt": 85193,
+    "completion": 2545,
+    "cached": 0
+  },
+  "patch_digest": null,
+  "results_dir": "results/httpx_3672-bf18-r1-20261014T140520Z",
+  "infrastructure_failure": false,
+  "lane": {
+    "requests": 57,
+    "responses": 25,
+    "http_200": 10,
+    "http_5xx_returned": 15,
+    "upstream_retries_5xx": 56,
+    "upstream_retries_429": 57,
+    "retry_sleep_seconds": 3117.2,
+    "upstream_seconds": 2613.3,
+    "paced_seconds": 9.0,
+    "prompt_tokens": 85193,
+    "completion_tokens": 2545,
+    "retry_fraction": 0.919
+  },
+  "validity": "valid"
+}

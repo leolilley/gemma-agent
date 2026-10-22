@@ -1,0 +1,71 @@
+{
+  "schema": "gemma-agent.attempt/v1",
+  "attempt_id": "requests_7328-bf18-r2-20261014T200503Z",
+  "task_id": "requests_7328",
+  "bundle": "bf18",
+  "config_digest": "87a5f0f4973c6f2975765bf8b142f4beff0ab7546bd89a026910804ad53d82ab",
+  "model_alias": "gemma-4-31b-it-qat-w4a16-ct",
+  "model_served": "gemini-api:gemma-4-31b-it via scripts/gemini-adapter.py (vLLM thinking fields dropped; provider-default thinking)",
+  "harness": {
+    "swegemma": "0.2.11",
+    "adk-submission": "0.2.13",
+    "adk-eval-core": "0.1.0",
+    "google-adk": "1.36.1",
+    "litellm": "1.105.0"
+  },
+  "sandbox": "docker:swebench-sandbox:latest",
+  "snapshot_digest": "47f35331fd2dc1d976eeb2aeff5f8aa376cd005911bf35ce164161931a97d8c9",
+  "budget": {
+    "max_time_minutes": 120.0,
+    "max_tool_calls": 28,
+    "max_turns": 80,
+    "timeout_seconds": 240
+  },
+  "site": "local-docker-api",
+  "repeat_index": 2,
+  "started_at": "2026-10-14T20:05:03.967350+00:00",
+  "wall_seconds": 6930.1,
+  "outcome": {
+    "resolved": false,
+    "test_exit_code": -1,
+    "agent_patch_size": 0,
+    "duration_seconds": 6923.64,
+    "error": "Sandbox execution error: litellm.Timeout: APITimeoutError - Request timed out. Error_str: Request timed out. - timeout value=600.0, time taken=3613.85 seconds LiteLLM Retried: 5 times",
+    "tool_calls": 7,
+    "total_llm_calls": 7
+  },
+  "tool_sequence": [
+    "read_file",
+    "read_file",
+    "read_file",
+    "read_file",
+    "read_file",
+    "run_command",
+    "read_file"
+  ],
+  "first_edit_call_index": null,
+  "repetition_runs": 4,
+  "tokens": {
+    "prompt": 61159,
+    "completion": 4742,
+    "cached": 34594
+  },
+  "patch_digest": null,
+  "results_dir": "results/requests_7328-bf18-r2-20261014T200503Z",
+  "infrastructure_failure": false,
+  "lane": {
+    "requests": 24,
+    "responses": 7,
+    "http_200": 7,
+    "http_5xx_returned": 0,
+    "upstream_retries_5xx": 1,
+    "upstream_retries_429": 2,
+    "retry_sleep_seconds": 73.5,
+    "upstream_seconds": 148.7,
+    "paced_seconds": 152.1,
+    "prompt_tokens": 61159,
+    "completion_tokens": 4742,
+    "retry_fraction": 0.3
+  },
+  "validity": "provider_interrupted"
+}

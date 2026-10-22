@@ -1,0 +1,45 @@
+{
+  "schema": "gemma-agent.attempt/v1",
+  "attempt_id": "fastapi_5077-bf18-r0-20261019T000503Z",
+  "task_id": "fastapi_5077",
+  "bundle": "bf18",
+  "config_digest": "87a5f0f4973c6f2975765bf8b142f4beff0ab7546bd89a026910804ad53d82ab",
+  "model_alias": "gemma-4-31b-it-qat-w4a16-ct",
+  "model_served": "gemini-api:gemma-4-31b-it via scripts/gemini-adapter.py (vLLM thinking fields dropped; provider-default thinking)",
+  "harness": {
+    "swegemma": "0.2.11",
+    "adk-submission": "0.2.13",
+    "adk-eval-core": "0.1.0",
+    "google-adk": "1.36.1",
+    "litellm": "1.105.0"
+  },
+  "sandbox": "docker:swebench-sandbox:latest",
+  "snapshot_digest": null,
+  "budget": {
+    "max_time_minutes": 120.0,
+    "max_tool_calls": 28,
+    "max_turns": 80,
+    "timeout_seconds": 240
+  },
+  "site": "local-docker-api",
+  "repeat_index": 0,
+  "started_at": "2026-10-19T00:05:03.402080+00:00",
+  "wall_seconds": 4.8,
+  "outcome": {
+    "resolved": false,
+    "test_exit_code": -1,
+    "agent_patch_size": 0,
+    "duration_seconds": 0.0,
+    "error": "Snapshot file not found: /home/leo/projects/gemma-agent/data/snapshots/fastapi_5077.tar.gz or .tgz",
+    "tool_calls": 0,
+    "total_llm_calls": 0
+  },
+  "tool_sequence": [],
+  "first_edit_call_index": null,
+  "repetition_runs": 0,
+  "tokens": null,
+  "patch_digest": null,
+  "results_dir": "results/fastapi_5077-bf18-r0-20261019T000503Z",
+  "infrastructure_failure": true,
+  "validity": "infrastructure_invalid"
+}

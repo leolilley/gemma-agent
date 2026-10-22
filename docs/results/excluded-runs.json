@@ -1,0 +1,4 @@
+{
+  "_comment": "Run directories whose verification environment did not test the agent's patch. Applied by scripts/regenerate.py as validity environment_invalid; records stay on disk and in the intent-to-run table. Each entry needs a DECISIONS.md line.",
+  "results/kaggle/smoke-bf18-cell-nf8-20261013": "Kaggle subprocess sandbox: venv created without pip (ensurepip failed on the pinned image), repository never installed; for src-layout repos the tests imported the image's own package (/usr/local/lib/python3.12/dist-packages/requests). requests_7315: identical patch digest resolved under Docker (API lane) and failed here. Decided 2026-10-13 22:20 UTC."
+}

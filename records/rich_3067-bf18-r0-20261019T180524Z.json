@@ -1,0 +1,78 @@
+{
+  "schema": "gemma-agent.attempt/v1",
+  "attempt_id": "rich_3067-bf18-r0-20261019T180524Z",
+  "task_id": "rich_3067",
+  "bundle": "bf18",
+  "config_digest": "87a5f0f4973c6f2975765bf8b142f4beff0ab7546bd89a026910804ad53d82ab",
+  "model_alias": "gemma-4-31b-it-qat-w4a16-ct",
+  "model_served": "gemini-api:gemma-4-31b-it via scripts/gemini-adapter.py (vLLM thinking fields dropped; provider-default thinking)",
+  "harness": {
+    "swegemma": "0.2.11",
+    "adk-submission": "0.2.13",
+    "adk-eval-core": "0.1.0",
+    "google-adk": "1.36.1",
+    "litellm": "1.105.0"
+  },
+  "sandbox": "docker:swebench-sandbox:latest",
+  "snapshot_digest": "c0438941340c2920daf0b8f2738752b3d7bac9c70b69ec1e264b95927880f4ae",
+  "budget": {
+    "max_time_minutes": 120.0,
+    "max_tool_calls": 28,
+    "max_turns": 80,
+    "timeout_seconds": 240
+  },
+  "site": "local-docker-api",
+  "repeat_index": 0,
+  "started_at": "2026-10-19T18:05:24.044761+00:00",
+  "wall_seconds": 1672.9,
+  "outcome": {
+    "resolved": true,
+    "test_exit_code": 0,
+    "agent_patch_size": 655,
+    "duration_seconds": 1665.81,
+    "error": null,
+    "tool_calls": 13,
+    "total_llm_calls": 15
+  },
+  "tool_sequence": [
+    "run_command",
+    "read_file",
+    "run_command",
+    "read_file",
+    "write_file",
+    "run_command",
+    "edit_file",
+    "run_command",
+    "run_command",
+    "edit_file",
+    "edit_file",
+    "run_command",
+    "run_command",
+    "submit_patch"
+  ],
+  "first_edit_call_index": 5,
+  "repetition_runs": 3,
+  "tokens": {
+    "prompt": 135793,
+    "completion": 2129,
+    "cached": 111810
+  },
+  "patch_digest": "a9f9dcce3c6737e474127daef2158cf59f6af8f77e15f6fd8a57e282bd0faeb5",
+  "results_dir": "results/rich_3067-bf18-r0-20261019T180524Z",
+  "infrastructure_failure": false,
+  "lane": {
+    "requests": 37,
+    "responses": 18,
+    "http_200": 15,
+    "http_5xx_returned": 3,
+    "upstream_retries_5xx": 15,
+    "upstream_retries_429": 19,
+    "retry_sleep_seconds": 888.0,
+    "upstream_seconds": 1451.4,
+    "paced_seconds": 200.8,
+    "prompt_tokens": 135793,
+    "completion_tokens": 2129,
+    "retry_fraction": 0.694
+  },
+  "validity": "valid"
+}

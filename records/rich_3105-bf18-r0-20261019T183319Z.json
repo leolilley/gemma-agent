@@ -1,0 +1,73 @@
+{
+  "schema": "gemma-agent.attempt/v1",
+  "attempt_id": "rich_3105-bf18-r0-20261019T183319Z",
+  "task_id": "rich_3105",
+  "bundle": "bf18",
+  "config_digest": "87a5f0f4973c6f2975765bf8b142f4beff0ab7546bd89a026910804ad53d82ab",
+  "model_alias": "gemma-4-31b-it-qat-w4a16-ct",
+  "model_served": "gemini-api:gemma-4-31b-it via scripts/gemini-adapter.py (vLLM thinking fields dropped; provider-default thinking)",
+  "harness": {
+    "swegemma": "0.2.11",
+    "adk-submission": "0.2.13",
+    "adk-eval-core": "0.1.0",
+    "google-adk": "1.36.1",
+    "litellm": "1.105.0"
+  },
+  "sandbox": "docker:swebench-sandbox:latest",
+  "snapshot_digest": "fab34f4a8432542e57a2137cf3d73aaccedbd560c68d939720e314b4916241be",
+  "budget": {
+    "max_time_minutes": 120.0,
+    "max_tool_calls": 28,
+    "max_turns": 80,
+    "timeout_seconds": 240
+  },
+  "site": "local-docker-api",
+  "repeat_index": 0,
+  "started_at": "2026-10-19T18:33:19.367821+00:00",
+  "wall_seconds": 7208.9,
+  "outcome": {
+    "resolved": false,
+    "test_exit_code": -1,
+    "agent_patch_size": 0,
+    "duration_seconds": 7205.15,
+    "error": "Agent exceeded session timeout (120.0 min)",
+    "tool_calls": 9,
+    "total_llm_calls": 9
+  },
+  "tool_sequence": [
+    "run_command",
+    "run_command",
+    "read_file",
+    "run_command",
+    "run_command",
+    "run_command",
+    "run_command",
+    "run_command",
+    "run_command"
+  ],
+  "first_edit_call_index": null,
+  "repetition_runs": 6,
+  "tokens": {
+    "prompt": 95206,
+    "completion": 1249,
+    "cached": 65227
+  },
+  "patch_digest": null,
+  "results_dir": "results/rich_3105-bf18-r0-20261019T183319Z",
+  "infrastructure_failure": false,
+  "lane": {
+    "requests": 28,
+    "responses": 9,
+    "http_200": 9,
+    "http_5xx_returned": 0,
+    "upstream_retries_5xx": 23,
+    "upstream_retries_429": 18,
+    "retry_sleep_seconds": 843.3,
+    "upstream_seconds": 623.0,
+    "paced_seconds": 72.4,
+    "prompt_tokens": 95206,
+    "completion_tokens": 1249,
+    "retry_fraction": 0.82
+  },
+  "validity": "valid"
+}

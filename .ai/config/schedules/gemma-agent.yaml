@@ -1,0 +1,40 @@
+# Declarative source for the campaign's node schedules (registered with `ryeos scheduler register`).
+# A pass fires every two hours; the scheduler skips overlapping fires and dispatch refuses while an
+# attempt is in flight, so the loop never runs two API attempts at once. Daily cap lives in budgets.yaml.
+schedule_id: gemma-agent-noise-floor-pass
+item_ref: graph:gemma-agent/noise_floor_pass
+ref_bindings: {}
+schedule_type: cron
+expression: "0 5 */2 * * *"
+params:
+  cohort: proxy_fidelity_api   # noise_floor_requests completed 2026-10-16; switched 2026-10-18, re-registration is Leo's
+  max_attempts: 3
+timezone: UTC
+misfire_policy: skip
+overlap_policy: skip
+lateness_grace_secs: 120
+enabled: true
+project_root: /home/leo/projects/gemma-agent
+# The scheduler pre-authorizes the execution policy against THIS list, not the principal's whole grant:
+# a live_direct read_write project policy needs ryeos.write.project.live here or every fire fails before
+# a thread exists (both 2026-10-13 fires: outcome dispatch_failed, no log line). Takes effect on re-register.
+capabilities:
+  - ryeos.execute.graph.gemma-agent/noise_floor_pass
+  - ryeos.write.project.live
+execution_policy:
+  schema_version: 2
+  ownership: daemon_owned
+  recovery: restart_recoverable
+  response: accepted
+  target:
+    kind: here
+  environment:
+    kind: project_overlay
+    include_operator_vault: true
+    name_policy:
+      kind: declared_required
+  project:
+    kind: live_direct
+    access: read_write
+    child_policy:
+      kind: inherit

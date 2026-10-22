@@ -1,0 +1,71 @@
+{
+  "schema": "gemma-agent.attempt/v1",
+  "attempt_id": "fastapi_11194-bf18-r0-grid-4bit-cell-fastapi-r0-20261014",
+  "task_id": "fastapi_11194",
+  "bundle": "bf18",
+  "config_digest": "87a5f0f4973c6f2975765bf8b142f4beff0ab7546bd89a026910804ad53d82ab",
+  "model_alias": "gemma-4-31b-it-qat-w4a16-ct",
+  "model_served": "vllm:/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2 dtype=bfloat16 tp=4 (w4a16; bundle thinking_config as served)",
+  "harness": {
+    "adk-eval-core": "0.1.0",
+    "adk-submission": "0.2.13",
+    "google-adk": "1.36.1",
+    "swegemma": "0.2.11"
+  },
+  "sandbox": "subprocess",
+  "snapshot_digest": null,
+  "budget": {
+    "max_time_minutes": 8.0,
+    "max_tool_calls": 28,
+    "max_turns": 80,
+    "timeout_seconds": 240
+  },
+  "site": "kaggle-l4x4",
+  "repeat_index": 0,
+  "started_at": "2026-10-13T18:54:22+00:00",
+  "wall_seconds": 163.29,
+  "outcome": {
+    "resolved": true,
+    "test_exit_code": 0,
+    "agent_patch_size": 993,
+    "duration_seconds": 163.29,
+    "error": null,
+    "tool_calls": 19,
+    "total_llm_calls": 23
+  },
+  "tool_sequence": [
+    "write_file",
+    "run_command",
+    "run_command",
+    "read_file",
+    "run_command",
+    "read_file",
+    "run_command",
+    "read_file",
+    "write_file",
+    "run_command",
+    "read_file",
+    "read_file",
+    "read_file",
+    "edit_file",
+    "run_command",
+    "write_file",
+    "run_command",
+    "run_command",
+    "submit_patch",
+    "run_command",
+    "submit_patch",
+    "get_status"
+  ],
+  "first_edit_call_index": 1,
+  "repetition_runs": 4,
+  "tokens": {
+    "prompt": 221248,
+    "completion": 5255,
+    "cached": 0
+  },
+  "patch_digest": "f6ba6a59cec96f75dba56e05e65d5574a68ba832b84775f0b4d32c6f94c71041",
+  "results_dir": "results/kaggle/grid-4bit-cell-fastapi-r0-20261014",
+  "infrastructure_failure": false,
+  "validity": "valid"
+}

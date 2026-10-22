@@ -1,0 +1,64 @@
+# ryeos:signed:2026-10-13T15:26:13Z:40bf992504b7ae4743b10b7f0f6e4c0d5f720ec735051cc2756fb5f1f7fe089b:8Vd/trh3UhrgF2juNWq5tnSX0ZZEdTyea9kNQVKLGkKsQHsW3dlkw7w3Uv88phessC4rOcVVR0ZmhwxM/D7kAA==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+version: "0.1.0"
+category: "gemma-agent"
+name: "attempt"
+executor_id: "@subprocess"
+execution_protocol: "protocol:ryeos/core/tool_callback"
+required_caps: ["ryeos.execute.tool.gemma-agent/attempt"]
+required_secrets:
+  - LITELLM_API_KEY
+description: >
+  One harness attempt: run the unchanged swegemma harness for one task and one bundle through
+  the local request adapter, then derive an attempt record (docs/RECORDS.md) from the harness
+  outputs. With dry_run true it only reports whether the declared secret and the adapter are
+  reachable from the tool subprocess, which is day-one check 4.
+effects: live
+
+env_config:
+  interpreter:
+    type: local_binary
+    binary: python3
+    candidates: [python3]
+    var: RYE_PYTHON
+    path_candidates: [python3]
+  env:
+    # The harness's Docker client follows the active docker context when DOCKER_HOST is unset; on this
+    # host that context is a rootless socket that does not exist. Pin the system socket explicitly.
+    DOCKER_HOST: "unix:///var/run/docker.sock"
+
+config:
+  command: "${interpreter}"
+  args:
+    - "${tool_dir}/lib/attempt_run.py"
+    - "--project-path"
+    - "${project_path}"
+  input_data: "${params_json}"
+  # must outlast budgets.api.attempt_wall_clock_minutes (120) plus sandbox setup and teardown
+  timeout_secs: 9000
+
+config_schema:
+  type: object
+  properties:
+    task_id:
+      type: string
+      description: "instance_id from data/tasks.jsonl, e.g. requests_7205"
+    bundle:
+      type: string
+      description: "directory under submissions/, e.g. bf18"
+      default: bf18
+    site:
+      type: string
+      description: "where this attempt runs; records carry it"
+      default: local-docker-api
+    repeat_index:
+      type: integer
+      default: 0
+    max_time_minutes:
+      type: number
+      description: "override of the bundle's time cap; the API arm is call-bounded, so 30 by default"
+      default: 30
+    dry_run:
+      type: boolean
+      description: "report secret presence and adapter reachability only; do not run the harness"
+      default: false
+  required: [task_id]

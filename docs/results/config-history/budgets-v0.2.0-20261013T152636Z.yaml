@@ -1,0 +1,25 @@
+# ryeos:signed:2026-10-13T15:26:36Z:186a7fd59e68fbae6e561ae310c5fda37ffbc5c2daff928f03d2a46cb966060e:/LOh1KnGKte0BbMV5MEPKjzXApmMs136YLt0wyS9Q6sJbLBAioPxRA1Q0/HKTMmxlC4pcrih7kXXz4kIxDioCg==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+# Campaign budgets as data. The dispatch tool refuses to launch beyond these; every refusal is a record.
+category: "gemma-agent"
+version: "0.2.0"
+description: "Daily and weekly caps per site for the Gemma 4 Developer Agent measurement campaign."
+api:
+  # Observed 2026-10-13 on the free tier for gemma-4-31b (scripts/gemini-adapter.py paces to these)
+  input_tokens_per_minute: 16000
+  requests_per_minute: 15
+  requests_per_day: 1500
+  # Sequential only: the token window serializes attempts anyway
+  max_concurrent_attempts: 1
+  # Measured 2026-10-13: 1 to 2 min per completed call (upstream 52 to 113 s mean, 5xx storms add 7 to 8 min per
+  # attempt). 28 calls need 60 to 90 min, so at most ~16 sequential attempts a day; the cap below is the ceiling.
+  attempts_per_day: 20
+  # The lane's time ceiling. It must not bind before the 28-call cap or the cell is not the scorer's. At 30 it bound at
+  # 14 calls (requests_6644 r0); at 90 it bound at 21 calls (requests_7328 r0: 2 min per call plus 33 min of provider
+  # retry sleep plus a run_command that hung 37 min). 120 since 2026-10-13 15:26 UTC; see DECISIONS.md.
+  attempt_wall_clock_minutes: 120
+l4x4:
+  quota_hours_per_week: 15
+  session_hours_max: 12
+# Cut order if quota slips (docs/PLAN.md "Cut order and what is never cut"). The 31B bf16 vs 4-bit contrast at the
+# cell and the 31B lifted-cell reruns go last; the never-cut list is in PLAN.md and is not data here.
+cut_order: [e4b_cell, 12b_long_call, l4x4_repeats_beyond_2, lifted_narrowed_to_seeded_subset, proxy_fidelity_api]

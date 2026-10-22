@@ -1,0 +1,65 @@
+# ryeos:signed:2026-10-13T03:56:28Z:6a51e5df5c95e4d7c4732e83de321e9c7c01699ecc378986667a871e3e48b5b0:sfYDEwlYx/dchJjUQ0MaR/JqIN/+00+7IGl2xuA6UESFhtTlRYGWidprW3MkzrMkDDpSD3Uu0cNbPhwLm8G9AA==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+version: 0.1.0
+category: gemma-agent/graphs
+description: >
+  One pass over a measurement cohort: dispatch picks the next attempt or refuses; attempt runs the
+  unchanged harness through the adapter and writes a record; repeat until refusal or the per-pass
+  limit. Sequential by design: the free tier's token window serializes attempts and dispatch refuses
+  while one is in flight. Progress state is the records on disk; a new pass re-derives what is left.
+requires:
+  capabilities:
+    declared:
+      - ryeos.execute.tool.gemma-agent/dispatch
+      - ryeos.execute.tool.gemma-agent/attempt
+config:
+  config_schema:
+    type: object
+    properties:
+      cohort:
+        type: string
+        description: cohort name in .ai/config/gemma-agent/cohorts.yaml
+        default: noise_floor_requests
+      max_attempts:
+        type: integer
+        description: attempts per pass; the daily cap lives in budgets.yaml and is enforced by dispatch
+        default: 3
+    required: []
+  start: dispatch
+  max_steps: 40
+  on_error: fail
+  nodes:
+    dispatch:
+      action:
+        item_id: tool:gemma-agent/dispatch
+        ref_bindings: {}
+        params:
+          cohort: ${inputs.cohort}
+      assign:
+        decision: ${result}
+        launched: ${state.launched ?? 0}
+        max_attempts: ${inputs.max_attempts}
+      next:
+        type: conditional
+        branches:
+          - when: 'result.dispatch == "launch" && state.launched < state.max_attempts'
+            to: attempt
+          - to: finish
+    attempt:
+      action:
+        item_id: tool:gemma-agent/attempt
+        ref_bindings: {}
+        params:
+          task_id: ${state.decision.task_id}
+          bundle: ${state.decision.bundle}
+          site: ${state.decision.site}
+          repeat_index: ${state.decision.repeat_index}
+          max_time_minutes: ${state.decision.max_time_minutes}
+      assign:
+        last_attempt: ${result}
+        launched: ${(state.launched ?? 0) + 1}
+      next:
+        type: unconditional
+        to: dispatch
+    finish:
+      node_type: return
+      output: ${state}

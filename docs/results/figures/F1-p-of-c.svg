@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420" font-family="Helvetica, Arial, sans-serif" font-size="12">
+<rect width="720" height="420" fill="white"/>
+<text x="70" y="24" font-size="15" font-weight="bold">F1  Pass rate against the clock, P(C)</text>
+<text x="70" y="42" fill="#555" font-size="11">numbers.json: curve[bundle].P (fraction of tasks whose last successful edit came by C and that passed); cell pass rates from arms</text>
+<line x1="70" y1="360" x2="690" y2="360" stroke="#333"/><line x1="70" y1="360" x2="70" y2="60" stroke="#333"/>
+<line x1="70.0" y1="360" x2="70.0" y2="365" stroke="#333"/><text x="70.0" y="378" text-anchor="middle">0</text>
+<line x1="152.7" y1="360" x2="152.7" y2="365" stroke="#333"/><text x="152.7" y="378" text-anchor="middle">4</text>
+<line x1="235.3" y1="360" x2="235.3" y2="365" stroke="#333"/><text x="235.3" y="378" text-anchor="middle">8</text>
+<line x1="318.0" y1="360" x2="318.0" y2="365" stroke="#333"/><text x="318.0" y="378" text-anchor="middle">12</text>
+<line x1="400.7" y1="360" x2="400.7" y2="365" stroke="#333"/><text x="400.7" y="378" text-anchor="middle">16</text>
+<line x1="483.3" y1="360" x2="483.3" y2="365" stroke="#333"/><text x="483.3" y="378" text-anchor="middle">20</text>
+<line x1="566.0" y1="360" x2="566.0" y2="365" stroke="#333"/><text x="566.0" y="378" text-anchor="middle">24</text>
+<line x1="690.0" y1="360" x2="690.0" y2="365" stroke="#333"/><text x="690.0" y="378" text-anchor="middle">30</text>
+<line x1="65" y1="360.0" x2="70" y2="360.0" stroke="#333"/><text x="62" y="364.0" text-anchor="end">0.0</text>
+<line x1="65" y1="300.0" x2="70" y2="300.0" stroke="#333"/><text x="62" y="304.0" text-anchor="end">0.2</text>
+<line x1="70" y1="300.0" x2="690" y2="300.0" stroke="#eee"/>
+<line x1="65" y1="240.0" x2="70" y2="240.0" stroke="#333"/><text x="62" y="244.0" text-anchor="end">0.4</text>
+<line x1="70" y1="240.0" x2="690" y2="240.0" stroke="#eee"/>
+<line x1="65" y1="180.0" x2="70" y2="180.0" stroke="#333"/><text x="62" y="184.0" text-anchor="end">0.6</text>
+<line x1="70" y1="180.0" x2="690" y2="180.0" stroke="#eee"/>
+<line x1="65" y1="120.0" x2="70" y2="120.0" stroke="#333"/><text x="62" y="124.0" text-anchor="end">0.8</text>
+<line x1="70" y1="120.0" x2="690" y2="120.0" stroke="#eee"/>
+<line x1="65" y1="60.0" x2="70" y2="60.0" stroke="#333"/><text x="62" y="64.0" text-anchor="end">1.0</text>
+<line x1="70" y1="60.0" x2="690" y2="60.0" stroke="#eee"/>
+<text x="380.0" y="406" text-anchor="middle">clock C (minutes)</text>
+<text transform="translate(16,210.0) rotate(-90)" text-anchor="middle">P(C)</text>
+<line x1="235.3" y1="60" x2="235.3" y2="360" stroke="#888" stroke-dasharray="4 3"/><text x="239.3" y="72" fill="#888" font-size="11" text-anchor="start">the cell clock, 8 min</text>
+<path d="M70.0,360.0 H90.7 V346.8 H111.3 V320.3 H132.0 V271.8 H152.7 V262.9 H173.3 V245.3 H194.0 V245.3 H214.7 V240.9 H235.3 V240.9" fill="none" stroke="#1f5fbf" stroke-width="2.0"/>
+<path d="M70.0,360.0 H90.7 V360.0 H111.3 V346.8 H132.0 V324.7 H152.7 V320.3 H173.3 V302.6 H194.0 V293.8 H214.7 V285.0 H235.3 V280.6 H276.7 V280.6 H318.0 V271.8 H380.0 V254.1 H483.3 V240.9 H586.7 V236.5 H690.0 V232.1" fill="none" stroke="#c8541b" stroke-width="2.0"/>
+<circle cx="235.3" cy="240.9" r="4.5" fill="white" stroke="#1f5fbf" stroke-width="2"/><text x="245.3" y="230.9" fill="#1f5fbf" font-size="11">4-bit cell pass rate 27/68</text>
+<circle cx="235.3" cy="276.2" r="4.5" fill="white" stroke="#c8541b" stroke-width="2"/><text x="245.3" y="292.2" fill="#c8541b" font-size="11">bf16 cell pass rate 19/68 (rich)</text>
+<line x1="400" y1="72" x2="424" y2="72" stroke="#1f5fbf" stroke-width="2"/><text x="430" y="76">4-bit, at the cell (8 min), 68 tasks</text>
+<line x1="400" y1="88" x2="424" y2="88" stroke="#c8541b" stroke-width="2"/><text x="430" y="92">bf16, clock lifted to 30 min, 68 tasks</text>
+</svg>

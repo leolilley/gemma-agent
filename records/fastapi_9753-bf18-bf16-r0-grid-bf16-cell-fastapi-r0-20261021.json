@@ -1,0 +1,71 @@
+{
+  "schema": "gemma-agent.attempt/v1",
+  "attempt_id": "fastapi_9753-bf18-bf16-r0-grid-bf16-cell-fastapi-r0-20261021",
+  "task_id": "fastapi_9753",
+  "bundle": "bf18-bf16",
+  "config_digest": "d0d5d214ec94ccc32e49ec15c27956814c41e25c1cb730fcaaa2f5224df04976",
+  "model_alias": "gemma-4-31b-it",
+  "model_served": "vllm:/kaggle/input/models/google/gemma-4/transformers/gemma-4-31b-it/1 dtype=bfloat16 tp=4 (bf16 weights; bundle thinking_config as served)",
+  "harness": {
+    "adk-eval-core": "0.1.0",
+    "adk-submission": "0.2.13",
+    "google-adk": "1.36.1",
+    "swegemma": "0.2.11"
+  },
+  "sandbox": "subprocess",
+  "snapshot_digest": null,
+  "budget": {
+    "max_time_minutes": 8.0,
+    "max_tool_calls": 28,
+    "max_turns": 80,
+    "timeout_seconds": 240
+  },
+  "site": "kaggle-l4x4",
+  "repeat_index": 0,
+  "started_at": "2026-10-21T04:21:24.232203+00:00",
+  "wall_seconds": 488.03,
+  "outcome": {
+    "resolved": false,
+    "test_exit_code": 1,
+    "agent_patch_size": 1514,
+    "duration_seconds": 488.03,
+    "error": "Agent exceeded session timeout (8.0 min)",
+    "tool_calls": 18,
+    "total_llm_calls": 18
+  },
+  "tool_sequence": [
+    "run_command",
+    "run_command",
+    "read_file",
+    "run_command",
+    "read_file",
+    "run_command",
+    "read_file",
+    "write_file",
+    "run_command",
+    "write_file",
+    "run_command",
+    "run_command",
+    "read_file",
+    "write_file",
+    "run_command",
+    "read_file",
+    "write_file",
+    "run_command"
+  ],
+  "first_edit_call_index": 8,
+  "repetition_runs": 2,
+  "tokens": {
+    "prompt": 147020,
+    "completion": 5611,
+    "cached": 0
+  },
+  "patch_digest": "93ee9351873aa698b3621408fe29e326674c228184e92eb58a9b90a2197d9bf3",
+  "results_dir": "results/kaggle/grid-bf16-cell-fastapi-r0-20261021",
+  "infrastructure_failure": false,
+  "validity": "valid",
+  "started_at_source": "trace: first model call minus elapsed",
+  "forecast_sha256": "b041eaf1dd99981bfd3a1c33330a9e587ae4da67ad8b6c7d484914bcca66d4aa",
+  "forecast_file": ".ai/knowledge/gemma-agent/forecast-bf16-cell-fastapi.md",
+  "forecast_copy_returned": true
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "gemma-agent.attempt/v1",
+  "attempt_id": "rich_3063-bf18-r0-20261019T160503Z",
+  "task_id": "rich_3063",
+  "bundle": "bf18",
+  "config_digest": "87a5f0f4973c6f2975765bf8b142f4beff0ab7546bd89a026910804ad53d82ab",
+  "model_alias": "gemma-4-31b-it-qat-w4a16-ct",
+  "model_served": "gemini-api:gemma-4-31b-it via scripts/gemini-adapter.py (vLLM thinking fields dropped; provider-default thinking)",
+  "harness": {
+    "swegemma": "0.2.11",
+    "adk-submission": "0.2.13",
+    "adk-eval-core": "0.1.0",
+    "google-adk": "1.36.1",
+    "litellm": "1.105.0"
+  },
+  "sandbox": "docker:swebench-sandbox:latest",
+  "snapshot_digest": "fcf1bc1b3e7399bd71c14981d31b776a12ecdd3c3d8312a655e1777eb587d5d7",
+  "budget": {
+    "max_time_minutes": 120.0,
+    "max_tool_calls": 28,
+    "max_turns": 80,
+    "timeout_seconds": 240
+  },
+  "site": "local-docker-api",
+  "repeat_index": 0,
+  "started_at": "2026-10-19T16:05:03.702386+00:00",
+  "wall_seconds": 7217.4,
+  "outcome": {
+    "resolved": false,
+    "test_exit_code": 1,
+    "agent_patch_size": 544,
+    "duration_seconds": 7210.28,
+    "error": "Agent exceeded session timeout (120.0 min)",
+    "tool_calls": 7,
+    "total_llm_calls": 7
+  },
+  "tool_sequence": [
+    "read_file",
+    "write_file",
+    "run_command",
+    "write_file",
+    "run_command",
+    "run_command",
+    "read_file"
+  ],
+  "first_edit_call_index": 2,
+  "repetition_runs": 1,
+  "tokens": {
+    "prompt": 53859,
+    "completion": 9667,
+    "cached": 14260
+  },
+  "patch_digest": "65c5d6e8986e1fcaa8bd6d0b0d237b1c5a1922f87cfa79e0c43e5c7dfb7808dc",
+  "results_dir": "results/rich_3063-bf18-r0-20261019T160503Z",
+  "infrastructure_failure": false,
+  "lane": {
+    "requests": 24,
+    "responses": 7,
+    "http_200": 7,
+    "http_5xx_returned": 0,
+    "upstream_retries_5xx": 16,
+    "upstream_retries_429": 6,
+    "retry_sleep_seconds": 327.8,
+    "upstream_seconds": 844.6,
+    "paced_seconds": 0.0,
+    "prompt_tokens": 53859,
+    "completion_tokens": 9667,
+    "retry_fraction": 0.759
+  },
+  "validity": "valid"
+}

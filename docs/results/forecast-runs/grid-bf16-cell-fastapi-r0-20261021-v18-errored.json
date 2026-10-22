@@ -1,0 +1,52 @@
+{
+  "run_id": "grid-bf16-cell-fastapi-r0-20261021",
+  "bundle": "bf18-bf16",
+  "site": "kaggle-l4x4",
+  "task_ids": [
+    "fastapi_5077",
+    "fastapi_5624",
+    "fastapi_9425",
+    "fastapi_9555",
+    "fastapi_9753",
+    "fastapi_11194",
+    "fastapi_13537",
+    "fastapi_13920",
+    "fastapi_14258",
+    "fastapi_14301",
+    "fastapi_14306",
+    "fastapi_14372",
+    "fastapi_14419",
+    "fastapi_14448",
+    "fastapi_14458",
+    "fastapi_14463",
+    "fastapi_14479",
+    "fastapi_14487",
+    "fastapi_14492",
+    "fastapi_14616",
+    "fastapi_14786",
+    "fastapi_14794",
+    "fastapi_14873",
+    "fastapi_14986",
+    "fastapi_15280",
+    "fastapi_15588",
+    "fastapi_15589",
+    "fastapi_15661",
+    "fastapi_15800"
+  ],
+  "forecast_file": ".ai/knowledge/gemma-agent/forecast-bf16-cell-fastapi.md",
+  "forecast_sha256": "b041eaf1dd99981bfd3a1c33330a9e587ae4da67ad8b6c7d484914bcca66d4aa",
+  "forecast_signed_at": "2026-10-20T07:57:08Z",
+  "dataset_version": {
+    "ref": "leolilley/gemma-agent-bundles",
+    "version": 22,
+    "last_updated_utc": "2026-10-21 01:10:28.617000",
+    "private": true
+  },
+  "kernel": {
+    "ref": "leolilley/gemma-agent-eval-bf16",
+    "version": 18
+  },
+  "pushed_at_utc": "2026-10-21T01:12:42+00:00",
+  "note": "The kernel version reads the dataset at this version (its input pin is shown on the kernel version page); the kernel copies forecast.md into its output, so the returned archive carries the forecast too.",
+  "kernel_outcome": "kernel version 18 errored during model load (vLLM engine not ready; checkpoint prefetch took 792 s on the Kaggle mount), 1,340 s of session time, no task attempted, no record; re-pushed as a new kernel version under the same signed forecast"
+}

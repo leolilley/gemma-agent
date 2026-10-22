@@ -1,0 +1,17 @@
+[project]
+name = "gemma-agent"
+version = "0.1.0"
+description = "Gemma 4 Developer Agent campaign on RyeOS: measurement first, paper by Nov 12, agent track second"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "kaggle==2.2.4",
+    "pyyaml>=6",
+    "pandas>=2",
+    "numpy>=1.26",
+]
+
+# The competition harness (swegemma, adk-submission, adk-eval-core, google-adk and
+# their pure-Python dependencies) is installed from ./wheelhouse with
+# `uv pip install --no-deps wheelhouse/*.whl`, never from PyPI, so the local
+# harness is byte-identical to the scorer's. vLLM, torch and flashinfer are not
+# installed locally: the model is reached over an OpenAI-compatible endpoint.

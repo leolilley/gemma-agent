@@ -1,0 +1,56 @@
+{
+  "schema": "gemma-agent.attempt/v1",
+  "attempt_id": "rich_3521-bf18-bf16-r0-grid-bf16-cell-rich-r0-20261014",
+  "task_id": "rich_3521",
+  "bundle": "bf18-bf16",
+  "config_digest": "d0d5d214ec94ccc32e49ec15c27956814c41e25c1cb730fcaaa2f5224df04976",
+  "model_alias": "gemma-4-31b-it",
+  "model_served": "vllm:/kaggle/input/models/google/gemma-4/transformers/gemma-4-31b-it/1 dtype=bfloat16 tp=4 (bf16 weights; bundle thinking_config as served)",
+  "harness": {
+    "adk-eval-core": "0.1.0",
+    "adk-submission": "0.2.13",
+    "google-adk": "1.36.1",
+    "swegemma": "0.2.11"
+  },
+  "sandbox": "subprocess",
+  "snapshot_digest": "25c32265f1649c4eef6c0f9c295b3f5d16239d0207edb0e0851fe88b15c5d8fd",
+  "budget": {
+    "max_time_minutes": 8.0,
+    "max_tool_calls": 28,
+    "max_turns": 80,
+    "timeout_seconds": 240
+  },
+  "site": "kaggle-l4x4",
+  "repeat_index": 0,
+  "started_at": "2026-10-14T00:17:36+00:00",
+  "wall_seconds": 482.35,
+  "outcome": {
+    "resolved": false,
+    "test_exit_code": -1,
+    "agent_patch_size": 0,
+    "duration_seconds": 482.35,
+    "error": "Agent exceeded session timeout (8.0 min)",
+    "tool_calls": 7,
+    "total_llm_calls": 7
+  },
+  "tool_sequence": [
+    "run_command",
+    "read_file",
+    "read_file",
+    "run_command",
+    "read_file",
+    "read_file",
+    "read_file"
+  ],
+  "first_edit_call_index": null,
+  "repetition_runs": 3,
+  "tokens": {
+    "prompt": 32615,
+    "completion": 4456,
+    "cached": 0
+  },
+  "patch_digest": null,
+  "results_dir": "results/kaggle/grid-bf16-cell-rich-r0-20261014",
+  "infrastructure_failure": false,
+  "validity": "valid"
+}

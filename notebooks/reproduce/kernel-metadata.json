@@ -1,0 +1,18 @@
+{
+  "id": "leolilley/gemma-agent-reproduce",
+  "title": "gemma-agent reproduce",
+  "code_file": "reproduce.py",
+  "language": "python",
+  "kernel_type": "script",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [],
+  "dataset_sources": [
+    "leolilley/gemma-agent-records"
+  ],
+  "kernel_sources": [],
+  "competition_sources": [],
+  "model_sources": []
+}

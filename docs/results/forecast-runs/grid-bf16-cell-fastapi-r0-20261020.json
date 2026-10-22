@@ -1,0 +1,58 @@
+{
+  "run_id": "grid-bf16-cell-fastapi-r0-20261020",
+  "bundle": "bf18-bf16",
+  "site": "kaggle-l4x4",
+  "task_ids": [
+    "fastapi_5077",
+    "fastapi_5624",
+    "fastapi_9425",
+    "fastapi_9555",
+    "fastapi_9753",
+    "fastapi_11194",
+    "fastapi_13537",
+    "fastapi_13920",
+    "fastapi_14258",
+    "fastapi_14301",
+    "fastapi_14306",
+    "fastapi_14372",
+    "fastapi_14419",
+    "fastapi_14448",
+    "fastapi_14458",
+    "fastapi_14463",
+    "fastapi_14479",
+    "fastapi_14487",
+    "fastapi_14492",
+    "fastapi_14616",
+    "fastapi_14786",
+    "fastapi_14794",
+    "fastapi_14873",
+    "fastapi_14986",
+    "fastapi_15280",
+    "fastapi_15588",
+    "fastapi_15589",
+    "fastapi_15661",
+    "fastapi_15800"
+  ],
+  "forecast_file": ".ai/knowledge/gemma-agent/forecast-bf16-cell-fastapi.md",
+  "forecast_sha256": "b041eaf1dd99981bfd3a1c33330a9e587ae4da67ad8b6c7d484914bcca66d4aa",
+  "forecast_signed_at": "2026-10-20T07:57:08Z",
+  "dataset_version": {
+    "ref": "leolilley/gemma-agent-bundles",
+    "version": 21,
+    "last_updated_utc": "2026-10-20 07:56:51.107000",
+    "private": true,
+    "note": "read after the push through the project venv (the launcher's in-process import failed; fixed). Kaggle's timestamp 07:56:51 precedes the signature time 07:57:08 written by the signing machine: that machine's clock was measured 36 s ahead of kaggle.com's HTTP Date header at 08:01 UTC (local 08:01:37 against Date 08:01:01), so in Kaggle's time the file was signed at about 07:56:32 and uploaded at 07:56:51. The chronology does not rest on comparing the two clocks: the uploaded file itself carries the signature, and the records carry its digest."
+  },
+  "kernel": {
+    "ref": "leolilley/gemma-agent-eval-bf16",
+    "version": null
+  },
+  "pushed_at_utc": "2026-10-20T07:59:00+00:00",
+  "note": "The kernel version reads the dataset at this version (its input pin is shown on the kernel version page); the kernel copies forecast.md into its output, so the returned archive carries the forecast too.",
+  "kernel_push": "refused by Kaggle at 2026-10-20T07:59Z: Maximum weekly GPU quota of 30.00 hours reached; no kernel version, no attempt ran; the dataset version carrying forecast.md was created at about 07:58Z; re-pushed when the quota resets",
+  "clock_skew_check": {
+    "measured_at_local_utc": "2026-10-20T08:01:37",
+    "kaggle_http_date_utc": "2026-10-20T08:01:01",
+    "local_minus_kaggle_s": 36
+  }
+}

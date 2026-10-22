@@ -1,0 +1,82 @@
+{
+  "schema": "gemma-agent.attempt/v1",
+  "attempt_id": "rich_3061-bf18-r0-20261019T124700Z",
+  "task_id": "rich_3061",
+  "bundle": "bf18",
+  "config_digest": "87a5f0f4973c6f2975765bf8b142f4beff0ab7546bd89a026910804ad53d82ab",
+  "model_alias": "gemma-4-31b-it-qat-w4a16-ct",
+  "model_served": "gemini-api:gemma-4-31b-it via scripts/gemini-adapter.py (vLLM thinking fields dropped; provider-default thinking)",
+  "harness": {
+    "swegemma": "0.2.11",
+    "adk-submission": "0.2.13",
+    "adk-eval-core": "0.1.0",
+    "google-adk": "1.36.1",
+    "litellm": "1.105.0"
+  },
+  "sandbox": "docker:swebench-sandbox:latest",
+  "snapshot_digest": "f32c9ed11538db2bf049314ff7c8f08c01ca23006bbd994c25ad72c2815fe905",
+  "budget": {
+    "max_time_minutes": 120.0,
+    "max_tool_calls": 28,
+    "max_turns": 80,
+    "timeout_seconds": 240
+  },
+  "site": "local-docker-api",
+  "repeat_index": 0,
+  "started_at": "2026-10-19T12:47:00.823821+00:00",
+  "wall_seconds": 7221.5,
+  "outcome": {
+    "resolved": false,
+    "test_exit_code": 1,
+    "agent_patch_size": 2037,
+    "duration_seconds": 7212.19,
+    "error": "Agent exceeded session timeout (120.0 min)",
+    "tool_calls": 18,
+    "total_llm_calls": 18
+  },
+  "tool_sequence": [
+    "run_command",
+    "run_command",
+    "run_command",
+    "run_command",
+    "read_file",
+    "read_file",
+    "write_file",
+    "run_command",
+    "run_command",
+    "run_command",
+    "read_file",
+    "run_command",
+    "read_file",
+    "read_file",
+    "edit_file",
+    "run_command",
+    "edit_file",
+    "run_command"
+  ],
+  "first_edit_call_index": 7,
+  "repetition_runs": 7,
+  "tokens": {
+    "prompt": 156207,
+    "completion": 5588,
+    "cached": 101318
+  },
+  "patch_digest": "de608b0143f7e423c043a7304017a15a454741eea87f6241768827b2913d5ed3",
+  "results_dir": "results/rich_3061-bf18-r0-20261019T124700Z",
+  "infrastructure_failure": false,
+  "lane": {
+    "requests": 45,
+    "responses": 18,
+    "http_200": 18,
+    "http_5xx_returned": 0,
+    "upstream_retries_5xx": 17,
+    "upstream_retries_429": 13,
+    "retry_sleep_seconds": 535.9,
+    "upstream_seconds": 1327.2,
+    "paced_seconds": 42.9,
+    "prompt_tokens": 156207,
+    "completion_tokens": 5588,
+    "retry_fraction": 0.625
+  },
+  "validity": "valid"
+}

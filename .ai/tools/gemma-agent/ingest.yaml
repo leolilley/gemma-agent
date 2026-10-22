@@ -1,0 +1,44 @@
+# ryeos:signed:2026-10-13T21:09:16Z:68fd34a90c0ceb079175775906c883a6033f4ab946fca4ec9aa85cef4acf9902:nxGxjj/spGbvcUGm4g9Tl7clxhUwpoRsbSP8Ly72s+hs+dARzbzlp4QgwQQcYyNvAvGmlweY3JBysbrJJLKeAA==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+version: "0.1.0"
+category: "gemma-agent"
+name: "ingest"
+executor_id: "@subprocess"
+execution_protocol: "protocol:ryeos/core/tool_callback"
+required_caps: ["ryeos.execute.tool.gemma-agent/ingest"]
+description: >
+  GPU-lane records. Takes one L4x4 kernel run's results archive (results-<run_id>.zip as downloaded by
+  `kaggle kernels output`) or its extracted directory and writes one attempt record per task under
+  records/, using the same derivation as the API lane's attempt tool (lib/record.py). Idempotent.
+effects: live
+
+env_config:
+  interpreter:
+    type: local_binary
+    binary: python3
+    candidates: [python3]
+    var: RYE_PYTHON
+    path_candidates: [python3]
+
+config:
+  command: "${interpreter}"
+  args:
+    - "${tool_dir}/lib/ingest_run.py"
+    - "--project-path"
+    - "${project_path}"
+  input_data: "${params_json}"
+  timeout_secs: 300
+
+config_schema:
+  type: object
+  properties:
+    archive:
+      type: string
+      description: "project-relative path of results-<run_id>.zip from the kernel's output"
+    run_dir:
+      type: string
+      description: "project-relative path of an already extracted run directory (results/kaggle/<run_id>)"
+    site:
+      type: string
+      description: "site the kernel ran on; records carry it"
+      default: kaggle-l4x4
+  required: []

@@ -1,0 +1,38 @@
+# ryeos:signed:2026-10-13T03:55:13Z:4ed0411fbdf74f4e1a93cb5bbf606c00d216725576dc6140b46312371ab6949c:NfLo+sOj5rtBzt7VMr4e0etvCAnxetIhiKzjKBExGp9zurKfzCYtEZr86F3RtYWNq9rJubtwh4tn5ZZ5PZ1YCg==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+version: "0.1.0"
+category: "gemma-agent"
+name: "dispatch"
+executor_id: "@subprocess"
+execution_protocol: "protocol:ryeos/core/tool_callback"
+required_caps: ["ryeos.execute.tool.gemma-agent/dispatch"]
+description: >
+  Deterministic "what's next" selector. Reads the cohort and budget config and the records already on
+  disk, and returns the next attempt's parameters, or a refusal with its reason (cohort complete,
+  daily cap reached, an attempt already in flight). Never launches anything itself.
+effects: live
+
+env_config:
+  interpreter:
+    type: local_binary
+    binary: python3
+    candidates: [python3]
+    var: RYE_PYTHON
+    path_candidates: [python3]
+
+config:
+  command: "${interpreter}"
+  args:
+    - "${tool_dir}/lib/dispatch_run.py"
+    - "--project-path"
+    - "${project_path}"
+  input_data: "${params_json}"
+  timeout_secs: 60
+
+config_schema:
+  type: object
+  properties:
+    cohort:
+      type: string
+      description: "cohort name in .ai/config/gemma-agent/cohorts.yaml"
+      default: noise_floor_requests
+  required: []

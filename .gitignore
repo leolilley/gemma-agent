@@ -1,0 +1,29 @@
+# Competition data, harness wheels and run outputs are large or downloaded; never committed
+/data/
+/wheelhouse/
+/results/
+/reference/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# RyeOS runtime state (generated)
+.ai/cache/
+.ai/state/
+.ai/objects/
+.ai/refs/
+.ai/bin/
+.ai/lockfiles/
+.ai/knowledge/state/
+
+# Secrets
+.env
+*.pem
+!*.pem.example
+
+# Temp
+.tmp/
+*.swp
+!docs/results/signing-public-key.pem
