@@ -174,8 +174,9 @@ def f4(n: dict, out: Path):
         for j, ln in enumerate(label.split('\n')): f.text(x0 - 12, y - 4 + 14 * j, ln, text_anchor='end', font_size='11' if j else '12')
         f.text(X(c['point']), y + 20, f"{c['point']:+.3f} [{c['lo']:+.3f}, {c['hi']:+.3f}], n = {c['n_tasks']}", text_anchor='middle', font_size='11', fill='#333')
     nf = n['noise_floor']
-    f.text(x0, yb + 58, f"Noise floor (the 4-bit bundle on the API lane, where time does not bind): pass rate {nf['all']['point']:.2f} [{nf['all']['lo']:.2f}, {nf['all']['hi']:.2f}] on {nf['all']['n_tasks']} tasks", font_size='10', fill='#555')
-    f.text(x0, yb + 72, f"({nf['all']['n_attempts']} attempts), {nf['without_ceiling_bound']['point']:.2f} [{nf['without_ceiling_bound']['lo']:.2f}, {nf['without_ceiling_bound']['hi']:.2f}] without ceiling-bound attempts; {nf['tasks_with_mixed_outcomes']} of {nf['tasks_with_repeats']} repeated tasks had mixed outcomes.", font_size='10', fill='#555')
+    ceil = nf['all']['n_attempts'] - nf['without_ceiling_bound']['n_attempts']
+    f.text(x0, yb + 58, f"Noise floor (cohort noise_floor_requests: the 4-bit bundle on the API lane, {nf['all']['n_tasks']} tasks, 5 repeats, no 8-min clock): pass rate {nf['all']['point']:.2f} [{nf['all']['lo']:.2f}, {nf['all']['hi']:.2f}]", font_size='10', fill='#555')
+    f.text(x0, yb + 72, f"on {nf['all']['n_attempts']} attempts; {nf['without_ceiling_bound']['point']:.2f} [{nf['without_ceiling_bound']['lo']:.2f}, {nf['without_ceiling_bound']['hi']:.2f}] without the {ceil} attempts the lane's own 120-min ceiling ended; {nf['tasks_with_mixed_outcomes']} of {nf['tasks_with_repeats']} repeated tasks had mixed outcomes.", font_size='10', fill='#555')
     f.write(out / 'F4-contrasts.svg')
 
 

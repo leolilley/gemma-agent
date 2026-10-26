@@ -9,9 +9,8 @@ zip of these four files has SHA-256 eb3d5ebf21ce39b186d42937de593e3be62bc329024d
 This bundle is the campaign's unchanged reference. It is submitted as-is for the first
 leaderboard number and used as the control arm in every paired comparison.
 
-## bf18-12b (campaign variant, 2026-10-22)
+## bf18-lifted (campaign variant, 2026-10-13)
 
-bf18 with one change: `agent.yaml` `model: gemma-4-12b-it-qat-w4a16-ct` (Google's 12B W4A16 quantization-aware-trained
-checkpoint, served by the eval-4bit kernel, which attaches it). Prompt, tools, sampling and budgets are byte-identical to
-bf18: the cell budget of 8 minutes and 28 calls. This is the size arm (PLAN.md cohort 3, 12B 4-bit at the cell on the 39
-rich tasks); never submitted.
+bf18 with one change: `eval_config.yaml` lifts the two caps that bind at the competition cell, to
+`max_time_minutes: 16` and `max_tool_calls: 40`. Prompt, tools, sampling and model are byte-identical to bf18.
+This is the 4-bit lifted cell (reruns of cell failures); never submitted.

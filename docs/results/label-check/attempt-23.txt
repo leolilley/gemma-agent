@@ -1,0 +1,23 @@
+# attempt 23
+budget: 8 min, 28 tool calls, 80 turns, command timeout 240 s
+wall seconds: 482.16; harness tool_calls counted: 17; model calls: 17; harness error field: 'Agent exceeded session timeout (8.0 min)'; patch bytes: 0; test exit code: -1
+last trace timestamp (elapsed s): 478
+
+calls (index, elapsed s at response, tool, target, result):
+   1      12s  run_command    git grep -n "TTY_COMPATIBLE" -- 'rich/*.py'                                                                    ok exit 0 | rich/console.py:951: tty_compatible = environ.get("TTY_COMPATIBLE", "") rich/diagnose.py:28: "TTY_COMPATIBLE",
+   2      19s  read_file      rich/console.py                                                                                                ok
+   3      37s  read_file      rich/console.py                                                                                                ok
+   4      46s  run_command    grep -n "is_terminal" rich/progress.py rich/status.py                                                          error | 
+   5      62s  read_file      rich/console.py                                                                                                ok
+   6      77s  run_command    grep -n "is_terminal" rich/progress.py rich/status.py                                                          error | 
+   7      87s  run_command    git grep "is_terminal" rich/progress.py rich/status.py                                                         error | 
+   8      99s  read_file      rich/progress.py                                                                                               ok
+   9     158s  run_command    grep -n "is_terminal" rich/progress.py rich/status.py                                                          error | 
+  10     178s  run_command    grep -n "is_terminal" rich/progress.py rich/status.py                                                          error | 
+  11     192s  run_command    grep "is_terminal" rich/progress.py                                                                            error | 
+  12     223s  read_file      rich/status.py                                                                                                 ok
+  13     274s  run_command    git grep "is_terminal"                                                                                         ok exit 0 | tests/test_console.py: assert not console.is_terminal tests/test_live_render.py: is_terminal=False, tests/test_padding.py: is_terminal=False,
+  14     341s  read_file      rich/live.py                                                                                                   ok
+  15     472s  run_command    grep -n "def set_live" rich/console.py                                                                         ok exit 0 | 818: def set_live(self, live: "Live") -> bool:
+  16     475s  read_file      rich/console.py                                                                                                ok
+  17     478s  read_file      rich/console.py                                                                                                ok

@@ -1,0 +1,186 @@
+{
+ "seed": 20261023,
+ "pool": 141,
+ "sample": {
+  "01": {
+   "attempt_id": "fastapi_13920-bf18-bf16-calls-r0-grid-bf16-calls-fastapi-c2-r0-20261019",
+   "task": "fastapi_13920",
+   "bundle": "bf18-bf16-calls",
+   "automatic": "time cap"
+  },
+  "02": {
+   "attempt_id": "fastapi_14258-bf18-bf16-calls-r0-grid-bf16-calls-fastapi-c2-r0-20261019",
+   "task": "fastapi_14258",
+   "bundle": "bf18-bf16-calls",
+   "automatic": "tests failed"
+  },
+  "03": {
+   "attempt_id": "fastapi_14479-bf18-bf16-r0-grid-bf16-cell-fastapi-r0-20261021",
+   "task": "fastapi_14479",
+   "bundle": "bf18-bf16",
+   "automatic": "tests failed"
+  },
+  "04": {
+   "attempt_id": "fastapi_14479-bf18-r0-grid-4bit-cell-fastapi-r0-20261014",
+   "task": "fastapi_14479",
+   "bundle": "bf18",
+   "automatic": "tests failed"
+  },
+  "05": {
+   "attempt_id": "fastapi_15588-bf18-bf16-calls-r0-grid-bf16-calls-fastapi-c6-r0-20261020",
+   "task": "fastapi_15588",
+   "bundle": "bf18-bf16-calls",
+   "automatic": "tests failed"
+  },
+  "06": {
+   "attempt_id": "fastapi_15589-bf18-r0-grid-4bit-cell-fastapi-r0-20261014",
+   "task": "fastapi_15589",
+   "bundle": "bf18",
+   "automatic": "call cap"
+  },
+  "07": {
+   "attempt_id": "fastapi_5077-bf18-bf16-calls-r0-grid-bf16-calls-fastapi-c1-r0-20261019",
+   "task": "fastapi_5077",
+   "bundle": "bf18-bf16-calls",
+   "automatic": "tests failed"
+  },
+  "08": {
+   "attempt_id": "rich_2725-bf18-r0-grid-4bit-cell-rich-r0-20261014",
+   "task": "rich_2725",
+   "bundle": "bf18",
+   "automatic": "call cap"
+  },
+  "09": {
+   "attempt_id": "rich_2943-bf18-bf16-r0-grid-bf16-cell-rich-r0-20261014",
+   "task": "rich_2943",
+   "bundle": "bf18-bf16",
+   "automatic": "time cap"
+  },
+  "10": {
+   "attempt_id": "rich_3052-bf18-r1-grid-4bit-cell-repeats-r1-20261021",
+   "task": "rich_3052",
+   "bundle": "bf18",
+   "automatic": "tests failed"
+  },
+  "11": {
+   "attempt_id": "rich_3061-bf18-r0-grid-4bit-cell-rich-r0-20261014",
+   "task": "rich_3061",
+   "bundle": "bf18",
+   "automatic": "tests failed"
+  },
+  "12": {
+   "attempt_id": "rich_3105-bf18-bf16-calls-r0-grid-bf16-calls-rich-c2-r0-20261015",
+   "task": "rich_3105",
+   "bundle": "bf18-bf16-calls",
+   "automatic": "call cap"
+  },
+  "13": {
+   "attempt_id": "rich_3180-bf18-bf16-calls-r0-grid-bf16-calls-rich-c2-r0-20261015",
+   "task": "rich_3180",
+   "bundle": "bf18-bf16-calls",
+   "automatic": "time cap"
+  },
+  "14": {
+   "attempt_id": "rich_3468-bf18-bf16-calls-r0-grid-bf16-calls-rich-c3-r0-20261018",
+   "task": "rich_3468",
+   "bundle": "bf18-bf16-calls",
+   "automatic": "tests failed"
+  },
+  "15": {
+   "attempt_id": "rich_3468-bf18-bf16-r0-grid-bf16-cell-rich-r0-20261014",
+   "task": "rich_3468",
+   "bundle": "bf18-bf16",
+   "automatic": "time cap"
+  },
+  "16": {
+   "attempt_id": "rich_3468-bf18-r0-grid-4bit-cell-rich-r0-20261014",
+   "task": "rich_3468",
+   "bundle": "bf18",
+   "automatic": "time cap"
+  },
+  "17": {
+   "attempt_id": "rich_3470-bf18-bf16-calls-r0-grid-bf16-calls-rich-c3-r0-20261018",
+   "task": "rich_3470",
+   "bundle": "bf18-bf16-calls",
+   "automatic": "tests failed"
+  },
+  "18": {
+   "attempt_id": "rich_3470-bf18-r0-grid-4bit-cell-rich-r0-20261014",
+   "task": "rich_3470",
+   "bundle": "bf18",
+   "automatic": "call cap"
+  },
+  "19": {
+   "attempt_id": "rich_3506-bf18-bf16-r0-grid-bf16-cell-rich-r0-20261014",
+   "task": "rich_3506",
+   "bundle": "bf18-bf16",
+   "automatic": "time cap"
+  },
+  "20": {
+   "attempt_id": "rich_3521-bf18-bf16-calls-r0-grid-bf16-calls-rich-c4-r0-20261018",
+   "task": "rich_3521",
+   "bundle": "bf18-bf16-calls",
+   "automatic": "tests failed"
+  },
+  "21": {
+   "attempt_id": "rich_3521-bf18-r0-grid-4bit-cell-rich-r0-20261014",
+   "task": "rich_3521",
+   "bundle": "bf18",
+   "automatic": "tests failed"
+  },
+  "22": {
+   "attempt_id": "rich_3676-bf18-bf16-r0-grid-bf16-cell-rich-r0-20261014",
+   "task": "rich_3676",
+   "bundle": "bf18-bf16",
+   "automatic": "time cap"
+  },
+  "23": {
+   "attempt_id": "rich_3777-bf18-bf16-r0-grid-bf16-cell-rich-r0-20261014",
+   "task": "rich_3777",
+   "bundle": "bf18-bf16",
+   "automatic": "time cap"
+  },
+  "24": {
+   "attempt_id": "rich_3930-bf18-bf16-calls-r0-grid-bf16-calls-rich-c6-r0-20261019",
+   "task": "rich_3930",
+   "bundle": "bf18-bf16-calls",
+   "automatic": "time cap"
+  },
+  "25": {
+   "attempt_id": "rich_3930-bf18-bf16-r0-grid-bf16-cell-rich-r0-20261014",
+   "task": "rich_3930",
+   "bundle": "bf18-bf16",
+   "automatic": "time cap"
+  },
+  "26": {
+   "attempt_id": "rich_3935-bf18-r1-grid-4bit-cell-repeats-r1-20261021",
+   "task": "rich_3935",
+   "bundle": "bf18",
+   "automatic": "call cap"
+  },
+  "27": {
+   "attempt_id": "rich_3953-bf18-bf16-r0-grid-bf16-cell-rich-r0-20261014",
+   "task": "rich_3953",
+   "bundle": "bf18-bf16",
+   "automatic": "time cap"
+  },
+  "28": {
+   "attempt_id": "rich_3953-bf18-r0-grid-4bit-cell-rich-r0-20261014",
+   "task": "rich_3953",
+   "bundle": "bf18",
+   "automatic": "tests failed"
+  },
+  "29": {
+   "attempt_id": "rich_4076-bf18-bf16-calls-r0-grid-bf16-calls-rich-c8-r0-20261019",
+   "task": "rich_4076",
+   "bundle": "bf18-bf16-calls",
+   "automatic": "tests failed"
+  },
+  "30": {
+   "attempt_id": "rich_4076-bf18-r0-grid-4bit-cell-rich-r0-20261014",
+   "task": "rich_4076",
+   "bundle": "bf18",
+   "automatic": "call cap"
+  }
+ }
+}

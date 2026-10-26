@@ -1,0 +1,13 @@
+# attempt 19
+budget: 8 min, 28 tool calls, 80 turns, command timeout 240 s
+wall seconds: 484.9; harness tool_calls counted: 3; model calls: 3; harness error field: 'Agent exceeded session timeout (8.0 min)'; patch bytes: 566; test exit code: 1
+last trace timestamp (elapsed s): 448
+
+calls (index, elapsed s at response, tool, target, result):
+   1      12s  read_file      rich/segment.py                                                                                                ok
+   2     150s  read_file      rich/cells.py                                                                                                  ok
+   3     448s  run_command    cat <<EOF > reproduce_issue.py
+from rich.segment import Segment
+from rich.cells import cell_len
+
+def test_spli ok exit 0 | ext: 'A🚀', Cut: 2, S1: 'A ' (len 2), S2: ' ' (len 1) Text: '🚀A', Cut: 1, S1: ' ' (len 1), S2: ' A' (len 2) Text: '🚀A', Cut: 2, S1: '🚀' (len 2), S2: 'A' (len 1)

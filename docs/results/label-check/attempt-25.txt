@@ -1,0 +1,16 @@
+# attempt 25
+budget: 8 min, 28 tool calls, 80 turns, command timeout 240 s
+wall seconds: 482.42; harness tool_calls counted: 10; model calls: 10; harness error field: 'Agent exceeded session timeout (8.0 min)'; patch bytes: 0; test exit code: -1
+last trace timestamp (elapsed s): 376
+
+calls (index, elapsed s at response, tool, target, result):
+   1      31s  run_command    grep -rn "grapheme" rich | head -20                                                                            ok exit 0 | 
+   2      38s  run_command    grep -rn "wcwidth" rich | head -20                                                                             ok exit 0 | 
+   3      60s  read_file      rich/_cell_widths.py                                                                                           ok
+   4      80s  run_command    grep -r "CELL_WIDTHS" rich                                                                                     ok exit 0 | rich/_cell_widths.py:CELL_WIDTHS = [ rich/cells.py:from ._cell_widths import CELL_WIDTHS rich/cells.py: _table = CELL_WIDTHS
+   5      81s  read_file      rich/cells.py                                                                                                  ok
+   6     158s  run_command    grep -r "cell_len" rich                                                                                        ok exit 0 | options.max_width - 2, max(child_width, title_text.cell_len + 2) rich/tree.py: - sum(level.cell_length for level in prefix),
+   7     202s  run_command    pip list | grep -E "grapheme|uniseg"                                                                           error | 
+   8     239s  read_file      tools/make_terminal_widths.py                                                                                  ok
+   9     294s  read_file      rich/emoji.py                                                                                                  ok
+  10     376s  run_command    grep -rn "glyph" rich                                                                                          error | 

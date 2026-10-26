@@ -1,0 +1,137 @@
+{
+ "01": {
+  "label": "time cap",
+  "note": "wall 1807.55, error 'Agent exceeded session timeout (30.0 min)'"
+ },
+ "02": {
+  "label": "tests failed",
+  "note": "within budget, successful edit(s), submit_patch, test exit code 1"
+ },
+ "03": {
+  "label": "tests failed",
+  "note": "within budget, successful edit(s), submit_patch, test exit code 1"
+ },
+ "04": {
+  "label": "tests failed",
+  "note": "within budget, successful edit(s), submit_patch, test exit code 1"
+ },
+ "05": {
+  "label": "tests failed",
+  "note": "within budget, successful edit(s), submit_patch, test exit code 1"
+ },
+ "06": {
+  "label": "call cap",
+  "note": "harness tool_calls counted 28 = cap 28; wall 214.3 < 480"
+ },
+ "07": {
+  "label": "tests failed",
+  "note": "within budget, successful edit(s), submit_patch, test exit code 1"
+ },
+ "08": {
+  "label": "call cap",
+  "note": "counted 28 = cap 28; wall 407.17 < 480"
+ },
+ "09": {
+  "label": "time cap",
+  "note": "error 'Agent exceeded session timeout (8.0 min)', wall 484.41"
+ },
+ "10": {
+  "label": "tests failed",
+  "note": "within budget, successful edit(s), submit_patch, test exit code 1"
+ },
+ "11": {
+  "label": "tests failed",
+  "note": "within budget, successful edit(s), submit_patch, test exit code 1"
+ },
+ "12": {
+  "label": "call cap",
+  "note": "counted 28 = cap 28; wall 1378.74 < 1800"
+ },
+ "13": {
+  "label": "time cap",
+  "note": "error 'Agent exceeded session timeout (30.0 min)', wall 1805.91"
+ },
+ "14": {
+  "label": "tests failed",
+  "note": "within budget, successful edit(s), submit_patch, test exit code 1"
+ },
+ "15": {
+  "label": "time cap",
+  "note": "error 'Agent exceeded session timeout (8.0 min)', wall 485.56"
+ },
+ "16": {
+  "label": "time cap",
+  "note": "error 'Agent exceeded session timeout (8.0 min)', wall 486.55"
+ },
+ "17": {
+  "label": "tests failed",
+  "note": "within budget, successful edit(s), submit_patch, test exit code 1"
+ },
+ "18": {
+  "label": "call cap",
+  "note": "counted 28 = cap 28; wall 173.33"
+ },
+ "19": {
+  "label": "time cap",
+  "note": "error 'Agent exceeded session timeout (8.0 min)', wall 484.9"
+ },
+ "20": {
+  "label": "tests failed",
+  "note": "within budget, successful edit(s), submit_patch, test exit code 1"
+ },
+ "21": {
+  "label": "tests failed",
+  "note": "within budget, successful edit(s), submit_patch, test exit code 1"
+ },
+ "22": {
+  "label": "time cap",
+  "note": "error 'Agent exceeded session timeout (8.0 min)', wall 482.26"
+ },
+ "23": {
+  "label": "time cap",
+  "note": "error 'Agent exceeded session timeout (8.0 min)', wall 482.16"
+ },
+ "24": {
+  "label": "time cap",
+  "note": "error 'Agent exceeded session timeout (30.0 min)', wall 1804.87"
+ },
+ "25": {
+  "label": "time cap",
+  "note": "error 'Agent exceeded session timeout (8.0 min)', wall 482.42"
+ },
+ "26": {
+  "label": "call cap",
+  "note": "counted 28 = cap 28; wall 411.88 < 480"
+ },
+ "27": {
+  "label": "time cap",
+  "note": "error 'Agent exceeded session timeout (8.0 min)', wall 484.66"
+ },
+ "28": {
+  "label": "tests failed",
+  "note": "within budget, successful edit(s), submit_patch, test exit code 1"
+ },
+ "29": {
+  "label": "tests failed",
+  "note": "within budget, successful edit(s), submit_patch, test exit code 1"
+ },
+ "30": {
+  "label": "call cap",
+  "note": "counted 28 = cap 28; wall 278.35"
+ },
+ "disputes": [
+  "06: call cap by rule, but patch 0 bytes and no successful edit (final edit_file BudgetExceeded error); a reader could say no edit",
+  "12: call cap by rule, but patch 0 bytes and no successful edit; a reader could say no edit",
+  "30: call cap by rule, but patch 0 bytes and no successful edit; a reader could say no edit",
+  "18: call cap (counted 28); only 1 ok edit and final edit hit BudgetExceeded, patch 800 bytes; a reader could say tests failed",
+  "08: counted 28 = cap, but last edit (call 28) succeeded and submit_patch followed; a reader could say tests failed",
+  "26: counted 28 = cap, but submit_patch was issued at call 28 with 8 ok edits; a reader could say tests failed",
+  "19: time cap by error field, but no successful edit in 3 calls; a reader could say no edit (rule order gives time cap)",
+  "22: time cap (error text), no edit, patch 0, test exit -1; a reader could say no edit",
+  "23: time cap (error text), no edit, patch 0, test exit -1; a reader could say no edit",
+  "25: time cap (error text), no edit, patch 0, test exit -1; a reader could say no edit",
+  "01: wall 1807.55 and 23 counted calls; time cap clear but 4 ok edits and patch 1130 so tests-failed-style reading possible",
+  "13: wall 1805.91 vs 1800 budget, counted only 8 calls, 1 edit; time cap but sits at the 5s boundary",
+  "24: time cap by error text; test exit code 2 differs from others"
+ ]
+}

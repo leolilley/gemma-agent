@@ -1,0 +1,81 @@
+# ryeos:signed:2026-10-22T01:15:25Z:22d2273866ba2b2efffef9ac2378f4f0ae66ed93cfabe66320f6842aca883265:Ldtujdw2mn9o2pWafq3XeJVZ8N7Hjb3B1DMWzNjzc8Bj4YngEzzdRKNgOEdmCXriPUQ+bgTvCTUPdiuVmj4nAA==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+# Measurement cohorts. Task ids are from data/tasks.jsonl.
+# Three cohorts in order (noise floor, grid, size), then only repeats: docs/PLAN.md "Cohort discipline".
+# One entry = one bundle on one site. The dispatch tool reads bundle, site, repeats and tasks and nothing else;
+# the regeneration script reads the rest (rerun_of). Inline lists only: the reader is the flat one in dispatch_run.py.
+# Grid task set (v0.3.0, 2026-10-14): the 68 tasks sound on BOTH lanes, i.e. in the measurement notebook's Docker-lane
+# audit (reference/mbyt-soundness, 114 of 129) AND in our Kaggle-lane audit (results/kaggle/lane-audit-2, the harness's
+# verify_task with empty and gold controls under sandbox=subprocess): rich 39, fastapi 29. requests (0 of 13) and
+# httpx (0 of 1) are unsound on the Kaggle lane because its subprocess sandbox grades the image's own package;
+# they stay in the Docker-only noise floor. Table: docs/results/lane-soundness.csv; list: docs/results/gpu-lane-tasks.json.
+category: "gemma-agent"
+version: "0.7.0"
+description: "Cohorts for the measurement grid; the dispatch tool walks them in order."
+cohorts:
+  # 1. Noise floor: one identity, same tasks, 5 repeats. API lane (Docker sandbox) since 2026-10-13.
+  noise_floor_requests:
+    bundle: bf18
+    site: local-docker-api
+    repeats: 5
+    tasks: [requests_6644, requests_7205, requests_7309, requests_7315, requests_7328, requests_7427, requests_7505, httpx_3672]
+  # 2. Grid: precision (4-bit, bf16) x budget (cell, lifted) on the 68 both-lane tasks, on the free L4x4 notebook.
+  #    Cell = the scorer's budget (8 min, 28 calls, 80 turns, 240 s). Lifted = 16 min, 40 calls, same otherwise.
+  #    bf18 is the 4-bit cell bundle as submitted; bf18-bf16, bf18-lifted, bf18-bf16-lifted are bf18 with one change each.
+  #    Kernel runs are sharded by repo (rich 39, fastapi 29) so one run stays well inside a Kaggle session; run ids
+  #    grid-<arm>-<repo>-r<k>-<date>. Lifted cohorts rerun every failed cell attempt once, same task and repeat_index
+  #    (rerun_of). If quota forces a subset it is seeded and fixed before outcomes are inspected; seed and subset in DECISIONS.md.
+  grid_4bit_cell:
+    bundle: bf18
+    site: kaggle-l4x4
+    repeats: 2
+    tasks: [fastapi_5077, fastapi_5624, fastapi_9425, fastapi_9555, fastapi_9753, fastapi_11194, fastapi_13537, fastapi_13920, fastapi_14258, fastapi_14301, fastapi_14306, fastapi_14372, fastapi_14419, fastapi_14448, fastapi_14458, fastapi_14463, fastapi_14479, fastapi_14487, fastapi_14492, fastapi_14616, fastapi_14786, fastapi_14794, fastapi_14873, fastapi_14986, fastapi_15280, fastapi_15588, fastapi_15589, fastapi_15661, fastapi_15800, rich_2725, rich_2943, rich_3006, rich_3043, rich_3052, rich_3061, rich_3063, rich_3067, rich_3105, rich_3180, rich_3278, rich_3454, rich_3468, rich_3470, rich_3471, rich_3472, rich_3506, rich_3518, rich_3521, rich_3535, rich_3675, rich_3676, rich_3718, rich_3777, rich_3782, rich_3882, rich_3894, rich_3905, rich_3930, rich_3934, rich_3935, rich_3938, rich_3942, rich_3944, rich_3953, rich_4075, rich_4076, rich_4077, rich_4079]
+  grid_bf16_cell:
+    bundle: bf18-bf16
+    site: kaggle-l4x4
+    repeats: 2
+    tasks: [fastapi_5077, fastapi_5624, fastapi_9425, fastapi_9555, fastapi_9753, fastapi_11194, fastapi_13537, fastapi_13920, fastapi_14258, fastapi_14301, fastapi_14306, fastapi_14372, fastapi_14419, fastapi_14448, fastapi_14458, fastapi_14463, fastapi_14479, fastapi_14487, fastapi_14492, fastapi_14616, fastapi_14786, fastapi_14794, fastapi_14873, fastapi_14986, fastapi_15280, fastapi_15588, fastapi_15589, fastapi_15661, fastapi_15800, rich_2725, rich_2943, rich_3006, rich_3043, rich_3052, rich_3061, rich_3063, rich_3067, rich_3105, rich_3180, rich_3278, rich_3454, rich_3468, rich_3470, rich_3471, rich_3472, rich_3506, rich_3518, rich_3521, rich_3535, rich_3675, rich_3676, rich_3718, rich_3777, rich_3782, rich_3882, rich_3894, rich_3905, rich_3930, rich_3934, rich_3935, rich_3938, rich_3942, rich_3944, rich_3953, rich_4075, rich_4076, rich_4077, rich_4079]
+  grid_4bit_lifted:
+    bundle: bf18-lifted
+    site: kaggle-l4x4
+    repeats: 2
+    rerun_of: grid_4bit_cell
+    tasks: [fastapi_5077, fastapi_5624, fastapi_9425, fastapi_9555, fastapi_9753, fastapi_11194, fastapi_13537, fastapi_13920, fastapi_14258, fastapi_14301, fastapi_14306, fastapi_14372, fastapi_14419, fastapi_14448, fastapi_14458, fastapi_14463, fastapi_14479, fastapi_14487, fastapi_14492, fastapi_14616, fastapi_14786, fastapi_14794, fastapi_14873, fastapi_14986, fastapi_15280, fastapi_15588, fastapi_15589, fastapi_15661, fastapi_15800, rich_2725, rich_2943, rich_3006, rich_3043, rich_3052, rich_3061, rich_3063, rich_3067, rich_3105, rich_3180, rich_3278, rich_3454, rich_3468, rich_3470, rich_3471, rich_3472, rich_3506, rich_3518, rich_3521, rich_3535, rich_3675, rich_3676, rich_3718, rich_3777, rich_3782, rich_3882, rich_3894, rich_3905, rich_3930, rich_3934, rich_3935, rich_3938, rich_3942, rich_3944, rich_3953, rich_4075, rich_4076, rich_4077, rich_4079]
+  grid_bf16_lifted:
+    bundle: bf18-bf16-lifted
+    site: kaggle-l4x4
+    repeats: 2
+    rerun_of: grid_bf16_cell
+    tasks: [fastapi_5077, fastapi_5624, fastapi_9425, fastapi_9555, fastapi_9753, fastapi_11194, fastapi_13537, fastapi_13920, fastapi_14258, fastapi_14301, fastapi_14306, fastapi_14372, fastapi_14419, fastapi_14448, fastapi_14458, fastapi_14463, fastapi_14479, fastapi_14487, fastapi_14492, fastapi_14616, fastapi_14786, fastapi_14794, fastapi_14873, fastapi_14986, fastapi_15280, fastapi_15588, fastapi_15589, fastapi_15661, fastapi_15800, rich_2725, rich_2943, rich_3006, rich_3043, rich_3052, rich_3061, rich_3063, rich_3067, rich_3105, rich_3180, rich_3278, rich_3454, rich_3468, rich_3470, rich_3471, rich_3472, rich_3506, rich_3518, rich_3521, rich_3535, rich_3675, rich_3676, rich_3718, rich_3777, rich_3782, rich_3882, rich_3894, rich_3905, rich_3930, rich_3934, rich_3935, rich_3938, rich_3942, rich_3944, rich_3953, rich_4075, rich_4076, rich_4077, rich_4079]
+  # Calls-only precision contrast (v0.4.0 2026-10-14; v0.5.0 2026-10-15 extends to the 68 both-lane tasks): 28 calls,
+  # 30-min clock, so the call cap binds for both precisions (bf16 decodes 2.4x slower on L4x4). bf16 on every task, in
+  # chunks of 5 (rich first, then fastapi); 4-bit only where its cell attempt hit the clock.
+  grid_bf16_calls:
+    bundle: bf18-bf16-calls
+    site: kaggle-l4x4
+    repeats: 1
+    tasks: [fastapi_5077, fastapi_5624, fastapi_9425, fastapi_9555, fastapi_9753, fastapi_11194, fastapi_13537, fastapi_13920, fastapi_14258, fastapi_14301, fastapi_14306, fastapi_14372, fastapi_14419, fastapi_14448, fastapi_14458, fastapi_14463, fastapi_14479, fastapi_14487, fastapi_14492, fastapi_14616, fastapi_14786, fastapi_14794, fastapi_14873, fastapi_14986, fastapi_15280, fastapi_15588, fastapi_15589, fastapi_15661, fastapi_15800, rich_2725, rich_2943, rich_3006, rich_3043, rich_3052, rich_3061, rich_3063, rich_3067, rich_3105, rich_3180, rich_3278, rich_3454, rich_3468, rich_3470, rich_3471, rich_3472, rich_3506, rich_3518, rich_3521, rich_3535, rich_3675, rich_3676, rich_3718, rich_3777, rich_3782, rich_3882, rich_3894, rich_3905, rich_3930, rich_3934, rich_3935, rich_3938, rich_3942, rich_3944, rich_3953, rich_4075, rich_4076, rich_4077, rich_4079]
+  grid_4bit_calls:
+    bundle: bf18-calls
+    site: kaggle-l4x4
+    repeats: 1
+    rerun_of: grid_4bit_cell
+    tasks: [fastapi_15661, rich_3180, rich_3468, rich_3506, rich_3930]
+  # 3. Size: 12B W4A16 at the cell on the 39 rich tasks (PLAN.md arms table, priority 5; v0.7.0 2026-10-22). bf18-12b is
+  # bf18 with the model alias changed to gemma-4-12b-it-qat-w4a16-ct; the eval-4bit kernel attaches that checkpoint.
+  size_12b_cell:
+    bundle: bf18-12b
+    site: kaggle-l4x4
+    repeats: 1
+    tasks: [rich_2725, rich_2943, rich_3006, rich_3043, rich_3052, rich_3061, rich_3063, rich_3067, rich_3105, rich_3180, rich_3278, rich_3454, rich_3468, rich_3470, rich_3471, rich_3472, rich_3506, rich_3518, rich_3521, rich_3535, rich_3675, rich_3676, rich_3718, rich_3777, rich_3782, rich_3882, rich_3894, rich_3905, rich_3930, rich_3934, rich_3935, rich_3938, rich_3942, rich_3944, rich_3953, rich_4075, rich_4076, rich_4077, rich_4079]
+  # Proxy fidelity: the API lane (Docker sandbox), read against grid_4bit_cell per task. v0.6.0 (2026-10-19): narrowed
+  # from the 68 both-lane tasks to the 39 rich ones. The fastapi snapshots (67 files, 16.5 GB) are not on disk and the
+  # dispatcher walks the list in order, so every fire from 2026-10-18 06:05 to 2026-10-19 00:05 UTC failed on
+  # fastapi_5077 (infrastructure_invalid, 10 records). The rich snapshots were fetched by Leo on 2026-10-19.
+  proxy_fidelity_api:
+    bundle: bf18
+    site: local-docker-api
+    repeats: 1
+    tasks: [rich_2725, rich_2943, rich_3006, rich_3043, rich_3052, rich_3061, rich_3063, rich_3067, rich_3105, rich_3180, rich_3278, rich_3454, rich_3468, rich_3470, rich_3471, rich_3472, rich_3506, rich_3518, rich_3521, rich_3535, rich_3675, rich_3676, rich_3718, rich_3777, rich_3782, rich_3882, rich_3894, rich_3905, rich_3930, rich_3934, rich_3935, rich_3938, rich_3942, rich_3944, rich_3953, rich_4075, rich_4076, rich_4077, rich_4079]
+  # (v0.5.0 list for the record: the 68 both-lane tasks, [fastapi_5077, fastapi_5624, fastapi_9425, fastapi_9555, fastapi_9753, fastapi_11194, fastapi_13537, fastapi_13920, fastapi_14258, fastapi_14301, fastapi_14306, fastapi_14372, fastapi_14419, fastapi_14448, fastapi_14458, fastapi_14463, fastapi_14479, fastapi_14487, fastapi_14492, fastapi_14616, fastapi_14786, fastapi_14794, fastapi_14873, fastapi_14986, fastapi_15280, fastapi_15588, fastapi_15589, fastapi_15661, fastapi_15800, rich_2725, rich_2943, rich_3006, rich_3043, rich_3052, rich_3061, rich_3063, rich_3067, rich_3105, rich_3180, rich_3278, rich_3454, rich_3468, rich_3470, rich_3471, rich_3472, rich_3506, rich_3518, rich_3521, rich_3535, rich_3675, rich_3676, rich_3718, rich_3777, rich_3782, rich_3882, rich_3894, rich_3905, rich_3930, rich_3934, rich_3935, rich_3938, rich_3942, rich_3944, rich_3953, rich_4075, rich_4076, rich_4077, rich_4079])
+  # 3. Size (12B cell, 12B calls raised to fill the time cap, E4B or 12B-bf16 at fixed memory): entries added when the
+  #    grid is under way, on the same 68 tasks; bundles named at the kernel push.

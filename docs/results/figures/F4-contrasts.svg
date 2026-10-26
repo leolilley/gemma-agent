@@ -27,6 +27,6 @@
 <text x="188" y="206" text-anchor="end" font-size="12">D, the primary endpoint</text>
 <text x="188" y="220" text-anchor="end" font-size="11">(bf16 lifted - 4-bit cell)</text>
 <text x="506.17647058823525" y="230" text-anchor="middle" font-size="11" fill="#333">+0.110 [+0.029, +0.191], n = 68</text>
-<text x="200" y="358" font-size="10" fill="#555">Noise floor (the 4-bit bundle on the API lane, where time does not bind): pass rate 0.34 [0.22, 0.45] on 44 tasks</text>
-<text x="200" y="372" font-size="10" fill="#555">(76 attempts), 0.65 [0.48, 0.83] without ceiling-bound attempts; 1 of 8 repeated tasks had mixed outcomes.</text>
+<text x="200" y="358" font-size="10" fill="#555">Noise floor (cohort noise_floor_requests: the 4-bit bundle on the API lane, 8 tasks, 5 repeats, no 8-min clock): pass rate 0.35 [0.10, 0.60]</text>
+<text x="200" y="372" font-size="10" fill="#555">on 40 attempts; 0.50 [0.17, 0.83] without the 17 attempts the lane's own 120-min ceiling ended; 1 of 8 repeated tasks had mixed outcomes.</text>
 </svg>

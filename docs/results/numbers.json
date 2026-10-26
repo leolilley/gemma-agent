@@ -7,10 +7,10 @@
       "valid": 78
     },
     "bf18 @ local-docker-api (120 min / 28 calls)": {
-      "ceiling_bound": 34,
-      "intent": 83,
+      "ceiling_bound": 36,
+      "intent": 86,
       "resolved": 24,
-      "valid": 71
+      "valid": 74
     },
     "bf18 @ local-docker-api (30 min / 28 calls)": {
       "ceiling_bound": 1,
@@ -23,6 +23,12 @@
       "intent": 3,
       "resolved": 1,
       "valid": 3
+    },
+    "bf18-12b @ kaggle-l4x4 (8 min / 28 calls)": {
+      "ceiling_bound": 0,
+      "intent": 39,
+      "resolved": 11,
+      "valid": 39
     },
     "bf18-bf16 @ kaggle-l4x4 (8 min / 28 calls)": {
       "ceiling_bound": 0,
@@ -1623,6 +1629,47 @@
       "solve_time_median_s": 127.23742389678955,
       "tasks": 68
     },
+    "bf18-12b": {
+      "P": {
+        "120": 0.1282,
+        "1200": 0.2821,
+        "1500": 0.2821,
+        "180": 0.2051,
+        "1800": 0.2821,
+        "240": 0.2564,
+        "300": 0.2564,
+        "360": 0.2821,
+        "420": 0.2821,
+        "480": 0.2821,
+        "60": 0.1026,
+        "600": 0.2821,
+        "720": 0.2821,
+        "900": 0.2821
+      },
+      "S": {
+        "10": 0.1026,
+        "12": 0.1026,
+        "14": 0.1026,
+        "16": 0.1282,
+        "18": 0.1538,
+        "2": 0.0,
+        "20": 0.1538,
+        "22": 0.1795,
+        "24": 0.1795,
+        "26": 0.2051,
+        "28": 0.2821,
+        "4": 0.0256,
+        "6": 0.0256,
+        "8": 0.0513
+      },
+      "median_calls_used": 28,
+      "median_s_per_call": 2.403139114379883,
+      "resolved": 11,
+      "solve_call_median": 18,
+      "solve_time_max_s": 314.36484813690186,
+      "solve_time_median_s": 122.03196883201599,
+      "tasks": 39
+    },
     "bf18-bf16": {
       "P": {
         "120": 0.0294,
@@ -1747,6 +1794,88 @@
       "tasks": 5
     }
   },
+  "episodes_per_arm": {
+    "bf18 @ kaggle-l4x4 (8 min / 28 calls)": {
+      "attempts_with_recovery": 21,
+      "attempts_with_trace": 78,
+      "calls_after_12": 884,
+      "episode_share_after_12": 0.07013574660633484,
+      "loop_calls": 75,
+      "loop_share_after_12": 0.06787330316742081,
+      "recovery_episodes": 22,
+      "repetition_loop_attempts": 7
+    },
+    "bf18 @ local-docker-api (120 min / 28 calls)": {
+      "attempts_with_recovery": 15,
+      "attempts_with_trace": 74,
+      "calls_after_12": 356,
+      "episode_share_after_12": 0.042134831460674156,
+      "loop_calls": 20,
+      "loop_share_after_12": 0.042134831460674156,
+      "recovery_episodes": 15,
+      "repetition_loop_attempts": 0
+    },
+    "bf18 @ local-docker-api (30 min / 28 calls)": {
+      "attempts_with_recovery": 1,
+      "attempts_with_trace": 2,
+      "calls_after_12": 9,
+      "episode_share_after_12": 0.3333333333333333,
+      "loop_calls": 0,
+      "loop_share_after_12": 0.0,
+      "recovery_episodes": 1,
+      "repetition_loop_attempts": 0
+    },
+    "bf18 @ local-docker-api (90 min / 28 calls)": {
+      "attempts_with_recovery": 1,
+      "attempts_with_trace": 3,
+      "calls_after_12": 23,
+      "episode_share_after_12": 0.08695652173913043,
+      "loop_calls": 2,
+      "loop_share_after_12": 0.08695652173913043,
+      "recovery_episodes": 1,
+      "repetition_loop_attempts": 0
+    },
+    "bf18-12b @ kaggle-l4x4 (8 min / 28 calls)": {
+      "attempts_with_recovery": 2,
+      "attempts_with_trace": 39,
+      "calls_after_12": 469,
+      "episode_share_after_12": 0.010660980810234541,
+      "loop_calls": 96,
+      "loop_share_after_12": 0.14498933901918976,
+      "recovery_episodes": 2,
+      "repetition_loop_attempts": 14
+    },
+    "bf18-bf16 @ kaggle-l4x4 (8 min / 28 calls)": {
+      "attempts_with_recovery": 9,
+      "attempts_with_trace": 78,
+      "calls_after_12": 200,
+      "episode_share_after_12": 0.02,
+      "loop_calls": 36,
+      "loop_share_after_12": 0.1,
+      "recovery_episodes": 9,
+      "repetition_loop_attempts": 5
+    },
+    "bf18-bf16-calls @ kaggle-l4x4 (30 min / 28 calls)": {
+      "attempts_with_recovery": 14,
+      "attempts_with_trace": 68,
+      "calls_after_12": 542,
+      "episode_share_after_12": 0.05350553505535055,
+      "loop_calls": 55,
+      "loop_share_after_12": 0.07749077490774908,
+      "recovery_episodes": 14,
+      "repetition_loop_attempts": 7
+    },
+    "bf18-calls @ kaggle-l4x4 (30 min / 28 calls)": {
+      "attempts_with_recovery": 1,
+      "attempts_with_trace": 5,
+      "calls_after_12": 50,
+      "episode_share_after_12": 0.08,
+      "loop_calls": 7,
+      "loop_share_after_12": 0.1,
+      "recovery_episodes": 1,
+      "repetition_loop_attempts": 1
+    }
+  },
   "grid_cells_with_data": {
     "4bit_calls_rerun": 5,
     "4bit_cell": 68,
@@ -1755,22 +1884,60 @@
     "eligible_for_D": 68
   },
   "interval": 0.9,
+  "lifted_subset": {
+    "cell_rerun_among_failures": {
+      "passes": 2,
+      "rate": 0.3333333333333333,
+      "tasks": [
+        "rich_3052",
+        "rich_3470",
+        "rich_3521",
+        "rich_3675",
+        "rich_3935",
+        "rich_4077"
+      ]
+    },
+    "declared": [
+      "fastapi_13920",
+      "fastapi_14258",
+      "fastapi_14306",
+      "fastapi_14616",
+      "fastapi_15661",
+      "fastapi_15800",
+      "rich_3043",
+      "rich_3105",
+      "rich_3278",
+      "rich_3470",
+      "rich_3506",
+      "rich_3521",
+      "rich_3535",
+      "rich_3675",
+      "rich_3777",
+      "rich_3782",
+      "rich_3930",
+      "rich_3934",
+      "rich_3935",
+      "rich_4076"
+    ],
+    "first_attempt_cell_failures_now": 41,
+    "rederived_equals_declared": true
+  },
   "noise_floor": {
     "all": {
-      "hi": 0.45,
-      "lo": 0.22272727272727272,
-      "n_attempts": 76,
-      "n_tasks": 44,
-      "point": 0.33636363636363636
+      "hi": 0.6,
+      "lo": 0.1,
+      "n_attempts": 40,
+      "n_tasks": 8,
+      "point": 0.35
     },
     "tasks_with_mixed_outcomes": 1,
     "tasks_with_repeats": 8,
     "without_ceiling_bound": {
-      "hi": 0.8260869565217391,
-      "lo": 0.4782608695652174,
-      "n_attempts": 40,
-      "n_tasks": 23,
-      "point": 0.6521739130434783
+      "hi": 0.8333333333333334,
+      "lo": 0.16666666666666666,
+      "n_attempts": 23,
+      "n_tasks": 6,
+      "point": 0.5
     }
   },
   "primary_endpoint_D": {
@@ -1785,6 +1952,107 @@
     "n_tasks": 39,
     "point": 0.08974358974358974
   },
-  "records": 326,
-  "seed": 20261013
+  "proxy_fidelity": {
+    "agreement": 0.8461538461538461,
+    "api_ceiling_bound_among_compared": 21,
+    "api_only": 3,
+    "api_resolved": 12,
+    "api_terminal_reasons": {
+      "call cap": 1,
+      "resolved": 12,
+      "tests failed": 5,
+      "time cap": 21
+    },
+    "attempted": 39,
+    "both_pass": 9,
+    "cell_only": 3,
+    "cohort_tasks": 39,
+    "compared": 39,
+    "neither": 24
+  },
+  "records": 368,
+  "seed": 20261013,
+  "size": {
+    "12b": {
+      "median_calls_used": 28,
+      "median_s_per_call": 2.403139114379883,
+      "median_wall_s": 322.61,
+      "pass_rate": 0.28205128205128205,
+      "resolved": 11,
+      "tasks": 39,
+      "terminal_reasons": {
+        "call cap": 14,
+        "resolved": 11,
+        "tests failed": 2,
+        "time cap": 12
+      }
+    },
+    "31b": {
+      "median_calls_used": 25,
+      "median_s_per_call": 3.576211929321289,
+      "median_wall_s": 278.35,
+      "pass_rate": 0.3076923076923077,
+      "resolved": 12,
+      "tasks": 39,
+      "terminal_reasons": {
+        "call cap": 11,
+        "resolved": 12,
+        "tests failed": 12,
+        "time cap": 4
+      }
+    },
+    "agreement": {
+      "12b_only": 2,
+      "31b_only": 3,
+      "both_pass": 9,
+      "neither": 25
+    },
+    "pass_rate_difference_12b_minus_31b": {
+      "hi": 0.07692307692307693,
+      "lo": -0.1282051282051282,
+      "n_tasks": 39,
+      "point": -0.02564102564102564
+    },
+    "tasks": [
+      "rich_2725",
+      "rich_2943",
+      "rich_3006",
+      "rich_3043",
+      "rich_3052",
+      "rich_3061",
+      "rich_3063",
+      "rich_3067",
+      "rich_3105",
+      "rich_3180",
+      "rich_3278",
+      "rich_3454",
+      "rich_3468",
+      "rich_3470",
+      "rich_3471",
+      "rich_3472",
+      "rich_3506",
+      "rich_3518",
+      "rich_3521",
+      "rich_3535",
+      "rich_3675",
+      "rich_3676",
+      "rich_3718",
+      "rich_3777",
+      "rich_3782",
+      "rich_3882",
+      "rich_3894",
+      "rich_3905",
+      "rich_3930",
+      "rich_3934",
+      "rich_3935",
+      "rich_3938",
+      "rich_3942",
+      "rich_3944",
+      "rich_3953",
+      "rich_4075",
+      "rich_4076",
+      "rich_4077",
+      "rich_4079"
+    ]
+  }
 }

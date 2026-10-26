@@ -59,7 +59,8 @@ CALLS = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28]
 
 def trace_calls(record: dict, root: Path) -> list:
     """One entry per tool call: index, tool, issued_at (elapsed s when the model's response arrived), done_at (elapsed s
-    when the tool observation was recorded), prompt and completion tokens of the call that issued it."""
+    when the tool observation was recorded), prompt and completion tokens of the call that issued it, the parsed
+    arguments and the parsed tool result (status, exit_code, ... as the harness returned them; episodes.py reads it)."""
     p = root / record['results_dir'] / 'traces' / f"trace_{record['task_id']}.json"
     steps = json.loads(p.read_text())['steps']
     t0 = None; calls = []
@@ -82,7 +83,7 @@ def trace_calls(record: dict, root: Path) -> list:
         m = s.get('metrics') or {}
         args = tcs[0].get('arguments') if isinstance(tcs[0].get('arguments'), dict) else {}
         calls.append({'index': len(calls) + 1, 'tool': tcs[0].get('function_name'), 'ok': ok, 'malformed': malformed, 'issued_at': ex['timestamp'] - t0,
-                      'path': args.get('filepath') or args.get('path'), 'arguments': args,
+                      'path': args.get('filepath') or args.get('path'), 'arguments': args, 'result': parsed if isinstance(parsed, dict) else {},
                       'done_at': (obs_ts - t0) if obs_ts else ex['timestamp'] - t0,
                       'prompt': m.get('prompt_tokens'), 'completion': m.get('completion_tokens')})
     end = None
