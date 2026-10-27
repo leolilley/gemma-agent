@@ -7,8 +7,10 @@ drawn from, so a reader can check any point against the regenerated numbers.
 
   F1  pass rate against the clock, P(C): 4-bit at the cell and bf16 with the clock lifted; the 8-minute line; the
       observed cell pass rates marked at 8 minutes.
-  F2  pass rate against calls, S(k): both precisions, the 28-call line; the 4-bit lifted subset drawn where it exists.
-  F3  predicted against observed per task, four cells: rich (retrodiction) and fastapi (forecast, when its cell exists).
+  F2  pass rate against issued calls, S(k): both precisions, the 28-call line; the 40-call 4-bit arm on 20 of its cell
+      failures, drawn to its end.
+  F3  the clock rule unpacked, per repository: tasks grouped by the lifted bf16 attempt (failed; passed with the last
+      edit by 8 minutes; passed later) and how many of each group passed at the cell.
   F4  the three contrasts with their 90% intervals and the noise floor (API-lane pass rate, mixed-outcome tasks) as a footnote.
 
 Usage: scripts/figures.py [--numbers docs/results/numbers.json] [--out docs/results/figures]
@@ -19,9 +21,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 W, H = 720, 420                       # canvas
 L, R, T, B = 70, 30, 60, 60           # margins: left, right, top, bottom
-FOUR_BIT, BF16, BF16_CELL, FOUR_BIT_LIFTED = 'bf18', 'bf18-bf16-calls', 'bf18-bf16', 'bf18-calls'
-NAMES = {FOUR_BIT: '4-bit, at the cell (8 min)', BF16: 'bf16, clock lifted to 30 min', BF16_CELL: 'bf16, at the cell',
-         FOUR_BIT_LIFTED: '4-bit, clock lifted (subset)'}
+FOUR_BIT, BF16, BF16_CELL, FOUR_BIT_LIFTED = 'bf18', 'bf18-bf16-calls', 'bf18-bf16', 'bf18-lifted'
+NAMES = {FOUR_BIT: '4-bit, at the cell (8 min, 28 executed calls)', BF16: 'bf16, clock lifted (30 min, 28 executed calls)', BF16_CELL: 'bf16, at the cell (8 min, 28 executed calls)',
+         FOUR_BIT_LIFTED: '4-bit, 16 min and 40 executed calls, on 20 of its cell failures'}
 COLOR = {FOUR_BIT: '#1f5fbf', BF16: '#c8541b', BF16_CELL: '#e39a6d', FOUR_BIT_LIFTED: '#7fa6e0'}
 FONT = 'font-family="Helvetica, Arial, sans-serif"'
 
@@ -100,23 +102,22 @@ def f1(n: dict, out: Path):
     f.step(curve_points(bf, 'P', 1 / 60), COLOR[BF16])
     p4 = b4['resolved'] / b4['tasks']; f.point(8, p4, COLOR[FOUR_BIT], f"4-bit cell pass rate {b4['resolved']}/{b4['tasks']}", dx=10, dy=-10)
     bc = c.get(BF16_CELL)
-    if bc: pb = bc['resolved'] / bc['tasks']; f.point(8, pb, COLOR[BF16], f"bf16 cell pass rate {bc['resolved']}/{bc['tasks']} (rich)", dx=10, dy=16)
-    f.legend([(COLOR[FOUR_BIT], f"{NAMES[FOUR_BIT]}, {b4['tasks']} tasks", ''), (COLOR[BF16], f"{NAMES[BF16]}, {bf['tasks']} tasks", '')], x=f.w - R - 290, y=T + 12)
+    if bc: pb = bc['resolved'] / bc['tasks']; f.point(8, pb, COLOR[BF16], f"bf16 cell pass rate {bc['resolved']}/{bc['tasks']}", dx=10, dy=16)
+    f.legend([(COLOR[FOUR_BIT], f"{NAMES[FOUR_BIT]}, {b4['tasks']} tasks", ''), (COLOR[BF16], f"{NAMES[BF16]}, {bf['tasks']} tasks", '')], x=f.w - R - 330, y=T + 12)
     f.write(out / 'F1-p-of-c.svg')
 
 
 def f2(n: dict, out: Path):
     c = n['curve']; b4, bf = c[FOUR_BIT], c[BF16]
-    f = Fig('F2  Pass rate against calls, S(k)', 'numbers.json: curve[bundle].S (fraction of tasks whose last successful edit came by call k and that passed)')
-    kmax = max(max(float(k) for k in v['S']) for v in c.values()); kmax = max(30, int(kmax) + 2)
-    f.axes('tool calls k', 'S(k)', [(k, str(k)) for k in range(0, kmax + 1, 4)], [(v, f'{v:.1f}') for v in (0, 0.2, 0.4, 0.6, 0.8, 1.0)], kmax, 1.0)
-    f.vline(28, 'the call cap, 28', anchor='end')
+    f = Fig('F2  Pass rate against issued calls, S(k)', 'numbers.json: curve[bundle].S (fraction of tasks that passed with the last successful edit by issued call k)')
+    kmax = 52
+    f.axes('issued tool calls k (malformed invocations included; the caps in the legend count executed calls only)', 'S(k)', [(k, str(k)) for k in range(0, kmax + 1, 4)], [(v, f'{v:.1f}') for v in (0, 0.2, 0.4, 0.6, 0.8, 1.0)], kmax, 1.0)
     f.step(curve_points(b4, 'S'), COLOR[FOUR_BIT]); f.step(curve_points(bf, 'S'), COLOR[BF16])
     items = [(COLOR[FOUR_BIT], f"{NAMES[FOUR_BIT]}, {b4['tasks']} tasks", ''), (COLOR[BF16], f"{NAMES[BF16]}, {bf['tasks']} tasks", '')]
     bc = c.get(BF16_CELL)
-    if bc: f.step(curve_points(bc, 'S'), COLOR[BF16_CELL], dash='5 3'); items.append((COLOR[BF16_CELL], f"{NAMES[BF16_CELL]}, {bc['tasks']} tasks (rich)", '5 3'))
+    if bc: f.step(curve_points(bc, 'S'), COLOR[BF16_CELL], dash='5 3'); items.append((COLOR[BF16_CELL], f"{NAMES[BF16_CELL]}, {bc['tasks']} tasks", '5 3'))
     bl = c.get(FOUR_BIT_LIFTED)
-    if bl: f.step(curve_points(bl, 'S'), COLOR[FOUR_BIT_LIFTED], dash='2 3'); items.append((COLOR[FOUR_BIT_LIFTED], f"{NAMES[FOUR_BIT_LIFTED]}, {bl['tasks']} tasks so far", '2 3'))
+    if bl: f.step(curve_points(bl, 'S'), COLOR[FOUR_BIT_LIFTED], dash='2 3'); items.append((COLOR[FOUR_BIT_LIFTED], f"{NAMES[FOUR_BIT_LIFTED]}", '2 3'))
     f.legend(items, x=L + 20, y=T + 12)
     f.write(out / 'F2-s-of-k.svg')
 
@@ -124,41 +125,38 @@ def f2(n: dict, out: Path):
 def f3(n: dict, out: Path):
     rows = n['clock_prediction']['rows']
     panels = [('rich (retrodiction)', [r for r in rows if r['task'].startswith('rich_')]), ('fastapi (forecast)', [r for r in rows if r['task'].startswith('fastapi_')])]
-    f = Fig('F3  Predicted against observed, per task, at the 8-minute clock', 'numbers.json: clock_prediction.rows (predicted = lifted bf16 resolved with solve time <= 480 s; observed = bf16 cell resolved)', w=W, h=460)
+    f = Fig('F3  The clock rule unpacked: lifted bf16 attempt against the bf16 cell outcome', 'numbers.json: clock_prediction.rows (lifted_resolved, predicted = resolved with solve time <= 480 s; observed = bf16 cell resolved)', w=W, h=430)
+    groups = [('lifted attempt failed', lambda r: not r['lifted_resolved'], 'rule and lifted-only both predict fail'),
+              ('passed, last edit by 8 min', lambda r: r['lifted_resolved'] and r['predicted'], 'rule and lifted-only both predict pass'),
+              ('passed, last edit after 8 min', lambda r: r['lifted_resolved'] and not r['predicted'], 'rule predicts fail, lifted-only pass')]
     pw = (W - 2 * 40) // 2
     for i, (name, rs) in enumerate(panels):
-        x0 = 40 + i * pw; y0 = 70
-        f.text(x0 + pw / 2, y0, f'{name}: {len(rs)} tasks' if rs else f'{name}: pending', text_anchor='middle', font_weight='bold')
-        if not rs:
-            f.text(x0 + pw / 2, y0 + 150, 'no bf16 cell outcomes yet;', text_anchor='middle', fill='#777', font_size='11')
-            f.text(x0 + pw / 2, y0 + 166, 'the signed forecast is scored here when the cell run lands', text_anchor='middle', fill='#777', font_size='11'); continue
-        cells = {(True, True): 'both', (True, False): 'predicted only', (False, True): 'observed only', (False, False): 'neither'}
-        cw, ch = (pw - 60) / 2, 150
-        for (pred, obs), label in cells.items():
-            cx = x0 + 50 + (0 if obs else 1) * cw; cy = y0 + 30 + (0 if pred else 1) * ch
-            ts = sorted(r['task'] for r in rs if r['predicted'] == pred and r['observed'] == obs)
-            agree = pred == obs
-            f.add(f'<rect x="{cx:.1f}" y="{cy:.1f}" width="{cw:.1f}" height="{ch}" fill="{"#eaf2e3" if agree else "#fbe9e4"}" stroke="#999"/>')
-            f.text(cx + 8, cy + 18, f'{label}: {len(ts)}', font_weight='bold')
-            line, lines = '', []; limit = int(cw / 5.8)   # characters that fit one line of 10-px text in the cell
-            for t in ts:
-                short = t.split('_', 1)[1]
+        x0 = 40 + i * pw; y0 = 74
+        f.text(x0 + pw / 2, y0, f'{name}: {len(rs)} tasks', text_anchor='middle', font_weight='bold')
+        for g, (label, pick, note) in enumerate(groups):
+            gs = sorted((r for r in rs if pick(r)), key=lambda r: (not r['observed'], r['task'])); k = sum(r['observed'] for r in gs)
+            cy = y0 + 18 + g * 100; bw = pw - 30
+            f.add(f'<rect x="{x0 + 10}" y="{cy}" width="{bw}" height="88" fill="{"#f4f4f4" if g != 2 else "#fdf3e7"}" stroke="#999"/>')
+            f.text(x0 + 18, cy + 18, f'{label}: {len(gs)}', font_weight='bold')
+            f.text(x0 + 18, cy + 34, f'passed at the cell: {k} of {len(gs)}', font_size='11', fill='#1f5fbf' if k else '#333')
+            f.text(x0 + 18, cy + 48, note, font_size='10', fill='#666')
+            line, lines = '', []; limit = int((bw - 16) / 5.8)
+            for r in gs:
+                short = r['task'].split('_', 1)[1] + ('*' if r['observed'] else '')
                 if line and len(line) + len(short) + 2 > limit: lines.append(line); line = ''
                 line += (', ' if line else '') + short
             if line: lines.append(line)
-            for j, ln in enumerate(lines[:9]): f.text(cx + 8, cy + 36 + 13 * j, ln, font_size='10', fill='#333')
-            if len(lines) > 9: f.text(cx + 8, cy + 36 + 13 * 9, '...', font_size='10')
-        f.text(x0 + 50 + cw / 2, y0 + 30 + 2 * ch + 16, 'observed pass', text_anchor='middle'); f.text(x0 + 50 + 1.5 * cw, y0 + 30 + 2 * ch + 16, 'observed fail', text_anchor='middle')
-        f.add(f'<text transform="translate({x0 + 38},{y0 + 30 + ch / 2}) rotate(-90)" text-anchor="middle">predicted pass</text>')
-        f.add(f'<text transform="translate({x0 + 38},{y0 + 30 + 1.5 * ch}) rotate(-90)" text-anchor="middle">predicted fail</text>')
-        agree = sum(1 for r in rs if r['predicted'] == r['observed'])
-        f.text(x0 + pw / 2, y0 + 30 + 2 * ch + 40, f"agreement {agree}/{len(rs)}; predicted {sum(r['predicted'] for r in rs)}, observed {sum(r['observed'] for r in rs)}", text_anchor='middle', font_size='11')
+            for j, ln in enumerate(lines[:2]): f.text(x0 + 18, cy + 64 + 12 * j, ln, font_size='10', fill='#333')
+            if len(lines) > 2: f.text(x0 + bw - 4, cy + 76, '...', font_size='10', text_anchor='end')
+        agree = sum(1 for r in rs if r['predicted'] == r['observed']); lifted_only = sum(1 for r in rs if r['lifted_resolved'] == r['observed'])
+        f.text(x0 + pw / 2, y0 + 18 + 3 * 100 + 14, f'agreement: rule {agree}/{len(rs)}, lifted outcome alone {lifted_only}/{len(rs)}', text_anchor='middle', font_size='11')
+    f.text(40, 422, '* passed at the bf16 cell. The rule and the lifted outcome alone differ only on the third group.', font_size='10', fill='#555')
     f.write(out / 'F3-predicted-vs-observed.svg')
 
 
 def f4(n: dict, out: Path):
-    items = [('as scored\n(bf16 cell - 4-bit cell)', n['contrast_as_scored']), ('matched calls\n(bf16 at 4-bit\'s call count - 4-bit)', n['contrast_matched_calls']), ('D, the primary endpoint\n(bf16 lifted - 4-bit cell)', n['primary_endpoint_D'])]
-    f = Fig('F4  The three contrasts with 90% intervals, and the noise floor', 'numbers.json: contrast_as_scored, contrast_matched_calls, primary_endpoint_D (point, lo, hi); noise_floor', w=W, h=380)
+    items = [('as scored\n(bf16 cell - 4-bit cell)', n['contrast_as_scored']), ('matched calls\n(28 calls, 30 min; 4-bit:\n63 reused cell results, 5 reruns)', n['contrast_matched_calls']), ('D, the primary contrast\n(matched calls - as scored)', n['primary_endpoint_D'])]
+    f = Fig('F4  The three contrasts with 90% intervals', 'numbers.json: contrast_as_scored, contrast_matched_calls, primary_endpoint_D (point, lo, hi); noise_floor', w=W, h=380)
     x0, x1, yb = 200, W - 40, 300
     lo, hi = -0.4, 0.4
     def X(v): return x0 + (x1 - x0) * (v - lo) / (hi - lo)
@@ -175,8 +173,8 @@ def f4(n: dict, out: Path):
         f.text(X(c['point']), y + 20, f"{c['point']:+.3f} [{c['lo']:+.3f}, {c['hi']:+.3f}], n = {c['n_tasks']}", text_anchor='middle', font_size='11', fill='#333')
     nf = n['noise_floor']
     ceil = nf['all']['n_attempts'] - nf['without_ceiling_bound']['n_attempts']
-    f.text(x0, yb + 58, f"Noise floor (cohort noise_floor_requests: the 4-bit bundle on the API lane, {nf['all']['n_tasks']} tasks, 5 repeats, no 8-min clock): pass rate {nf['all']['point']:.2f} [{nf['all']['lo']:.2f}, {nf['all']['hi']:.2f}]", font_size='10', fill='#555')
-    f.text(x0, yb + 72, f"on {nf['all']['n_attempts']} attempts; {nf['without_ceiling_bound']['point']:.2f} [{nf['without_ceiling_bound']['lo']:.2f}, {nf['without_ceiling_bound']['hi']:.2f}] without the {ceil} attempts the lane's own 120-min ceiling ended; {nf['tasks_with_mixed_outcomes']} of {nf['tasks_with_repeats']} repeated tasks had mixed outcomes.", font_size='10', fill='#555')
+    f.text(20, yb + 58, f"For reference, the API lane (a different serving stack): the 4-bit bundle, {nf['all']['n_tasks']} tasks, 5 repeats, no 8-min clock; pass rate {nf['all']['point']:.2f} [{nf['all']['lo']:.2f}, {nf['all']['hi']:.2f}]", font_size='10', fill='#555')
+    f.text(20, yb + 72, f"on {nf['all']['n_attempts']} attempts; {nf['without_ceiling_bound']['point']:.2f} [{nf['without_ceiling_bound']['lo']:.2f}, {nf['without_ceiling_bound']['hi']:.2f}] without the {ceil} attempts the lane's own 120-min ceiling ended; {nf['tasks_with_mixed_outcomes']} of {nf['tasks_with_repeats']} repeated tasks had mixed outcomes.", font_size='10', fill='#555')
     f.write(out / 'F4-contrasts.svg')
 
 

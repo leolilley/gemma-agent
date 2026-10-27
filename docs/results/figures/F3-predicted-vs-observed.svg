@@ -1,56 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="720" height="460" viewBox="0 0 720 460" font-family="Helvetica, Arial, sans-serif" font-size="12">
-<rect width="720" height="460" fill="white"/>
-<text x="70" y="24" font-size="15" font-weight="bold">F3  Predicted against observed, per task, at the 8-minute clock</text>
-<text x="70" y="42" fill="#555" font-size="11">numbers.json: clock_prediction.rows (predicted = lifted bf16 resolved with solve time &lt;= 480 s; observed = bf16 cell resolved)</text>
-<text x="200.0" y="70" text-anchor="middle" font-weight="bold">rich (retrodiction): 39 tasks</text>
-<rect x="90.0" y="100.0" width="130.0" height="150" fill="#eaf2e3" stroke="#999"/>
-<text x="98.0" y="118" font-weight="bold">both: 9</text>
-<text x="98.0" y="136" font-size="10" fill="#333">2725, 3006, 3067, 3454</text>
-<text x="98.0" y="149" font-size="10" fill="#333">3518, 3718, 3894, 3905</text>
-<text x="98.0" y="162" font-size="10" fill="#333">4077</text>
-<rect x="220.0" y="100.0" width="130.0" height="150" fill="#fbe9e4" stroke="#999"/>
-<text x="228.0" y="118" font-weight="bold">predicted only: 2</text>
-<text x="228.0" y="136" font-size="10" fill="#333">3676, 3882</text>
-<rect x="90.0" y="250.0" width="130.0" height="150" fill="#fbe9e4" stroke="#999"/>
-<text x="98.0" y="268" font-weight="bold">observed only: 1</text>
-<text x="98.0" y="286" font-size="10" fill="#333">3043</text>
-<rect x="220.0" y="250.0" width="130.0" height="150" fill="#eaf2e3" stroke="#999"/>
-<text x="228.0" y="268" font-weight="bold">neither: 27</text>
-<text x="228.0" y="286" font-size="10" fill="#333">2943, 3052, 3061, 3063</text>
-<text x="228.0" y="299" font-size="10" fill="#333">3105, 3180, 3278, 3468</text>
-<text x="228.0" y="312" font-size="10" fill="#333">3470, 3471, 3472, 3506</text>
-<text x="228.0" y="325" font-size="10" fill="#333">3521, 3535, 3675, 3777</text>
-<text x="228.0" y="338" font-size="10" fill="#333">3782, 3930, 3934, 3935</text>
-<text x="228.0" y="351" font-size="10" fill="#333">3938, 3942, 3944, 3953</text>
-<text x="228.0" y="364" font-size="10" fill="#333">4075, 4076, 4079</text>
-<text x="155.0" y="416" text-anchor="middle">observed pass</text>
-<text x="285.0" y="416" text-anchor="middle">observed fail</text>
-<text transform="translate(78,175.0) rotate(-90)" text-anchor="middle">predicted pass</text>
-<text transform="translate(78,325.0) rotate(-90)" text-anchor="middle">predicted fail</text>
-<text x="200.0" y="440" text-anchor="middle" font-size="11">agreement 36/39; predicted 11, observed 10</text>
-<text x="520.0" y="70" text-anchor="middle" font-weight="bold">fastapi (forecast): 29 tasks</text>
-<rect x="410.0" y="100.0" width="130.0" height="150" fill="#eaf2e3" stroke="#999"/>
-<text x="418.0" y="118" font-weight="bold">both: 7</text>
-<text x="418.0" y="136" font-size="10" fill="#333">13537, 14301, 14372</text>
-<text x="418.0" y="149" font-size="10" fill="#333">14463, 14492, 14786</text>
-<text x="418.0" y="162" font-size="10" fill="#333">9555</text>
-<rect x="540.0" y="100.0" width="130.0" height="150" fill="#fbe9e4" stroke="#999"/>
-<text x="548.0" y="118" font-weight="bold">predicted only: 0</text>
-<rect x="410.0" y="250.0" width="130.0" height="150" fill="#fbe9e4" stroke="#999"/>
-<text x="418.0" y="268" font-weight="bold">observed only: 2</text>
-<text x="418.0" y="286" font-size="10" fill="#333">14794, 5624</text>
-<rect x="540.0" y="250.0" width="130.0" height="150" fill="#eaf2e3" stroke="#999"/>
-<text x="548.0" y="268" font-weight="bold">neither: 20</text>
-<text x="548.0" y="286" font-size="10" fill="#333">11194, 13920, 14258</text>
-<text x="548.0" y="299" font-size="10" fill="#333">14306, 14419, 14448</text>
-<text x="548.0" y="312" font-size="10" fill="#333">14458, 14479, 14487</text>
-<text x="548.0" y="325" font-size="10" fill="#333">14616, 14873, 14986</text>
-<text x="548.0" y="338" font-size="10" fill="#333">15280, 15588, 15589</text>
-<text x="548.0" y="351" font-size="10" fill="#333">15661, 15800, 5077</text>
-<text x="548.0" y="364" font-size="10" fill="#333">9425, 9753</text>
-<text x="475.0" y="416" text-anchor="middle">observed pass</text>
-<text x="605.0" y="416" text-anchor="middle">observed fail</text>
-<text transform="translate(398,175.0) rotate(-90)" text-anchor="middle">predicted pass</text>
-<text transform="translate(398,325.0) rotate(-90)" text-anchor="middle">predicted fail</text>
-<text x="520.0" y="440" text-anchor="middle" font-size="11">agreement 27/29; predicted 7, observed 9</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="430" viewBox="0 0 720 430" font-family="Helvetica, Arial, sans-serif" font-size="12">
+<rect width="720" height="430" fill="white"/>
+<text x="70" y="24" font-size="15" font-weight="bold">F3  The clock rule unpacked: lifted bf16 attempt against the bf16 cell outcome</text>
+<text x="70" y="42" fill="#555" font-size="11">numbers.json: clock_prediction.rows (lifted_resolved, predicted = resolved with solve time &lt;= 480 s; observed = bf16 cell resolved)</text>
+<text x="200.0" y="74" text-anchor="middle" font-weight="bold">rich (retrodiction): 39 tasks</text>
+<rect x="50" y="92" width="290" height="88" fill="#f4f4f4" stroke="#999"/>
+<text x="58" y="110" font-weight="bold">lifted attempt failed: 23</text>
+<text x="58" y="126" font-size="11" fill="#333">passed at the cell: 0 of 23</text>
+<text x="58" y="140" font-size="10" fill="#666">rule and lifted-only both predict fail</text>
+<text x="58" y="156" font-size="10" fill="#333">3052, 3061, 3063, 3105, 3180, 3468, 3470, 3471</text>
+<text x="58" y="168" font-size="10" fill="#333">3472, 3506, 3521, 3535, 3675, 3777, 3782, 3930</text>
+<text x="326" y="168" font-size="10" text-anchor="end">...</text>
+<rect x="50" y="192" width="290" height="88" fill="#f4f4f4" stroke="#999"/>
+<text x="58" y="210" font-weight="bold">passed, last edit by 8 min: 11</text>
+<text x="58" y="226" font-size="11" fill="#1f5fbf">passed at the cell: 9 of 11</text>
+<text x="58" y="240" font-size="10" fill="#666">rule and lifted-only both predict pass</text>
+<text x="58" y="256" font-size="10" fill="#333">2725*, 3006*, 3067*, 3454*, 3518*, 3718*, 3894*</text>
+<text x="58" y="268" font-size="10" fill="#333">3905*, 4077*, 3676, 3882</text>
+<rect x="50" y="292" width="290" height="88" fill="#fdf3e7" stroke="#999"/>
+<text x="58" y="310" font-weight="bold">passed, last edit after 8 min: 5</text>
+<text x="58" y="326" font-size="11" fill="#1f5fbf">passed at the cell: 1 of 5</text>
+<text x="58" y="340" font-size="10" fill="#666">rule predicts fail, lifted-only pass</text>
+<text x="58" y="356" font-size="10" fill="#333">3043*, 2943, 3278, 4075, 4079</text>
+<text x="200.0" y="406" text-anchor="middle" font-size="11">agreement: rule 36/39, lifted outcome alone 33/39</text>
+<text x="520.0" y="74" text-anchor="middle" font-weight="bold">fastapi (forecast): 29 tasks</text>
+<rect x="370" y="92" width="290" height="88" fill="#f4f4f4" stroke="#999"/>
+<text x="378" y="110" font-weight="bold">lifted attempt failed: 16</text>
+<text x="378" y="126" font-size="11" fill="#333">passed at the cell: 0 of 16</text>
+<text x="378" y="140" font-size="10" fill="#666">rule and lifted-only both predict fail</text>
+<text x="378" y="156" font-size="10" fill="#333">11194, 13920, 14258, 14306, 14448, 14479, 14487</text>
+<text x="378" y="168" font-size="10" fill="#333">14616, 14986, 15280, 15588, 15661, 15800, 5077</text>
+<text x="646" y="168" font-size="10" text-anchor="end">...</text>
+<rect x="370" y="192" width="290" height="88" fill="#f4f4f4" stroke="#999"/>
+<text x="378" y="210" font-weight="bold">passed, last edit by 8 min: 7</text>
+<text x="378" y="226" font-size="11" fill="#1f5fbf">passed at the cell: 7 of 7</text>
+<text x="378" y="240" font-size="10" fill="#666">rule and lifted-only both predict pass</text>
+<text x="378" y="256" font-size="10" fill="#333">13537*, 14301*, 14372*, 14463*, 14492*, 14786*</text>
+<text x="378" y="268" font-size="10" fill="#333">9555*</text>
+<rect x="370" y="292" width="290" height="88" fill="#fdf3e7" stroke="#999"/>
+<text x="378" y="310" font-weight="bold">passed, last edit after 8 min: 6</text>
+<text x="378" y="326" font-size="11" fill="#1f5fbf">passed at the cell: 2 of 6</text>
+<text x="378" y="340" font-size="10" fill="#666">rule predicts fail, lifted-only pass</text>
+<text x="378" y="356" font-size="10" fill="#333">14794*, 5624*, 14419, 14458, 14873, 15589</text>
+<text x="520.0" y="406" text-anchor="middle" font-size="11">agreement: rule 27/29, lifted outcome alone 25/29</text>
+<text x="40" y="422" font-size="10" fill="#555">* passed at the bf16 cell. The rule and the lifted outcome alone differ only on the third group.</text>
 </svg>

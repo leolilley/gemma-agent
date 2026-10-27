@@ -28,7 +28,7 @@
 <path d="M70.0,360.0 H90.7 V346.8 H111.3 V320.3 H132.0 V271.8 H152.7 V262.9 H173.3 V245.3 H194.0 V245.3 H214.7 V240.9 H235.3 V240.9" fill="none" stroke="#1f5fbf" stroke-width="2.0"/>
 <path d="M70.0,360.0 H90.7 V360.0 H111.3 V346.8 H132.0 V324.7 H152.7 V320.3 H173.3 V302.6 H194.0 V293.8 H214.7 V285.0 H235.3 V280.6 H276.7 V280.6 H318.0 V271.8 H380.0 V254.1 H483.3 V240.9 H586.7 V236.5 H690.0 V232.1" fill="none" stroke="#c8541b" stroke-width="2.0"/>
 <circle cx="235.3" cy="240.9" r="4.5" fill="white" stroke="#1f5fbf" stroke-width="2"/><text x="245.3" y="230.9" fill="#1f5fbf" font-size="11">4-bit cell pass rate 27/68</text>
-<circle cx="235.3" cy="276.2" r="4.5" fill="white" stroke="#c8541b" stroke-width="2"/><text x="245.3" y="292.2" fill="#c8541b" font-size="11">bf16 cell pass rate 19/68 (rich)</text>
-<line x1="400" y1="72" x2="424" y2="72" stroke="#1f5fbf" stroke-width="2"/><text x="430" y="76">4-bit, at the cell (8 min), 68 tasks</text>
-<line x1="400" y1="88" x2="424" y2="88" stroke="#c8541b" stroke-width="2"/><text x="430" y="92">bf16, clock lifted to 30 min, 68 tasks</text>
+<circle cx="235.3" cy="276.2" r="4.5" fill="white" stroke="#c8541b" stroke-width="2"/><text x="245.3" y="292.2" fill="#c8541b" font-size="11">bf16 cell pass rate 19/68</text>
+<line x1="360" y1="72" x2="384" y2="72" stroke="#1f5fbf" stroke-width="2"/><text x="390" y="76">4-bit, at the cell (8 min, 28 executed calls), 68 tasks</text>
+<line x1="360" y1="88" x2="384" y2="88" stroke="#c8541b" stroke-width="2"/><text x="390" y="92">bf16, clock lifted (30 min, 28 executed calls), 68 tasks</text>
 </svg>

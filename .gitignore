@@ -27,3 +27,4 @@ __pycache__/
 .tmp/
 *.swp
 !docs/results/signing-public-key.pem
+/release/

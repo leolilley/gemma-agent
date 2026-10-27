@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="380" viewBox="0 0 720 380" font-family="Helvetica, Arial, sans-serif" font-size="12">
 <rect width="720" height="380" fill="white"/>
-<text x="70" y="24" font-size="15" font-weight="bold">F4  The three contrasts with 90% intervals, and the noise floor</text>
+<text x="70" y="24" font-size="15" font-weight="bold">F4  The three contrasts with 90% intervals</text>
 <text x="70" y="42" fill="#555" font-size="11">numbers.json: contrast_as_scored, contrast_matched_calls, primary_endpoint_D (point, lo, hi); noise_floor</text>
 <line x1="200" y1="300" x2="680" y2="300" stroke="#333"/>
 <line x1="200.0" y1="300" x2="200.0" y2="305" stroke="#333"/>
@@ -21,12 +21,13 @@
 <text x="365.0" y="110" text-anchor="middle" font-size="11" fill="#333">-0.125 [-0.206, -0.044], n = 68</text>
 <line x1="378.2" y1="150" x2="488.5" y2="150" stroke="#1f5fbf" stroke-width="2"/><circle cx="431.2" cy="150" r="5" fill="#1f5fbf"/>
 <text x="188" y="146" text-anchor="end" font-size="12">matched calls</text>
-<text x="188" y="160" text-anchor="end" font-size="11">(bf16 at 4-bit's call count - 4-bit)</text>
+<text x="188" y="160" text-anchor="end" font-size="11">(28 calls, 30 min; 4-bit:</text>
+<text x="188" y="174" text-anchor="end" font-size="11">63 reused cell results, 5 reruns)</text>
 <text x="431.17647058823525" y="170" text-anchor="middle" font-size="11" fill="#333">-0.015 [-0.103, +0.081], n = 68</text>
 <line x1="457.6" y1="210" x2="554.7" y2="210" stroke="#1f5fbf" stroke-width="2"/><circle cx="506.2" cy="210" r="5" fill="#1f5fbf"/>
-<text x="188" y="206" text-anchor="end" font-size="12">D, the primary endpoint</text>
-<text x="188" y="220" text-anchor="end" font-size="11">(bf16 lifted - 4-bit cell)</text>
+<text x="188" y="206" text-anchor="end" font-size="12">D, the primary contrast</text>
+<text x="188" y="220" text-anchor="end" font-size="11">(matched calls - as scored)</text>
 <text x="506.17647058823525" y="230" text-anchor="middle" font-size="11" fill="#333">+0.110 [+0.029, +0.191], n = 68</text>
-<text x="200" y="358" font-size="10" fill="#555">Noise floor (cohort noise_floor_requests: the 4-bit bundle on the API lane, 8 tasks, 5 repeats, no 8-min clock): pass rate 0.35 [0.10, 0.60]</text>
-<text x="200" y="372" font-size="10" fill="#555">on 40 attempts; 0.50 [0.17, 0.83] without the 17 attempts the lane's own 120-min ceiling ended; 1 of 8 repeated tasks had mixed outcomes.</text>
+<text x="20" y="358" font-size="10" fill="#555">For reference, the API lane (a different serving stack): the 4-bit bundle, 8 tasks, 5 repeats, no 8-min clock; pass rate 0.35 [0.10, 0.60]</text>
+<text x="20" y="372" font-size="10" fill="#555">on 40 attempts; 0.50 [0.17, 0.83] without the 17 attempts the lane's own 120-min ceiling ended; 1 of 8 repeated tasks had mixed outcomes.</text>
 </svg>

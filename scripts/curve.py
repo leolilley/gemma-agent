@@ -7,6 +7,7 @@ Definitions (fixed here; PLAN.md "Analysis plan" cites them):
                   is what the harness's own tool_calls counts and what the 28-call cap is read against.
   solve call      the index (1-based, over calls) of the LAST successfully executed edit_file or write_file call of an
                   attempt: the call after which the graded patch was on disk. None when the attempt never edited.
+                  solve_call_executed counts executed calls only up to that edit, the harness's own count.
   solve time      wall seconds from the agent's first model call to the completion of that edit (tool observation
                   timestamp), so it does not include the decode of the following call.
   S(k)            over a set of attempts, one per task, taken as uncensored by the clock: the fraction of TASKS that
@@ -54,7 +55,7 @@ def is_source_path(task_id: str, path) -> bool:
     prefixes = SOURCE_OVERRIDE if SOURCE_OVERRIDE is not None else REPO_SOURCE.get(task_id.split('_')[0], ())
     return bool(path) and str(path).lstrip('./').startswith(tuple(prefixes))
 CLOCKS = [60, 120, 180, 240, 300, 360, 420, 480, 600, 720, 900, 1200, 1500, 1800]
-CALLS = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28]
+CALLS = list(range(2, 52, 2))   # past 28 so the 40-call lifted arm's curve is drawn to its end (issued calls run past the cap)
 
 
 def trace_calls(record: dict, root: Path) -> list:
@@ -104,6 +105,7 @@ def solve_point(record: dict, root: Path) -> dict:
             'calls_used': len(calls), 'calls_executed': sum(1 for c in calls if not c['malformed']),
             'failed_invocations': sum(1 for c in calls if c['malformed']),
             'solve_call': last_edit['index'] if last_edit else None,
+            'solve_call_executed': sum(1 for c in calls[:last_edit['index']] if not c['malformed']) if last_edit else None,
             'solve_time': last_edit['done_at'] if last_edit else None,
             'solve_call_source': last_source['index'] if last_source else None,
             'solve_time_source': last_source['done_at'] if last_source else None,

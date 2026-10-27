@@ -224,6 +224,9 @@ def main() -> int:
         numbers['contrast_as_scored'] = boot(as_scored, eligible)
         rich = [t for t in eligible if t.startswith('rich_')]
         numbers['primary_endpoint_D_rich'] = boot(lambda t: numerics(t) - as_scored(t), rich) if len(rich) >= 5 else None
+        # sensitivity, not the endpoint: the first attempt per task in each quantity instead of repeats pooled within task
+        def first(t): return (calls16[t][0] - calls4[t][0]) - (cell16[t][0] - cell4[t][0])
+        numbers['primary_endpoint_D_first_attempts'] = boot(first, eligible)
 
     # calls-to-solve curve, pass rate versus clock, clock prediction (PLAN.md analysis plan, primary analysis A2 and A3,
     # added 2026-10-19; definitions in scripts/curve.py). One point per task per bundle (first attempt), 68-task set.
@@ -335,6 +338,7 @@ def main() -> int:
         summ = arm_summary(lf, lp)
         solved = [p for p in lp.values() if p['resolved']]
         beyond_calls = [p['task'] for p in solved if p['solve_call'] is not None and p['solve_call'] > CELL_CALLS]
+        executed_index = {p['task']: p['solve_call_executed'] for p in solved}
         beyond_clock = [p['task'] for p in solved if p['solve_time'] is not None and p['solve_time'] > CELL_CLOCK_S]
         within_both = [p['task'] for p in solved if p['solve_call'] is not None and p['solve_call'] <= CELL_CALLS and p['solve_time'] is not None and p['solve_time'] <= CELL_CLOCK_S]
         ep = {}
@@ -344,7 +348,7 @@ def main() -> int:
         extra = sum(x['calls_after_k'] for x in ep.values()); extra_loop = sum(x['loop_after_k'] for x in ep.values()); extra_ep = sum(x['in_episode_after_k'] for x in ep.values())
         Sk = {k: sum(1 for p in lp.values() if p['resolved'] and p['solve_call'] is not None and p['solve_call'] <= k) for k in range(CELL_CALLS, LIFTED_CALLS + 1, 2)}
         lifted_rate = summ['pass_rate']
-        numbers['lifted_subset'].update({'tasks_run': sorted(lf), 'summary': summ, 'passes': summ['resolved'], 'passes_solve_call_beyond_28': beyond_calls, 'passes_solve_time_beyond_480': beyond_clock,
+        numbers['lifted_subset'].update({'tasks_run': sorted(lf), 'summary': summ, 'passes': summ['resolved'], 'passes_solve_call_beyond_28': beyond_calls, 'passes_solve_call_executed': executed_index, 'passes_solve_time_beyond_480': beyond_clock,
                                          'passes_within_cell_budget': within_both, 'extra_calls': {'n': extra, 'loop_calls': extra_loop, 'in_recovery_episode': extra_ep},
                                          'loop_calls_total': sum(x['loop_calls'] for x in ep.values()), 'recovery_episodes_total': sum(x['recovery_episodes'] for x in ep.values()),
                                          'repetition_loop_attempts': sum(x['repetition_loop'] for x in ep.values()),

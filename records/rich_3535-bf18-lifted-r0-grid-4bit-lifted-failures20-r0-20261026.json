@@ -1,0 +1,70 @@
+{
+  "schema": "gemma-agent.attempt/v1",
+  "attempt_id": "rich_3535-bf18-lifted-r0-grid-4bit-lifted-failures20-r0-20261026",
+  "task_id": "rich_3535",
+  "bundle": "bf18-lifted",
+  "config_digest": "21ec26f6941a78c2a304d7681911e259472ffb3ff2b1f612f00c5e8ebd087216",
+  "model_alias": "gemma-4-31b-it-qat-w4a16-ct",
+  "model_served": "vllm:/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2 dtype=bfloat16 tp=4 (w4a16; bundle thinking_config as served)",
+  "harness": {
+    "adk-eval-core": "0.1.0",
+    "adk-submission": "0.2.13",
+    "google-adk": "1.36.1",
+    "swegemma": "0.2.11"
+  },
+  "sandbox": "subprocess",
+  "snapshot_digest": "56a32aaa56ec7e81487f096ed90716dcc3ddb0ef5b6d0563e643b4ffccbc9dce",
+  "budget": {
+    "max_time_minutes": 16.0,
+    "max_tool_calls": 40,
+    "max_turns": 80,
+    "timeout_seconds": 240
+  },
+  "site": "kaggle-l4x4",
+  "repeat_index": 0,
+  "started_at": "2026-10-26T23:14:52.875143+00:00",
+  "wall_seconds": 324.16,
+  "outcome": {
+    "resolved": false,
+    "test_exit_code": 1,
+    "agent_patch_size": 479,
+    "duration_seconds": 324.16,
+    "error": null,
+    "tool_calls": 18,
+    "total_llm_calls": 21
+  },
+  "tool_sequence": [
+    "run_command",
+    "run_command",
+    "run_command",
+    "run_command",
+    "read_file",
+    "write_file",
+    "run_command",
+    "read_file",
+    "run_command",
+    "run_command",
+    "run_command",
+    "read_file",
+    "read_file",
+    "read_file",
+    "edit_file",
+    "write_file",
+    "run_command",
+    "submit_patch",
+    "run_command",
+    "submit_patch"
+  ],
+  "first_edit_call_index": 6,
+  "repetition_runs": 7,
+  "tokens": {
+    "prompt": 202143,
+    "completion": 10122,
+    "cached": 0
+  },
+  "patch_digest": "09748117b2e4f09dfbe0b91cb8fd7005d338eae6332512dd009041ea2b81d8f0",
+  "results_dir": "results/kaggle/grid-4bit-lifted-failures20-r0-20261026",
+  "infrastructure_failure": false,
+  "validity": "valid",
+  "started_at_source": "trace: first model call minus elapsed"
+}

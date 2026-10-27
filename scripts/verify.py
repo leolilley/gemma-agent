@@ -18,12 +18,19 @@ What is checked:
      corrected | reason |` replaces that field's value for the chronology checks above, after checking that the record
      still holds the recorded value. Records named by a ledger entry are never edited, so a wrong value is corrected by
      a later signed statement, and this script reports how many it applied.
+  7. The newest signed seal (seal-*.md, scripts/seal.py) lists the raw files the analysis reads besides the records
+     (traces, task results, patches, logs, lane audits, replays, adapter log) with their sha256: every listed file must
+     be present and unchanged, and every such file on disk must be listed. The seal is release-time authentication:
+     it shows the files are the ones released, not when they were collected.
 
 Usage: scripts/verify.py [--root DIR] [--pubkey PEM]     exit 0 when every check passes.
 Needs the `cryptography` package for the ed25519 step (pip install cryptography).
 """
 import argparse, base64, hashlib, json, re, sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from seal import sealed_files  # noqa: E402  (the raw-file set a seal covers; one definition for writer and checker)
 
 SIG = re.compile(r'ryeos:signed:(\S+?):([0-9a-f]{64}):([A-Za-z0-9+/=]+):([0-9a-f]{64})')
 
@@ -135,10 +142,32 @@ def main() -> int:
         for a in untied: problems.append(f'{fp_.name}: record {a} does not carry this forecast\'s digest {file_digest[:12]} (its run manifest did not ship the forecast)')
         print(f'forecast {fp_.name}: signed {signed_at}, file sha256 {file_digest[:12]}; {bundle} @ {site} on {len(tasks)} tasks; '
               f'records after signing: {later}, carrying the digest: {later + len(earlier) - len(untied)}' + ('' if later else ' (pending)'))
+    # Seal: the newest signed seal-*.md covers the raw files; older seals are superseded and not checked.
+    seals = sorted((root / '.ai/knowledge/gemma-agent').glob('seal-*.md'))
+    seal_line = 'raw-file seal: none'
+    if seals:
+        m = check_signed(seals[-1], key, fp, problems)
+        if m:
+            verified[m.group(2)] = seals[-1]; n_verified += 1
+            listed = {}
+            for line in seals[-1].read_text().splitlines():
+                if not line.startswith('| ') or line.startswith('| path') or line.startswith('| ---'): continue
+                path, digest = [c.strip() for c in line.strip('|').split('|')]
+                listed[path] = digest
+            changed = [f for f, d in listed.items() if not (root / f).is_file() or hashlib.sha256((root / f).read_bytes()).hexdigest() != d]
+            unlisted = sorted(set(sealed_files(root)) - set(listed))
+            for f in changed[:20]: problems.append(f'{seals[-1].name}: {f} is missing or differs from its sealed sha256')
+            if len(changed) > 20: problems.append(f'{seals[-1].name}: {len(changed) - 20} more sealed files missing or changed')
+            for f in unlisted[:20]: problems.append(f'{seals[-1].name}: {f} is read by the analysis but not sealed')
+            if len(unlisted) > 20: problems.append(f'{seals[-1].name}: {len(unlisted) - 20} more unsealed raw files')
+            seal_line = f'raw-file seal {seals[-1].name}: signed {m.group(1)}, {len(listed) - len(changed)} of {len(listed)} files unchanged, {len(unlisted)} unsealed'
+    else:
+        problems.append('no signed raw-file seal (seal-*.md): the traces the curves read are not authenticated')
     all_records = {p.stem for p in (root / 'records').glob('*.json')}
     uncovered = sorted(all_records - covered)
     n_corr = len(list((root / '.ai/knowledge/gemma-agent').glob('correction-*.md')))
-    print(f'signed files verified: {n_verified} of {len(signed_files) + len(ledgers) + len(forecasts) + n_corr}; ledger entries: {len(ledgers)}; forecasts: {len(forecasts)}; '
+    print(seal_line)
+    print(f'signed files verified: {n_verified} of {len(signed_files) + len(ledgers) + len(forecasts) + n_corr + min(len(seals), 1)}; ledger entries: {len(ledgers)}; forecasts: {len(forecasts)}; '
           f'corrections applied: {len(corrections)} values from {n_corr} items; records covered: {len(covered)} of {len(all_records)}; signer fingerprint {fp}')
     for n in sorted(set(notes))[:10]: print('note:', n)
     if uncovered: print(f'note: {len(uncovered)} records not yet in any ledger entry (newest first): {", ".join(uncovered[-5:])}')

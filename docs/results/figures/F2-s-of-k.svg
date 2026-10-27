@@ -1,16 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="720" height="420" viewBox="0 0 720 420" font-family="Helvetica, Arial, sans-serif" font-size="12">
 <rect width="720" height="420" fill="white"/>
-<text x="70" y="24" font-size="15" font-weight="bold">F2  Pass rate against calls, S(k)</text>
-<text x="70" y="42" fill="#555" font-size="11">numbers.json: curve[bundle].S (fraction of tasks whose last successful edit came by call k and that passed)</text>
+<text x="70" y="24" font-size="15" font-weight="bold">F2  Pass rate against issued calls, S(k)</text>
+<text x="70" y="42" fill="#555" font-size="11">numbers.json: curve[bundle].S (fraction of tasks that passed with the last successful edit by issued call k)</text>
 <line x1="70" y1="360" x2="690" y2="360" stroke="#333"/><line x1="70" y1="360" x2="70" y2="60" stroke="#333"/>
 <line x1="70.0" y1="360" x2="70.0" y2="365" stroke="#333"/><text x="70.0" y="378" text-anchor="middle">0</text>
-<line x1="152.7" y1="360" x2="152.7" y2="365" stroke="#333"/><text x="152.7" y="378" text-anchor="middle">4</text>
-<line x1="235.3" y1="360" x2="235.3" y2="365" stroke="#333"/><text x="235.3" y="378" text-anchor="middle">8</text>
-<line x1="318.0" y1="360" x2="318.0" y2="365" stroke="#333"/><text x="318.0" y="378" text-anchor="middle">12</text>
-<line x1="400.7" y1="360" x2="400.7" y2="365" stroke="#333"/><text x="400.7" y="378" text-anchor="middle">16</text>
-<line x1="483.3" y1="360" x2="483.3" y2="365" stroke="#333"/><text x="483.3" y="378" text-anchor="middle">20</text>
-<line x1="566.0" y1="360" x2="566.0" y2="365" stroke="#333"/><text x="566.0" y="378" text-anchor="middle">24</text>
-<line x1="648.7" y1="360" x2="648.7" y2="365" stroke="#333"/><text x="648.7" y="378" text-anchor="middle">28</text>
+<line x1="117.7" y1="360" x2="117.7" y2="365" stroke="#333"/><text x="117.7" y="378" text-anchor="middle">4</text>
+<line x1="165.4" y1="360" x2="165.4" y2="365" stroke="#333"/><text x="165.4" y="378" text-anchor="middle">8</text>
+<line x1="213.1" y1="360" x2="213.1" y2="365" stroke="#333"/><text x="213.1" y="378" text-anchor="middle">12</text>
+<line x1="260.8" y1="360" x2="260.8" y2="365" stroke="#333"/><text x="260.8" y="378" text-anchor="middle">16</text>
+<line x1="308.5" y1="360" x2="308.5" y2="365" stroke="#333"/><text x="308.5" y="378" text-anchor="middle">20</text>
+<line x1="356.2" y1="360" x2="356.2" y2="365" stroke="#333"/><text x="356.2" y="378" text-anchor="middle">24</text>
+<line x1="403.8" y1="360" x2="403.8" y2="365" stroke="#333"/><text x="403.8" y="378" text-anchor="middle">28</text>
+<line x1="451.5" y1="360" x2="451.5" y2="365" stroke="#333"/><text x="451.5" y="378" text-anchor="middle">32</text>
+<line x1="499.2" y1="360" x2="499.2" y2="365" stroke="#333"/><text x="499.2" y="378" text-anchor="middle">36</text>
+<line x1="546.9" y1="360" x2="546.9" y2="365" stroke="#333"/><text x="546.9" y="378" text-anchor="middle">40</text>
+<line x1="594.6" y1="360" x2="594.6" y2="365" stroke="#333"/><text x="594.6" y="378" text-anchor="middle">44</text>
+<line x1="642.3" y1="360" x2="642.3" y2="365" stroke="#333"/><text x="642.3" y="378" text-anchor="middle">48</text>
+<line x1="690.0" y1="360" x2="690.0" y2="365" stroke="#333"/><text x="690.0" y="378" text-anchor="middle">52</text>
 <line x1="65" y1="360.0" x2="70" y2="360.0" stroke="#333"/><text x="62" y="364.0" text-anchor="end">0.0</text>
 <line x1="65" y1="300.0" x2="70" y2="300.0" stroke="#333"/><text x="62" y="304.0" text-anchor="end">0.2</text>
 <line x1="70" y1="300.0" x2="690" y2="300.0" stroke="#eee"/>
@@ -22,15 +28,14 @@
 <line x1="70" y1="120.0" x2="690" y2="120.0" stroke="#eee"/>
 <line x1="65" y1="60.0" x2="70" y2="60.0" stroke="#333"/><text x="62" y="64.0" text-anchor="end">1.0</text>
 <line x1="70" y1="60.0" x2="690" y2="60.0" stroke="#eee"/>
-<text x="380.0" y="406" text-anchor="middle">tool calls k</text>
+<text x="380.0" y="406" text-anchor="middle">issued tool calls k (malformed invocations included; the caps in the legend count executed calls only)</text>
 <text transform="translate(16,210.0) rotate(-90)" text-anchor="middle">S(k)</text>
-<line x1="648.7" y1="60" x2="648.7" y2="360" stroke="#888" stroke-dasharray="4 3"/><text x="644.7" y="72" fill="#888" font-size="11" text-anchor="end">the call cap, 28</text>
-<path d="M70.0,360.0 H111.3 V360.0 H152.7 V355.6 H194.0 V355.6 H235.3 V342.4 H276.7 V333.5 H318.0 V320.3 H359.3 V311.5 H400.7 V302.6 H442.0 V293.8 H483.3 V280.6 H524.7 V276.2 H566.0 V262.9 H607.3 V254.1 H648.7 V240.9" fill="none" stroke="#1f5fbf" stroke-width="2.0"/>
-<path d="M70.0,360.0 H111.3 V360.0 H152.7 V351.2 H194.0 V346.8 H235.3 V324.7 H276.7 V315.9 H318.0 V293.8 H359.3 V271.8 H400.7 V262.9 H442.0 V258.5 H483.3 V254.1 H524.7 V254.1 H566.0 V236.5 H607.3 V236.5 H648.7 V232.1" fill="none" stroke="#c8541b" stroke-width="2.0"/>
-<path d="M70.0,360.0 H111.3 V360.0 H152.7 V346.8 H194.0 V337.9 H235.3 V311.5 H276.7 V293.8 H318.0 V289.4 H359.3 V285.0 H400.7 V280.6 H442.0 V280.6 H483.3 V276.2 H524.7 V276.2 H566.0 V276.2 H607.3 V276.2 H648.7 V276.2" fill="none" stroke="#e39a6d" stroke-width="2.0" stroke-dasharray="5 3"/>
-<path d="M70.0,360.0 H111.3 V360.0 H152.7 V360.0 H194.0 V300.0 H235.3 V300.0 H276.7 V240.0 H318.0 V240.0 H359.3 V240.0 H400.7 V240.0 H442.0 V240.0 H483.3 V240.0 H524.7 V240.0 H566.0 V240.0 H607.3 V240.0 H648.7 V240.0" fill="none" stroke="#7fa6e0" stroke-width="2.0" stroke-dasharray="2 3"/>
-<line x1="90" y1="72" x2="114" y2="72" stroke="#1f5fbf" stroke-width="2"/><text x="120" y="76">4-bit, at the cell (8 min), 68 tasks</text>
-<line x1="90" y1="88" x2="114" y2="88" stroke="#c8541b" stroke-width="2"/><text x="120" y="92">bf16, clock lifted to 30 min, 68 tasks</text>
-<line x1="90" y1="104" x2="114" y2="104" stroke="#e39a6d" stroke-width="2" stroke-dasharray="5 3"/><text x="120" y="108">bf16, at the cell, 68 tasks (rich)</text>
-<line x1="90" y1="120" x2="114" y2="120" stroke="#7fa6e0" stroke-width="2" stroke-dasharray="2 3"/><text x="120" y="124">4-bit, clock lifted (subset), 5 tasks so far</text>
+<path d="M70.0,360.0 H93.8 V360.0 H117.7 V355.6 H141.5 V355.6 H165.4 V342.4 H189.2 V333.5 H213.1 V320.3 H236.9 V311.5 H260.8 V302.6 H284.6 V293.8 H308.5 V280.6 H332.3 V276.2 H356.2 V262.9 H380.0 V254.1 H403.8 V240.9 H427.7 V240.9 H451.5 V240.9 H475.4 V240.9 H499.2 V240.9 H523.1 V240.9 H546.9 V240.9 H570.8 V240.9 H594.6 V240.9 H618.5 V240.9 H642.3 V240.9 H666.2 V240.9" fill="none" stroke="#1f5fbf" stroke-width="2.0"/>
+<path d="M70.0,360.0 H93.8 V360.0 H117.7 V351.2 H141.5 V346.8 H165.4 V324.7 H189.2 V315.9 H213.1 V293.8 H236.9 V271.8 H260.8 V262.9 H284.6 V258.5 H308.5 V254.1 H332.3 V254.1 H356.2 V236.5 H380.0 V236.5 H403.8 V232.1 H427.7 V232.1 H451.5 V232.1 H475.4 V232.1 H499.2 V232.1 H523.1 V232.1 H546.9 V232.1 H570.8 V232.1 H594.6 V232.1 H618.5 V232.1 H642.3 V232.1 H666.2 V232.1" fill="none" stroke="#c8541b" stroke-width="2.0"/>
+<path d="M70.0,360.0 H93.8 V360.0 H117.7 V346.8 H141.5 V337.9 H165.4 V311.5 H189.2 V293.8 H213.1 V289.4 H236.9 V285.0 H260.8 V280.6 H284.6 V280.6 H308.5 V276.2 H332.3 V276.2 H356.2 V276.2 H380.0 V276.2 H403.8 V276.2 H427.7 V276.2 H451.5 V276.2 H475.4 V276.2 H499.2 V276.2 H523.1 V276.2 H546.9 V276.2 H570.8 V276.2 H594.6 V276.2 H618.5 V276.2 H642.3 V276.2 H666.2 V276.2" fill="none" stroke="#e39a6d" stroke-width="2.0" stroke-dasharray="5 3"/>
+<path d="M70.0,360.0 H93.8 V360.0 H117.7 V360.0 H141.5 V360.0 H165.4 V360.0 H189.2 V345.0 H213.1 V345.0 H236.9 V330.0 H260.8 V330.0 H284.6 V330.0 H308.5 V330.0 H332.3 V330.0 H356.2 V330.0 H380.0 V330.0 H403.8 V330.0 H427.7 V330.0 H451.5 V330.0 H475.4 V330.0 H499.2 V330.0 H523.1 V330.0 H546.9 V315.0 H570.8 V315.0 H594.6 V300.0 H618.5 V300.0 H642.3 V300.0 H666.2 V300.0" fill="none" stroke="#7fa6e0" stroke-width="2.0" stroke-dasharray="2 3"/>
+<line x1="90" y1="72" x2="114" y2="72" stroke="#1f5fbf" stroke-width="2"/><text x="120" y="76">4-bit, at the cell (8 min, 28 executed calls), 68 tasks</text>
+<line x1="90" y1="88" x2="114" y2="88" stroke="#c8541b" stroke-width="2"/><text x="120" y="92">bf16, clock lifted (30 min, 28 executed calls), 68 tasks</text>
+<line x1="90" y1="104" x2="114" y2="104" stroke="#e39a6d" stroke-width="2" stroke-dasharray="5 3"/><text x="120" y="108">bf16, at the cell (8 min, 28 executed calls), 68 tasks</text>
+<line x1="90" y1="120" x2="114" y2="120" stroke="#7fa6e0" stroke-width="2" stroke-dasharray="2 3"/><text x="120" y="124">4-bit, 16 min and 40 executed calls, on 20 of its cell failures</text>
 </svg>
