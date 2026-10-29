@@ -1,0 +1,43 @@
+# ryeos:signed:2026-10-29T03:13:06Z:b98676d7a09c4a60f8dbd8cff83bf60ed6c33a73d56fc30aa36a8c1fdec39c18:cJt7pCjS5WEeDL/3KCoPK2hlYzC/ajJfv3VG/xtPeKOm0GKggEYGVxV+8pDq7nyPeA9fbyUveK5hGkdd/qpcAw==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+version: "0.1.0"
+category: "gemma-agent"
+name: "lora_select"
+executor_id: "@subprocess"
+execution_protocol: "protocol:ryeos/core/tool_callback"
+required_caps: ["ryeos.execute.tool.gemma-agent/lora_select"]
+description: >
+  Build a LoRA training set from the campaign's attempt records by one fixed rule (resolved by hidden tests, valid, Gemma 4
+  31B on the scorer's Kaggle vLLM lane, task outside the evaluation split, trace sealed), one example per model call, each
+  traceable to its record, trace and seal. Writes results/lora/datasets/<UTC>/ (examples.jsonl, manifest.json).
+effects: live
+
+env_config:
+  interpreter:
+    type: local_binary
+    binary: python3
+    candidates: [python3]
+    var: RYE_PYTHON
+    path_candidates: [python3]
+
+config:
+  command: "${interpreter}"
+  args:
+    - "-I"
+    - "${tool_dir}/lib/lora_select.py"
+    - "--project-path"
+    - "${project_path}"
+  input_data: "${params_json}"
+  timeout_secs: 600
+
+config_schema:
+  type: object
+  properties:
+    split_seed:
+      type: string
+      description: "seed for the evaluation-task split"
+      default: lora-split-20261029
+    n_eval:
+      type: integer
+      description: "number of the 68 grid tasks held out for evaluation"
+      default: 16
+  required: []
