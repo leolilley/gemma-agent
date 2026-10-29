@@ -5,13 +5,17 @@ A campaign on the installed local RyeOS node for two Kaggle competitions:
 | Track | Deadline (UTC) | Prize | Our stance |
 | --- | --- | --- | --- |
 | [Gemma 4 Developer Agent Paper Track](https://www.kaggle.com/competitions/gemma-4-developer-agent-paper) | **2026-11-12 23:59** | $35k: $15k overall, $10k best new resource, $10k best new application | **Primary.** A measurement paper with every number regenerable from signed records. |
-| [Gemma 4 Developer Agent](https://www.kaggle.com/competitions/gemma-4-developer-agent) | entry 2026-11-25, final 2026-12-02 | $65k: $37k / $18k / $10k | **Secondary.** Config plus a small LoRA. Dropped at the week-two gate if it does not beat the public reference. |
+| [Gemma 4 Developer Agent](https://www.kaggle.com/competitions/gemma-4-developer-agent) | entry 2026-11-25, final 2026-12-02 | $65k: $37k / $18k / $10k | **Secondary.** An ADK skill package developed through existing RyeOS workflows, replacing the small-LoRA plan under the dated amendment below. [Protocol and feasibility gates](docs/adk-skill-study.md). |
 
 The project charter is this file. The four-week plan, the frozen analysis plan and the
 cohort discipline are in [docs/PLAN.md](docs/PLAN.md). The paper outline and its claim matrix
 are [docs/PAPER.md](docs/PAPER.md).
 Decisions are logged in [docs/DECISIONS.md](docs/DECISIONS.md). Nothing in `.tmp/`
 is authoritative.
+
+The sections below through "What this is not" preserve the original measurement
+charter, including its starting budgets. The main-track amendment at the end applies
+only to the separate skill study; the frozen paper plan and claims remain independent.
 
 ## What we are measuring
 
@@ -101,3 +105,26 @@ Not a RyeOS showcase. The paper gets one method paragraph and a download link fo
 the records. Not an attempt to win the agent track. Not a reason to touch the
 substrate. Not a review process: verification is one regeneration script and a
 hand-checked label sample, not an independent review per cohort.
+
+## Main-track amendment — 2026-10-28
+
+The intended main-track direction is an ADK skill package, replacing the small-LoRA
+plan. The [skill-study protocol](docs/adk-skill-study.md) owns its rules, the bounded
+CPU data check and subsequent gates. The original charter text above is preserved.
+
+1. **Execution.** Gemma writes candidate procedures; existing RyeOS project workflows
+   test and retain them. The submitted agent consumes ordinary ADK skills. This work
+   uses the installed substrate and the official harness.
+2. **Source material.** Valid failed Gemma development attempts may join successful
+   attempts under a declared input rule. This is a skill-study change from the old
+   passing-attempts-only training rule, not a revision to the measurement campaign.
+   Gemma authors the repair knowledge; humans and AI assistants may supply schemas,
+   plumbing and evaluation. Reference solutions and evaluation outcomes stay separate.
+3. **Evidence.** Compare the reference agent with the selected package at the same
+   budget, charging skill overhead. Data feasibility and actual ADK skill execution
+   precede a larger study. Local Docker is the independent grading path; Kaggle agent
+   workspace compatibility remains a separate requirement.
+4. **Priority.** The paper must not depend on this work. Preserve its endpoints,
+   forecast and chronology and finish it promptly. The original budget table is
+   historical; the Colab Pro change is logged on 2026-10-21, and later GPU work needs
+   a current allocation check. The next data check uses CPU only.

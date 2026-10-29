@@ -1,0 +1,49 @@
+# ryeos:signed:2026-10-28T22:41:55Z:7186727344fa37e9e9b7811c266754a75d1ce35008dc84d3eb7e24a989899a12:n8lNM1w9yPz/2w9dr13zGDRpeMsYpneyXcsQVd2E4fhFX/s9ZPe7dRBIrl/rqmNSXRZwtnGY996WNMPAPVBFCg==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+version: "0.1.0"
+category: "gemma-agent"
+name: "collect"
+executor_id: "@subprocess"
+execution_protocol: "protocol:ryeos/core/tool_callback"
+required_caps: ["ryeos.execute.tool.gemma-agent/collect"]
+description: >
+  H1, the baseline repository-context collector of the harness-engineering study: given a declared
+  fixture workspace and a short query, return a bounded list of source excerpts with path and line,
+  the selection rule applied, and the number of hits omitted. Reads only the fixture's own files.
+effects: live
+
+env_config:
+  interpreter:
+    type: local_binary
+    binary: python3
+    candidates: [python3]
+    var: RYE_PYTHON
+    path_candidates: [python3]
+
+config:
+  command: "${interpreter}"
+  args:
+    - "-I"
+    - "${tool_dir}/lib/collect_context.py"
+    - "--project-path"
+    - "${project_path}"
+  input_data: "${params_json}"
+  timeout_secs: 120
+
+config_schema:
+  type: object
+  properties:
+    fixture:
+      type: string
+      description: "declared fixture id, a directory name under .tmp/f0/fixtures (letters, digits, _ and -)"
+    query:
+      type: string
+      description: "a few words naming the symbol, error or behaviour to locate; at most 200 characters"
+    max_excerpts:
+      type: integer
+      description: "excerpts to return, 1 to 8"
+      default: 6
+    context_lines:
+      type: integer
+      description: "lines of context each side of a hit, 0 to 20"
+      default: 6
+  required: [fixture, query]

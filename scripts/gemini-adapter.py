@@ -6,7 +6,14 @@ Forwards every request to UPSTREAM, removing only the fields the endpoint reject
 because the organizer defaults set a thinking budget) and `reasoning_effort` ("Thinking level is not
 supported for this model"). Everything else passes through untouched: Authorization header, model,
 messages, tools, sampling, streaming. Every removal is logged to ADAPTER_LOG as one JSON line with
-no bodies and no keys. The API arm's thinking state is therefore the provider's default, and the
+no bodies and no keys. A second listener on NODE_LISTEN (8000) serves the installed RyeOS `local-openai`
+provider, which sends no credential header by design: a request arriving there without an Authorization
+header gets `Bearer $LITELLM_API_KEY` from the adapter's own environment (logged as `auth_injected`, never
+the value). A streaming request on that port is taken upstream non-streaming (Gemini's stream closes with an
+in-body 500 and no finish reason often enough to fail a run, and a cut stream cannot be retried once its headers
+are out, whereas the buffered answer gets the 500 retries above) and the complete answer is handed back as a
+short synthesized SSE stream: one delta chunk, one finish chunk with usage, then [DONE] (logged `destream`).
+Requests on 8001 are forwarded exactly as before. The API arm's thinking state is therefore the provider's default, and the
 record must say so.
 
 Every request is answered within DEADLINE_S of its arrival, whatever the pacing wait and the upstream
@@ -23,6 +30,8 @@ import http.client, http.server, json, os, re, threading, time, urllib.parse
 
 UPSTREAM = os.environ.get('GEMINI_OPENAI_BASE', 'https://generativelanguage.googleapis.com/v1beta/openai')
 LISTEN = ('127.0.0.1', int(os.environ.get('ADAPTER_PORT', '8001')))
+NODE_LISTEN = ('127.0.0.1', int(os.environ.get('ADAPTER_NODE_PORT', '8000')))
+AUTH_KEY = os.environ.get('LITELLM_API_KEY', '')
 LOG = os.environ.get('ADAPTER_LOG', 'results/adapter-log.jsonl')
 DROP = ('chat_template_kwargs', 'thinking_token_budget', 'reasoning_effort')
 # Free-tier pacing (per model, per minute). The binding limit observed 2026-10-13 was
@@ -87,11 +96,43 @@ class Handler(http.server.BaseHTTPRequestHandler):
     def log_message(self, *a):  # quiet
         pass
 
+    def _node_port(self):
+        return self.server.server_address[1] == NODE_LISTEN[1]
+
+    def _auth_injected(self):
+        return self._node_port() and AUTH_KEY != '' and self.headers.get('Authorization') is None
+
+    def _send_sse(self, data):
+        """Hand a complete chat completion back as the stream the client asked for. Returns delivered."""
+        try:
+            d = json.loads(data)
+            choice = d['choices'][0]; msg = choice['message']
+        except Exception:
+            return self._send_error(502, 'adapter: upstream answer was not a chat completion: ' + data[:200].decode('utf-8', 'replace'))
+        head = {'id': d.get('id'), 'object': 'chat.completion.chunk', 'created': d.get('created'), 'model': d.get('model')}
+        delta = {'role': 'assistant', 'content': msg.get('content')}
+        if msg.get('tool_calls'):
+            delta['tool_calls'] = [{'index': i, **tc} for i, tc in enumerate(msg['tool_calls'])]
+        chunks = [{**head, 'choices': [{'index': 0, 'delta': delta, 'finish_reason': None}], 'usage': d.get('usage')},
+                  {**head, 'choices': [{'index': 0, 'delta': {}, 'finish_reason': choice.get('finish_reason') or 'stop'}], 'usage': d.get('usage')}]
+        payload = ''.join('data: ' + json.dumps(c) + '\n\n' for c in chunks) + 'data: [DONE]\n\n'
+        try:
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/event-stream'); self.send_header('Cache-Control', 'no-cache')
+            self.send_header('Transfer-Encoding', 'chunked'); self.end_headers()
+            raw = payload.encode()
+            self.wfile.write(f'{len(raw):X}\r\n'.encode() + raw + b'\r\n0\r\n\r\n'); self.wfile.flush()
+            return True
+        except CLIENT_GONE:
+            return False
+
     def _upstream(self, body, timeout):
         path = self.path[3:] if self.path.startswith('/v1/') else self.path
         target = up.path.rstrip('/') + path
         headers = {k: v for k, v in self.headers.items() if k.lower() not in HOP}
         headers['Accept-Encoding'] = 'identity'
+        if self._auth_injected():
+            headers['Authorization'] = 'Bearer ' + AUTH_KEY
         if body is not None:
             headers['Content-Length'] = str(len(body))
         Conn = http.client.HTTPSConnection if up.scheme == 'https' else http.client.HTTPConnection
@@ -214,7 +255,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
                         for i in range(len(_window) - 1, -1, -1):
                             if _window[i][1] == est_tokens: _window.pop(i); break
                 try:
-                    data, delivered = self._relay(conn, resp, deadline_abs, buffer=(rec is not None and not rec.get('stream')))
+                    if rec is not None and rec.get('destream') and resp.status == 200:
+                        data = self._read_body(conn, resp, deadline_abs); delivered = self._send_sse(data)
+                    else:
+                        data, delivered = self._relay(conn, resp, deadline_abs, buffer=(rec is not None and not rec.get('stream')))
                 except (OSError, http.client.HTTPException) as e:   # the upstream body did not arrive inside the deadline
                     log({'t': round(time.time(), 3), 'event': 'upstream_timeout', 'error': type(e).__name__, 'attempt': attempts,
                          'held_s': round(time.time() - t0, 1)})
@@ -263,6 +307,9 @@ class Handler(http.server.BaseHTTPRequestHandler):
                         xb.pop(k); dropped.append('extra_body.' + k)
                 if not xb:
                     body.pop('extra_body')
+            destream = self._node_port() and bool(body.get('stream'))
+            if destream:
+                body['stream'] = False; body.pop('stream_options', None)
             raw = json.dumps(body).encode()
             est = _estimate_tokens(body)
         except Exception as e:  # not a JSON body: forward it untouched
@@ -275,7 +322,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
                  'delivered': delivered}); return
         rec = {'t': round(t0, 3), 'path': self.path, 'model': body.get('model'), 'stream': bool(body.get('stream')),
                'tools': len(body.get('tools') or []), 'dropped': dropped, 'est_tokens': est, 'paced_s': round(waited, 1),
-               **({'oversized': True} if est > TPM else {})}
+               **({'oversized': True} if est > TPM else {}), **({'auth_injected': True} if self._auth_injected() else {}),
+               **({'destream': True} if destream else {})}
         log({**rec, 'event': 'request'})
         self._forward(raw, est, rec, t0)
 
@@ -283,4 +331,7 @@ if __name__ == '__main__':
     os.makedirs(os.path.dirname(LOG) or '.', exist_ok=True)
     print(f'adapter: http://{LISTEN[0]}:{LISTEN[1]}/v1 -> {UPSTREAM}; dropping {DROP}; pacing {TPM} tok/min, {RPM} req/min; '
           f'deadline {DEADLINE_S:.0f} s per request; log {LOG}', flush=True)
+    node = http.server.ThreadingHTTPServer(NODE_LISTEN, Handler)
+    threading.Thread(target=node.serve_forever, daemon=True).start()
+    print(f'adapter: http://{NODE_LISTEN[0]}:{NODE_LISTEN[1]}/v1 for the RyeOS local-openai provider (Authorization injected when absent)', flush=True)
     http.server.ThreadingHTTPServer(LISTEN, Handler).serve_forever()
