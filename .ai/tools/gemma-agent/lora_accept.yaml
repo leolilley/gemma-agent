@@ -1,0 +1,48 @@
+# ryeos:signed:2026-10-29T22:44:55Z:af361351e6fe0b7ee3d43737915d7f8d84026071019323a662a362fcb94f47d9:50s8sHYabXuv2JDwDAljW1uEV4ioUTMNkLJf3v3boRg/+6laLZDI3zGhCV15yQDs2PVxwKW++jR+lLCcB4+tBA==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+version: "0.1.0"
+category: "gemma-agent"
+name: "lora_accept"
+executor_id: "@subprocess"
+execution_protocol: "protocol:ryeos/core/tool_callback"
+required_caps: ["ryeos.execute.tool.gemma-agent/lora_accept"]
+description: >
+  Apply a cycle's fixed acceptance rule to the base and adapter evaluation arms on the dataset's evaluation split
+  (every task needs a valid record in both arms); write the cycle's accept.json and results/lora/selected.json.
+effects: live
+
+env_config:
+  interpreter:
+    type: local_binary
+    binary: python3
+    candidates: [python3]
+    var: RYE_PYTHON
+    path_candidates: [python3]
+
+config:
+  command: "${interpreter}"
+  args:
+    - "-I"
+    - "${tool_dir}/lib/lora_cycle.py"
+    - "accept"
+    - "--project-path"
+    - "${project_path}"
+  input_data: "${params_json}"
+  timeout_secs: 300
+
+config_schema:
+  type: object
+  properties:
+    cycle:
+      type: string
+    base_run_id:
+      type: string
+      description: "run id of the base arm's kernel run (records are <task>-<bundle>-r<k>-<run_id>.json)"
+    adapter_run_id:
+      type: string
+    base_bundle:
+      type: string
+      description: "the base bundle's name"
+    margin:
+      type: integer
+      default: 2
+  required: [cycle, base_run_id, adapter_run_id, base_bundle]

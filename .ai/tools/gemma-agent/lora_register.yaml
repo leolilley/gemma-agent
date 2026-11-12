@@ -1,0 +1,53 @@
+# ryeos:signed:2026-11-04T00:32:51Z:a0229d8892e677dad0256b9f117f0a5ab3342001d4895bc47f26a6daaa9431d6:bPT9wXLPU9pUse8gnz7zcME1YYF3F8uq1+N66UP0T1DD3zNr2+kVALgefHfisSVwqS5FRmqKNHHOVNsVwoAbAw==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+version: "0.1.0"
+category: "gemma-agent"
+name: "lora_register"
+executor_id: "@subprocess"
+execution_protocol: "protocol:ryeos/core/tool_callback"
+required_caps: ["ryeos.execute.tool.gemma-agent/lora_register"]
+description: >
+  Record one LoRA training run as a cycle's training record (configuration, versions, dataset and rendering digests,
+  adapter digest, losses) and install the bundle it produced under submissions/ with a PROVENANCE.md naming the record.
+effects: live
+
+env_config:
+  interpreter:
+    type: local_binary
+    binary: python3
+    candidates: [python3]
+    var: RYE_PYTHON
+    path_candidates: [python3]
+
+config:
+  command: "${interpreter}"
+  args:
+    - "-I"
+    - "${tool_dir}/lib/lora_cycle.py"
+    - "register"
+    - "--project-path"
+    - "${project_path}"
+  input_data: "${params_json}"
+  timeout_secs: 300
+
+config_schema:
+  type: object
+  properties:
+    cycle:
+      type: string
+      description: "cycle name, e.g. c1"
+    train_out:
+      type: string
+      description: "project-relative directory of the downloaded training kernel output (identity.json, train.json, train-result.json, adapter/, bundle/)"
+    dataset:
+      type: string
+      description: "project-relative dataset directory (results/lora/datasets/<id>)"
+    render_out:
+      type: string
+      description: "project-relative directory holding rendered.jsonl and render-report.json the run trained on"
+    bundle:
+      type: string
+      description: "name of the bundle to install under submissions/"
+    dagger:
+      type: string
+      description: "DAgger cycles: project-relative directory from scripts/dagger_rows.py (manifest.json, rendered.jsonl): render_out's rows plus labelled rows, the file the run trained on"
+  required: [cycle, train_out, dataset, render_out, bundle]

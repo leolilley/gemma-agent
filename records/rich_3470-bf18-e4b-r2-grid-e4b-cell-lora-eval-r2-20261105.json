@@ -1,0 +1,59 @@
+{
+  "schema": "gemma-agent.attempt/v1",
+  "attempt_id": "rich_3470-bf18-e4b-r2-grid-e4b-cell-lora-eval-r2-20261105",
+  "task_id": "rich_3470",
+  "bundle": "bf18-e4b",
+  "config_digest": "c0828019c57368ffc244192acbbb3e8e96c1fc8b8384f29886f10c38044e72d6",
+  "model_alias": "gemma-4-e4b-it-qat-w4a16-ct",
+  "model_served": "vllm:/kaggle/input/models/google/gemma-4/other/gemma-4-e4b-it-qat-w4a16-ct/2 dtype=bfloat16 tp=4 (w4a16; bundle thinking_config as served)",
+  "harness": {
+    "adk-eval-core": "0.1.0",
+    "adk-submission": "0.2.13",
+    "google-adk": "1.36.1",
+    "swegemma": "0.2.11"
+  },
+  "sandbox": "subprocess",
+  "snapshot_digest": "2ac3da705ea7102f7f942449526ff2ebb69d3c2d2930542fef433a290d8549fe",
+  "budget": {
+    "max_time_minutes": 8.0,
+    "max_tool_calls": 28,
+    "max_turns": 80,
+    "timeout_seconds": 240
+  },
+  "site": "kaggle-l4x4",
+  "repeat_index": 2,
+  "started_at": "2026-11-05T04:16:48.860319+00:00",
+  "wall_seconds": 73.08,
+  "outcome": {
+    "resolved": false,
+    "test_exit_code": 1,
+    "agent_patch_size": 395,
+    "duration_seconds": 73.08,
+    "error": null,
+    "tool_calls": 8,
+    "total_llm_calls": 10
+  },
+  "tool_sequence": [
+    "read_file",
+    "read_file",
+    "run_command",
+    "read_file",
+    "read_file",
+    "edit_file",
+    "run_command",
+    "run_command",
+    "submit_patch"
+  ],
+  "first_edit_call_index": 6,
+  "repetition_runs": 3,
+  "tokens": {
+    "prompt": 86363,
+    "completion": 4815,
+    "cached": 0
+  },
+  "patch_digest": "6b0120dd6f71660abae825c9990b54bc48b3bd4b95f8256165010a60f19cd52f",
+  "results_dir": "results/kaggle/grid-e4b-cell-lora-eval-r2-20261105",
+  "infrastructure_failure": false,
+  "validity": "valid",
+  "started_at_source": "trace: first model call minus elapsed"
+}

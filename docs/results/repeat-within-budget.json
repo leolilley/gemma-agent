@@ -1,0 +1,365 @@
+{
+ "definition": "within = tool calls before the attempt's first refused call; past = from that call on",
+ "runs": {
+  "base": {
+   "run_id": "grid-e4b-cell-lora-eval-r0-20261029",
+   "tasks": 16,
+   "tasks_reaching_the_cap": 0,
+   "tasks_with_3_or_more_repeats_within_budget": 0,
+   "within": {
+    "calls": 231,
+    "repeats": 7,
+    "edits": 57,
+    "completions_at_4096": 2,
+    "repeated_tools": {
+     "edit_file": 6,
+     "read_file": 1
+    }
+   },
+   "past": {
+    "calls": 0,
+    "repeats": 0,
+    "edits": 0,
+    "completions_at_4096": 0,
+    "repeated_tools": {}
+   },
+   "hazard_within_budget": {
+    "1": {
+     "next_calls": 208,
+     "repeats": 5
+    },
+    "2": {
+     "next_calls": 5,
+     "repeats": 2
+    },
+    "3": {
+     "next_calls": 2,
+     "repeats": 0
+    },
+    "4": {
+     "next_calls": 0,
+     "repeats": 0
+    },
+    "5+": {
+     "next_calls": 0,
+     "repeats": 0
+    }
+   }
+  },
+  "c1": {
+   "run_id": "grid-e4b-lora-c1-cell-lora-eval-r0-20261030",
+   "tasks": 16,
+   "tasks_reaching_the_cap": 8,
+   "tasks_with_3_or_more_repeats_within_budget": 11,
+   "within": {
+    "calls": 322,
+    "repeats": 112,
+    "edits": 8,
+    "completions_at_4096": 53,
+    "repeated_tools": {
+     "read_file": 84,
+     "run_command": 28
+    }
+   },
+   "past": {
+    "calls": 242,
+    "repeats": 220,
+    "edits": 56,
+    "completions_at_4096": 18,
+    "repeated_tools": {
+     "edit_file": 50,
+     "read_file": 26,
+     "run_command": 55,
+     "submit_patch": 89
+    }
+   },
+   "hazard_within_budget": {
+    "1": {
+     "next_calls": 204,
+     "repeats": 20
+    },
+    "2": {
+     "next_calls": 20,
+     "repeats": 13
+    },
+    "3": {
+     "next_calls": 13,
+     "repeats": 11
+    },
+    "4": {
+     "next_calls": 10,
+     "repeats": 10
+    },
+    "5+": {
+     "next_calls": 59,
+     "repeats": 58
+    }
+   }
+  },
+  "c2": {
+   "run_id": "grid-e4b-lora-c2-cell-lora-eval-r0-20261030",
+   "tasks": 16,
+   "tasks_reaching_the_cap": 12,
+   "tasks_with_3_or_more_repeats_within_budget": 10,
+   "within": {
+    "calls": 412,
+    "repeats": 123,
+    "edits": 31,
+    "completions_at_4096": 23,
+    "repeated_tools": {
+     "edit_file": 8,
+     "read_file": 77,
+     "run_command": 38
+    }
+   },
+   "past": {
+    "calls": 385,
+    "repeats": 308,
+    "edits": 36,
+    "completions_at_4096": 24,
+    "repeated_tools": {
+     "edit_file": 6,
+     "get_status": 46,
+     "read_file": 158,
+     "submit_patch": 98
+    }
+   },
+   "hazard_within_budget": {
+    "1": {
+     "next_calls": 282,
+     "repeats": 15
+    },
+    "2": {
+     "next_calls": 14,
+     "repeats": 12
+    },
+    "3": {
+     "next_calls": 12,
+     "repeats": 11
+    },
+    "4": {
+     "next_calls": 11,
+     "repeats": 9
+    },
+    "5+": {
+     "next_calls": 77,
+     "repeats": 76
+    }
+   }
+  },
+  "c3": {
+   "run_id": "grid-e4b-lora-c3-cell-lora-eval-r0-20261104",
+   "tasks": 16,
+   "tasks_reaching_the_cap": 11,
+   "tasks_with_3_or_more_repeats_within_budget": 11,
+   "within": {
+    "calls": 387,
+    "repeats": 117,
+    "edits": 32,
+    "completions_at_4096": 38,
+    "repeated_tools": {
+     "edit_file": 10,
+     "read_file": 72,
+     "run_command": 35
+    }
+   },
+   "past": {
+    "calls": 427,
+    "repeats": 365,
+    "edits": 54,
+    "completions_at_4096": 7,
+    "repeated_tools": {
+     "edit_file": 54,
+     "read_file": 156,
+     "run_command": 152,
+     "submit_patch": 3
+    }
+   },
+   "hazard_within_budget": {
+    "1": {
+     "next_calls": 265,
+     "repeats": 23
+    },
+    "2": {
+     "next_calls": 22,
+     "repeats": 15
+    },
+    "3": {
+     "next_calls": 14,
+     "repeats": 9
+    },
+    "4": {
+     "next_calls": 9,
+     "repeats": 9
+    },
+    "5+": {
+     "next_calls": 61,
+     "repeats": 61
+    }
+   }
+  },
+  "c4": {
+   "run_id": "grid-e4b-lora-c4-cell-lora-eval-r0-20261105",
+   "tasks": 16,
+   "tasks_reaching_the_cap": 0,
+   "tasks_with_3_or_more_repeats_within_budget": 0,
+   "within": {
+    "calls": 177,
+    "repeats": 1,
+    "edits": 33,
+    "completions_at_4096": 1,
+    "repeated_tools": {
+     "read_file": 1
+    }
+   },
+   "past": {
+    "calls": 0,
+    "repeats": 0,
+    "edits": 0,
+    "completions_at_4096": 0,
+    "repeated_tools": {}
+   },
+   "hazard_within_budget": {
+    "1": {
+     "next_calls": 160,
+     "repeats": 1
+    },
+    "2": {
+     "next_calls": 1,
+     "repeats": 0
+    },
+    "3": {
+     "next_calls": 0,
+     "repeats": 0
+    },
+    "4": {
+     "next_calls": 0,
+     "repeats": 0
+    },
+    "5+": {
+     "next_calls": 0,
+     "repeats": 0
+    }
+   }
+  },
+  "c5": {
+   "run_id": "grid-e4b-lora-c5-cell-lora-eval-r0-20261111",
+   "tasks": 16,
+   "tasks_reaching_the_cap": 16,
+   "tasks_with_3_or_more_repeats_within_budget": 9,
+   "within": {
+    "calls": 449,
+    "repeats": 125,
+    "edits": 13,
+    "completions_at_4096": 3,
+    "repeated_tools": {
+     "read_file": 77,
+     "run_command": 48
+    }
+   },
+   "past": {
+    "calls": 665,
+    "repeats": 500,
+    "edits": 87,
+    "completions_at_4096": 0,
+    "repeated_tools": {
+     "edit_file": 83,
+     "read_file": 6,
+     "run_command": 245,
+     "submit_patch": 166
+    }
+   },
+   "hazard_within_budget": {
+    "1": {
+     "next_calls": 318,
+     "repeats": 21
+    },
+    "2": {
+     "next_calls": 19,
+     "repeats": 10
+    },
+    "3": {
+     "next_calls": 9,
+     "repeats": 7
+    },
+    "4": {
+     "next_calls": 7,
+     "repeats": 7
+    },
+    "5+": {
+     "next_calls": 80,
+     "repeats": 80
+    }
+   }
+  }
+ },
+ "hazard_within_budget_pooled_c1_c2_c3_c5": {
+  "1": {
+   "next_calls": 1069,
+   "repeats": 79
+  },
+  "2": {
+   "next_calls": 75,
+   "repeats": 50
+  },
+  "3": {
+   "next_calls": 48,
+   "repeats": 38
+  },
+  "4": {
+   "next_calls": 37,
+   "repeats": 35
+  },
+  "5+": {
+   "next_calls": 277,
+   "repeats": 275
+  }
+ },
+ "expert_labels_cycle_3": {
+  "within": {
+   "0 or 1": {
+    "states": 181,
+    "expert_repeats": 0
+   },
+   "2": {
+    "states": 4,
+    "expert_repeats": 0
+   },
+   "3 or 4": {
+    "states": 2,
+    "expert_repeats": 2
+   },
+   "5 or more": {
+    "states": 15,
+    "expert_repeats": 13
+   }
+  },
+  "past": {
+   "0 or 1": {
+    "states": 1,
+    "expert_repeats": 0
+   },
+   "2": {
+    "states": 2,
+    "expert_repeats": 1
+   },
+   "3 or 4": {
+    "states": 2,
+    "expert_repeats": 2
+   },
+   "5 or more": {
+    "states": 70,
+    "expert_repeats": 70
+   }
+  },
+  "tasks_with_3_or_more_identical": {
+   "within": [
+    "rich_3063"
+   ],
+   "past": [
+    "rich_3063",
+    "rich_3105"
+   ]
+  }
+ }
+}

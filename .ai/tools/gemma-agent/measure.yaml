@@ -1,0 +1,43 @@
+# ryeos:signed:2026-11-02T06:43:46Z:26c0ce7f1e6547800f9f2ad3120aa26745640c5ac1bbd6a068fb983fa46adc18:ow6sU4ymLhFRx7YLbLWCDeDrYOa4rnqhJhqDq80qiuqS9Wu/9kjO69w5tGfUJgvqmHZweme1+PwpqywQigT1Ag==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+version: "0.1.0"
+category: "gemma-agent"
+name: "measure"
+executor_id: "@subprocess"
+execution_protocol: "protocol:ryeos/core/tool_callback"
+required_caps: ["ryeos.execute.tool.gemma-agent/measure"]
+description: >
+  Apply the signed measures (.ai/config/gemma-agent/measures.yaml) to the attempt records and order the executors
+  they cover, within each condition and on shared tasks only; write results/measures/<run>/ with the measure and
+  record-set digests beside every number.
+effects: live
+
+env_config:
+  interpreter:
+    type: local_binary
+    binary: python3
+    candidates: [python3]
+    var: RYE_PYTHON
+    path_candidates: [python3]
+
+config:
+  command: "${interpreter}"
+  args:
+    - "-B"
+    - "-I"
+    - "${tool_dir}/lib/measures.py"
+    - "--project-path"
+    - "${project_path}"
+  input_data: "${params_json}"
+  timeout_secs: 600
+
+config_schema:
+  type: object
+  properties:
+    run:
+      type: string
+      pattern: "^[A-Za-z0-9_-]+$"
+      description: "output directory name under results/measures/ (default: a UTC timestamp)"
+    records:
+      type: string
+      default: "records"
+      description: "records directory, relative to the project"

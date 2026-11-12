@@ -1,0 +1,72 @@
+{
+  "schema": "gemma-agent.attempt/v1",
+  "attempt_id": "fastapi_15589-bf18-e4b-lora-c2-r0-grid-e4b-lora-c2-cell-lora-eval-r0-20261030",
+  "task_id": "fastapi_15589",
+  "bundle": "bf18-e4b-lora-c2",
+  "config_digest": "99e6d767c606692c6cc98ca59434f4303af2278d8a2bd4c1afa894ddb58a3820",
+  "model_alias": "gemma-4-e4b-it-qat-w4a16-ct",
+  "model_served": "vllm:/kaggle/input/models/google/gemma-4/other/gemma-4-e4b-it-qat-w4a16-ct/2 dtype=bfloat16 tp=4 (w4a16; bundle thinking_config as served)",
+  "harness": {
+    "adk-eval-core": "0.1.0",
+    "adk-submission": "0.2.13",
+    "google-adk": "1.36.1",
+    "swegemma": "0.2.11"
+  },
+  "sandbox": "subprocess",
+  "snapshot_digest": null,
+  "budget": {
+    "max_time_minutes": 8.0,
+    "max_tool_calls": 28,
+    "max_turns": 80,
+    "timeout_seconds": 240
+  },
+  "site": "kaggle-l4x4",
+  "repeat_index": 0,
+  "started_at": "2026-10-31T00:13:18.672212+00:00",
+  "wall_seconds": 48.48,
+  "outcome": {
+    "resolved": false,
+    "test_exit_code": 1,
+    "agent_patch_size": 1847,
+    "duration_seconds": 48.48,
+    "error": null,
+    "tool_calls": 21,
+    "total_llm_calls": 23
+  },
+  "tool_sequence": [
+    "run_command",
+    "run_command",
+    "run_command",
+    "read_file",
+    "run_command",
+    "read_file",
+    "edit_file",
+    "run_command",
+    "read_file",
+    "edit_file",
+    "run_command",
+    "read_file",
+    "edit_file",
+    "run_command",
+    "read_file",
+    "read_file",
+    "read_file",
+    "read_file",
+    "run_command",
+    "run_command",
+    "run_command",
+    "submit_patch"
+  ],
+  "first_edit_call_index": 7,
+  "repetition_runs": 7,
+  "tokens": {
+    "prompt": 203025,
+    "completion": 2609,
+    "cached": 0
+  },
+  "patch_digest": "c14371a58daf80f4bb9a50be7ab683e35c7d7cfd7429308ece93be0b2fef3b97",
+  "results_dir": "results/kaggle/grid-e4b-lora-c2-cell-lora-eval-r0-20261030",
+  "infrastructure_failure": false,
+  "validity": "valid",
+  "started_at_source": "trace: first model call minus elapsed"
+}

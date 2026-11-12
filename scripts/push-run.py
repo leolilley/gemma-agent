@@ -7,8 +7,8 @@ Usage: scripts/push-run.py <arm> <shard> <repeat> [--kernel eval-4bit|eval-bf16]
   --forecast: a signed forecast file (PLAN.md A3 ii) to ship inside the dataset version; its sha256 goes into run.json and from
               there into every record of the run, which is how verify.py ties the outcomes to a forecast that predates them
   --label: run-id shard label for a task list (default 'subset'); needed when one arm is split into several runs
-  arm:   4bit-cell | bf16-cell | 4bit-lifted | bf16-lifted | 4bit-calls | bf16-calls
-         (bundle follows: bf18, bf18-bf16, bf18-lifted, bf18-bf16-lifted, bf18-calls, bf18-bf16-calls)
+  arm:   4bit-cell | bf16-cell | 4bit-lifted | bf16-lifted | 4bit-calls | bf16-calls | 12b-cell | e4b-cell | e4b-lora-c1-cell
+         (bundle follows: bf18, bf18-bf16, bf18-lifted, bf18-bf16-lifted, bf18-calls, bf18-bf16-calls, bf18-12b, bf18-e4b, bf18-e4b-lora-c1)
   shard: rich | fastapi | all | a comma-separated task list (for lifted reruns of specific failures)"""
 import argparse, json, re, subprocess, sys, time
 from datetime import datetime, timezone
@@ -16,8 +16,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BUNDLE = {'4bit-cell': 'bf18', 'bf16-cell': 'bf18-bf16', '4bit-lifted': 'bf18-lifted', 'bf16-lifted': 'bf18-bf16-lifted',
-          '4bit-calls': 'bf18-calls', 'bf16-calls': 'bf18-bf16-calls', '12b-cell': 'bf18-12b'}
-KERNEL = {'4bit': 'eval-4bit', 'bf16': 'eval-bf16', '12b': 'eval-4bit'}   # the 12B W4A16 checkpoint is attached to the 4-bit kernel
+          '4bit-calls': 'bf18-calls', 'bf16-calls': 'bf18-bf16-calls', '12b-cell': 'bf18-12b', 'e4b-cell': 'bf18-e4b',
+          'e4b-lora-c1-cell': 'bf18-e4b-lora-c1', 'e4b-lora-c1-s050-cell': 'bf18-e4b-lora-c1-s050', 'e4b-lora-c1-s025-cell': 'bf18-e4b-lora-c1-s025',
+          'e4b-lora-c2-cell': 'bf18-e4b-lora-c2', 'e4b-lora-c3-cell': 'bf18-e4b-lora-c3', 'e4b-lora-c4-cell': 'bf18-e4b-lora-c4', 'e4b-lora-c5-cell': 'bf18-e4b-lora-c5', 'window-cell': 'bf18-window', 'e4b-explore-calls': 'bf18-e4b-explore', 'e4b-verify-cell': 'bf18-e4b-verify'}
+KERNEL = {'4bit': 'eval-4bit', 'bf16': 'eval-bf16', '12b': 'eval-4bit', 'e4b': 'eval-4bit'}   # the 12B and E4B W4A16 checkpoints are attached to the 4-bit kernel
 
 ap = argparse.ArgumentParser(); ap.add_argument('arm', choices=BUNDLE); ap.add_argument('shard'); ap.add_argument('repeat', type=int)
 ap.add_argument('--kernel'); ap.add_argument('--concurrency', type=int, default=1); ap.add_argument('--label', default='subset'); ap.add_argument('--forecast', default=None); ap.add_argument('--dry-run', action='store_true'); a = ap.parse_args()

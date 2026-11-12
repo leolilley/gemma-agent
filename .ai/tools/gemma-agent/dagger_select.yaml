@@ -1,0 +1,53 @@
+# ryeos:signed:2026-11-03T09:56:19Z:b119c0adee8bf4e0e35ff5bdd8ed200fdd4403aef0b7c4a3e722f226f762294c:4wkIdujEKP2dsbQvyPf4bNXGXVmrqfbp9ouA+rePlBkDYqvgHr4O53y4EgBCwUvj81zucuE/6QTXS5QDWL3HCg==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+version: "0.1.0"
+category: "gemma-agent"
+name: "dagger_select"
+executor_id: "@subprocess"
+execution_protocol: "protocol:ryeos/core/tool_callback"
+required_caps: ["ryeos.execute.tool.gemma-agent/dagger_select"]
+description: >
+  Choose the learner's states for one DAgger round by one fixed rule (every valid, sealed cell attempt of one rollout run
+  of one bundle, refused if any task is in the evaluation split; every model call after the first). Writes
+  results/dagger/datasets/<UTC>/ (attempts.jsonl, manifest.json).
+effects: live
+
+env_config:
+  interpreter:
+    type: local_binary
+    binary: python3
+    candidates: [python3]
+    var: RYE_PYTHON
+    path_candidates: [python3]
+
+config:
+  command: "${interpreter}"
+  args:
+    - "-B"
+    - "-I"
+    - "${tool_dir}/lib/dagger_select.py"
+    - "--project-path"
+    - "${project_path}"
+  input_data: "${params_json}"
+  timeout_secs: 600
+
+config_schema:
+  type: object
+  properties:
+    stamp:
+      type: string
+      pattern: "^[A-Za-z0-9_-]+$"
+      description: "output directory name under results/dagger/datasets/ (default: a UTC timestamp)"
+    run_id:
+      type: string
+      pattern: "^[A-Za-z0-9_.-]+$"
+      description: "the rollout run whose attempts are the states"
+    site:
+      type: string
+      pattern: "^(kaggle-l4x4|modal-[a-z0-9]+(-[a-z0-9]+)*)$"
+      default: kaggle-l4x4
+      description: "the site the rollout ran on: kaggle-l4x4, or modal-<gpu> for the same kernel on Modal"
+    bundle:
+      type: string
+      pattern: "^[A-Za-z0-9_.-]+$"
+      description: "the learner's bundle in that run"
+  required: [run_id, bundle]

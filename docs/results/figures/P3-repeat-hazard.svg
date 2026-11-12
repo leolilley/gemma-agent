@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="410" viewBox="0 0 860 410">
+<rect width="860" height="410" fill="#fcfcfb"/>
+<text x="24" y="32" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#0b0b0b" text-anchor="start" font-weight="bold">Once a repeat starts it deepens</text>
+<text x="24" y="52" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#52514e" text-anchor="start" font-weight="normal">Share of next calls that repeat the previous one, by how many identical calls already end the history. Calls within the budget, 16 held-out tasks.</text>
+<line x1="130" y1="334" x2="620" y2="334" stroke="#e4e3df" stroke-width="1"/>
+<text x="74" y="338" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="end" font-weight="normal">0%</text>
+<line x1="130" y1="281.5" x2="620" y2="281.5" stroke="#e4e3df" stroke-width="1"/>
+<text x="74" y="285.5" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="end" font-weight="normal">25%</text>
+<line x1="130" y1="229.0" x2="620" y2="229.0" stroke="#e4e3df" stroke-width="1"/>
+<text x="74" y="233.0" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="end" font-weight="normal">50%</text>
+<line x1="130" y1="176.5" x2="620" y2="176.5" stroke="#e4e3df" stroke-width="1"/>
+<text x="74" y="180.5" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="end" font-weight="normal">75%</text>
+<line x1="130" y1="124.0" x2="620" y2="124.0" stroke="#e4e3df" stroke-width="1"/>
+<text x="74" y="128.0" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="end" font-weight="normal">100%</text>
+<text x="130.0" y="356" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52514e" text-anchor="middle" font-weight="normal">1</text>
+<text x="252.5" y="356" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52514e" text-anchor="middle" font-weight="normal">2</text>
+<text x="375.0" y="356" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52514e" text-anchor="middle" font-weight="normal">3</text>
+<text x="497.5" y="356" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52514e" text-anchor="middle" font-weight="normal">4</text>
+<text x="620.0" y="356" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52514e" text-anchor="middle" font-weight="normal">5 or more</text>
+<text x="375.0" y="378" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52514e" text-anchor="middle" font-weight="normal">identical calls ending the history</text>
+<polyline points="130.0,313.4 252.5,197.5 375.0,156.3 497.5,124.0 620.0,127.6" fill="none" stroke="#eb6834" stroke-width="1" stroke-opacity="0.35"/>
+<polyline points="130.0,322.8 252.5,154.0 375.0,141.5 497.5,162.2 620.0,126.7" fill="none" stroke="#eb6834" stroke-width="1" stroke-opacity="0.35"/>
+<polyline points="130.0,315.8 252.5,190.8 375.0,199.0 497.5,124.0 620.0,124.0" fill="none" stroke="#eb6834" stroke-width="1" stroke-opacity="0.35"/>
+<polyline points="130.0,320.1 252.5,223.5 375.0,170.7 497.5,124.0 620.0,124.0" fill="none" stroke="#eb6834" stroke-width="1" stroke-opacity="0.35"/>
+<polyline points="130.0,318.5 252.5,194.0 375.0,167.8 497.5,135.4 620.0,125.5" fill="none" stroke="#eb6834" stroke-width="2"/>
+<circle cx="130.0" cy="318.5" r="5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="118.0" y="316.48082319925163" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="bold">7%</text>
+
+<circle cx="252.5" cy="194.0" r="5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="264.5" y="214.0" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="bold">67%</text>
+<text x="264.5" y="229.0" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">50 of 75</text>
+<circle cx="375.0" cy="167.8" r="5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="387.0" y="187.75" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="bold">79%</text>
+<text x="387.0" y="202.75" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">38 of 48</text>
+<circle cx="497.5" cy="135.4" r="5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="509.5" y="155.35135135135135" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="bold">95%</text>
+<text x="509.5" y="170.35135135135135" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">35 of 37</text>
+<circle cx="620.0" cy="125.5" r="5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+<text x="620.0" y="111.51624548736461" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="middle" font-weight="bold">99%</text>
+<text x="620.0" y="95.51624548736461" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#52514e" text-anchor="middle" font-weight="normal">275 of 277</text>
+<circle cx="130.0" cy="329.0" r="5" fill="#2a78d6" stroke="#fcfcfb" stroke-width="2"/>
+<text x="118.0" y="342.9519230769231" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="bold">2%</text>
+<line x1="660" y1="120" x2="682" y2="120" stroke="#eb6834" stroke-width="2"/>
+<circle cx="671" cy="120" r="4" fill="#eb6834"/>
+<text x="690" y="124" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">adapters of cycles 1, 2, 3, 5,</text>
+<text x="690" y="140" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">pooled (79 of 1069 at 1)</text>
+<line x1="660" y1="166" x2="682" y2="166" stroke="#eb6834" stroke-width="1" stroke-opacity="0.35"/>
+<text x="690" y="170" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">each cycle</text>
+<circle cx="671" cy="196" r="4" fill="#2a78d6"/>
+<text x="690" y="200" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">base E4B, no adapter</text>
+<text x="690" y="216" font-family="Helvetica, Arial, sans-serif" font-size="11" fill="#52514e" text-anchor="start" font-weight="normal">(5 of 208; it rarely gets further)</text>
+</svg>

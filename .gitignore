@@ -28,3 +28,7 @@ __pycache__/
 *.swp
 !docs/results/signing-public-key.pem
 /release/
+
+# Adapter weights (over GitHub's 100 MB file limit; shipped in the Kaggle records dataset) and the Kaggle upload staging
+*.safetensors
+/datasets/

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="370" viewBox="0 0 860 370">
+<rect width="860" height="370" fill="#fcfcfb"/>
+<text x="24" y="32" font-family="Helvetica, Arial, sans-serif" font-size="17" fill="#0b0b0b" text-anchor="start" font-weight="bold">Tool calls that repeat the previous call</text>
+<text x="24" y="52" font-family="Helvetica, Arial, sans-serif" font-size="12.5" fill="#52514e" text-anchor="start" font-weight="normal">Share of tool calls within the 28-call budget, each bundle's run on the 16 held-out tasks</text>
+<line x1="340.0" y1="82" x2="340.0" y2="324" stroke="#e4e3df" stroke-width="1"/>
+<text x="340.0" y="76" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="middle" font-weight="normal">0%</text>
+<line x1="450.0" y1="82" x2="450.0" y2="324" stroke="#e4e3df" stroke-width="1"/>
+<text x="450.0" y="76" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="middle" font-weight="normal">20%</text>
+<line x1="560.0" y1="82" x2="560.0" y2="324" stroke="#e4e3df" stroke-width="1"/>
+<text x="560.0" y="76" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="middle" font-weight="normal">40%</text>
+<line x1="670.0" y1="82" x2="670.0" y2="324" stroke="#e4e3df" stroke-width="1"/>
+<text x="670.0" y="76" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="middle" font-weight="normal">60%</text>
+<text x="836" y="76" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="end" font-weight="normal">resolved of 16</text>
+<text x="328" y="108" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="normal">Base E4B, no adapter</text>
+<path d="M340,96 h12.7 a4,4 0 0 1 4,4 v8 a4,4 0 0 1 -4,4 h-12.7 z" fill="#2a78d6"/>
+<text x="364.6666666666667" y="108" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="bold">3%</text>
+<text x="400.6666666666667" y="108" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="start" font-weight="normal">7 of 231</text>
+<text x="836" y="108" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="normal">2, 2, 2</text>
+<text x="328" y="148" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="normal">Cycle 1: the 31B's histories</text>
+<path d="M340,136 h187.3 a4,4 0 0 1 4,4 v8 a4,4 0 0 1 -4,4 h-187.3 z" fill="#eb6834"/>
+<text x="539.304347826087" y="148" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="bold">35%</text>
+<text x="575.304347826087" y="148" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="start" font-weight="normal">112 of 322</text>
+<text x="836" y="148" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="normal">0</text>
+<text x="328" y="188" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="normal">Cycle 2: the 31B's, exact-match only</text>
+<path d="M340,176 h160.2 a4,4 0 0 1 4,4 v8 a4,4 0 0 1 -4,4 h-160.2 z" fill="#eb6834"/>
+<text x="512.1990291262136" y="188" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="bold">30%</text>
+<text x="548.1990291262136" y="188" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="start" font-weight="normal">123 of 412</text>
+<text x="836" y="188" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="normal">1</text>
+<text x="328" y="228" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="normal">Cycle 3: plus 31B labels on the learner's states</text>
+<path d="M340,216 h162.3 a4,4 0 0 1 4,4 v8 a4,4 0 0 1 -4,4 h-162.3 z" fill="#eb6834"/>
+<text x="514.2790697674418" y="228" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="bold">30%</text>
+<text x="550.2790697674418" y="228" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="start" font-weight="normal">117 of 387</text>
+<text x="836" y="228" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="normal">1</text>
+<text x="328" y="268" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="normal">Cycle 4: the learner's own histories, 204 examples</text>
+<path d="M340,256 h0.0 a4,4 0 0 1 4,4 v8 a4,4 0 0 1 -4,4 h-0.0 z" fill="#2a78d6"/>
+<text x="351.1073446327684" y="268" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="bold">1%</text>
+<text x="387.1073446327684" y="268" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="start" font-weight="normal">1 of 177</text>
+<text x="836" y="268" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="normal">1</text>
+<text x="328" y="308" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="normal">Cycle 5: the 31B's histories, 204 examples</text>
+<path d="M340,296 h149.1 a4,4 0 0 1 4,4 v8 a4,4 0 0 1 -4,4 h-149.1 z" fill="#eb6834"/>
+<text x="501.11804008908683" y="308" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="start" font-weight="bold">28%</text>
+<text x="537.1180400890869" y="308" font-family="Helvetica, Arial, sans-serif" font-size="11.5" fill="#52514e" text-anchor="start" font-weight="normal">125 of 449</text>
+<text x="836" y="308" font-family="Helvetica, Arial, sans-serif" font-size="13" fill="#0b0b0b" text-anchor="end" font-weight="normal">1</text>
+<rect x="24" y="340" width="12" height="12" rx="2" fill="#eb6834"/>
+<text x="42" y="350" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">adapter trained on the larger model's histories</text>
+<rect x="330" y="340" width="12" height="12" rx="2" fill="#2a78d6"/>
+<text x="348" y="350" font-family="Helvetica, Arial, sans-serif" font-size="12" fill="#52514e" text-anchor="start" font-weight="normal">no adapter, or adapter trained on the learner's own histories</text>
+</svg>

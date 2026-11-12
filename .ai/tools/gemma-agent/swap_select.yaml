@@ -1,0 +1,44 @@
+# ryeos:signed:2026-11-02T06:43:47Z:e6ff66ebfc8ff01607e13d7bf69f2aa09db82bbae6afb5c433ffabe6c2082a7e:lOymyi4Dg6imTCcmS/lr5ihTxkI9q1Zu/2RSxsc1GvVwARbd4pFcTaogCs9YJKK41kPo3YyG9MhWvg9atXnIAw==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+version: "0.1.0"
+category: "gemma-agent"
+name: "swap_select"
+executor_id: "@subprocess"
+execution_protocol: "protocol:ryeos/core/tool_callback"
+required_caps: ["ryeos.execute.tool.gemma-agent/swap_select"]
+description: >
+  Choose the recorded prefixes for the frontier swap by one fixed rule (first attempts of 31B 4-bit, E4B base and the
+  two cycle adapters at the cell on the 16 evaluation tasks; cut at calls 4, 8, 12, or at a looping attempt's first
+  repeat and four calls later; trace sealed). Writes results/swap/datasets/<UTC>/ (prefixes.jsonl, manifest.json).
+effects: live
+
+env_config:
+  interpreter:
+    type: local_binary
+    binary: python3
+    candidates: [python3]
+    var: RYE_PYTHON
+    path_candidates: [python3]
+
+config:
+  command: "${interpreter}"
+  args:
+    - "-B"
+    - "-I"
+    - "${tool_dir}/lib/swap_select.py"
+    - "--project-path"
+    - "${project_path}"
+  input_data: "${params_json}"
+  timeout_secs: 600
+
+config_schema:
+  type: object
+  properties:
+    stamp:
+      type: string
+      pattern: "^[A-Za-z0-9_-]+$"
+      description: "output directory name under results/swap/datasets/ (default: a UTC timestamp)"
+    split:
+      type: string
+      default: "results/lora/cycles/c1/accept.json"
+      description: "the acceptance record whose evaluation_tasks are the swap's tasks"
+  required: []

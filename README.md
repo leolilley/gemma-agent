@@ -1,5 +1,8 @@
 # gemma-agent
 
+**Paper:** *Where the histories come from*, source [docs/paper-draft-lora.md](docs/paper-draft-lora.md), PDF [docs/paper/paper.pdf](docs/paper/paper.pdf).
+**Records:** every attempt record, trace, adapter and signed item is in the Kaggle dataset [leolilley/gemma-agent-records](https://www.kaggle.com/datasets/leolilley/gemma-agent-records); adapter weights and run outputs are there, not in this repository.
+
 A campaign on the installed local RyeOS node for two Kaggle competitions:
 
 | Track | Deadline (UTC) | Prize | Our stance |

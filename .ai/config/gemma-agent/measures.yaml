@@ -1,0 +1,49 @@
+# ryeos:signed:2026-11-02T06:43:45Z:e4f3f145f9a73b191efd2dcf15e488dd1dc78a5afa669cde796c357bc712c438:3ILJPSgnwuPhv8zMc9tza0fPRmzGkzB3Ae/MAdiDmCrBKqUH4A7zP6ORuq0y02cFPOLk2AVULiAV/XDtw4MvCA==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+# Measures over the attempt records, applied by tool:gemma-agent/measure (lib/measures.py, whose docstring defines the
+# comparison rule). A measure's identity is its entry here plus the code named in lib/measures.py code_files; the tool
+# writes the digest of both beside every number it produces. Changing an entry makes a different measure.
+# role: ordering measures decide the pairwise order; diagnostic measures are measured and reported but do not vote.
+# ended_by_limit is diagnostic (decided 2026-11-02 after draft-1 showed it ranks an executor that stops early above
+# one that works to the cap; recorded in DECISIONS as a post-hoc choice). order.json carries the order both ways.
+category: "gemma-agent"
+version: "0.1.0"
+description: "Measures and the executor-comparison rule for the measurement paper."
+min_shared_tasks: 4
+measures:
+  resolved:
+    role: ordering
+    kind: per_attempt
+    function: resolved
+    better: higher
+    description: "the hidden tests pass on the attempt's patch (the harness's verify_task)"
+  patch_produced:
+    role: ordering
+    kind: per_attempt
+    function: patch_produced
+    better: higher
+    description: "the attempt leaves a non-empty patch"
+  loop_share:
+    role: ordering
+    kind: per_attempt
+    function: loop_share
+    better: lower
+    description: "share of tool calls that are loop calls by the PLAN.md rule of 2026-10-15 (scripts/episodes.py)"
+  repeat_previous_share:
+    role: ordering
+    kind: per_attempt
+    function: repeat_previous_share
+    better: lower
+    description: "share of tool calls identical (name and canonical arguments) to the call immediately before"
+  ended_by_limit:
+    role: diagnostic
+    kind: per_attempt
+    function: ended_by_limit
+    better: lower
+    description: "the attempt ended at the call, turn or time cap (regenerate.py terminal reason)"
+  heldout_loss:
+    role: ordering
+    kind: declared
+    base_field: val_loss_base
+    trained_field: val_loss_trained
+    better: lower
+    description: "token cross-entropy on a LoRA cycle's validation split, parent bundle against the cycle's adapter (results/lora/cycles/*/train.json)"

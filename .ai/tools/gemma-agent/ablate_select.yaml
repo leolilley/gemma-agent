@@ -1,0 +1,44 @@
+# ryeos:signed:2026-11-02T22:11:42Z:58a91c48639e9b51b1765f9615ccb1f6b03ff94b638ab74a8850d73652e661b4:WzsTI7ASn2izqyYvBcm510Sgazcq0pKxO4yNwAjvmEuNPIpVF4MzrbOCfv/9INsEsojHRSAhaKFPBkyqUX7IAA==:82970d668dcc39d38a33264f59b1bc26760be487512a086be87bfd51e2d88b19
+version: "0.1.0"
+category: "gemma-agent"
+name: "ablate_select"
+executor_id: "@subprocess"
+execution_protocol: "protocol:ryeos/core/tool_callback"
+required_caps: ["ryeos.execute.tool.gemma-agent/ablate_select"]
+description: >
+  Choose the contrast set for the c1 loop-direction ablation by one fixed rule (c1's first attempts at the cell on the
+  16 evaluation tasks; every call whose previous call issued a tool call, labelled repeat or not; trace sealed). Writes
+  results/ablate/datasets/<UTC>/ (attempts.jsonl, manifest.json).
+effects: live
+
+env_config:
+  interpreter:
+    type: local_binary
+    binary: python3
+    candidates: [python3]
+    var: RYE_PYTHON
+    path_candidates: [python3]
+
+config:
+  command: "${interpreter}"
+  args:
+    - "-B"
+    - "-I"
+    - "${tool_dir}/lib/ablate_select.py"
+    - "--project-path"
+    - "${project_path}"
+  input_data: "${params_json}"
+  timeout_secs: 600
+
+config_schema:
+  type: object
+  properties:
+    stamp:
+      type: string
+      pattern: "^[A-Za-z0-9_-]+$"
+      description: "output directory name under results/ablate/datasets/ (default: a UTC timestamp)"
+    split:
+      type: string
+      default: "results/lora/cycles/c1/accept.json"
+      description: "the acceptance record whose evaluation_tasks are the source tasks"
+  required: []
